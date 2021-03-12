@@ -1,0 +1,96 @@
+.hidden {
+    display: none;
+}
+
+.empty-media {
+    width: 300px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #cccccc30;
+    padding: 10px;
+}
+
+.preview {
+    text-transform: uppercase;
+    font-size: 10px;
+    position: absolute;
+    margin: 0 5px;
+}
+
+.no-border {
+    border: none;
+    background: none;
+    padding: unset;
+}
+
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
+
+.ml-auto {
+    margin-left: auto;
+}
+
+.mr-auto {
+    margin-right: auto;
+}
+
+.d-block {
+    display: block;
+    max-width: 100%;
+}
+
+.d-contents {
+    display: contents;
+}
+
+.mt-auto {
+    margin-top: auto;
+}
+
+.mb-auto {
+    margin-bottom: auto;
+}
+
+.text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.text-wrap {
+    word-wrap: break-word;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-hide {
+    font: 0/0 a;
+    color: transparent;
+    text-shadow: none;
+    background-color: transparent;
+    border: 0;
+}
+
+.text-monospace {
+    font-family: monospace;
+}
+
+.scrollable-x {
+    max-width: 100%;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+}
+
+.scrollable-y {
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}

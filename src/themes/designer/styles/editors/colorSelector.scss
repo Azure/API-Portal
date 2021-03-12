@@ -1,0 +1,47 @@
+.color {
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: inset -1px 1px 1px 0 rgba(0, 0, 0, 0.1);
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+    padding: 0;
+    display: block;
+    position: relative;
+    text-align: center;
+    line-height: 30px;
+}
+
+.pseudo-transparent-bckg {
+    position: relative;
+    overflow: hidden;
+    @include pseudo-transparent-bckg();
+}
+
+.palette {
+    list-style: none;
+    padding: 0;
+    max-width: 250px;
+
+    .color-box {
+        float: left;
+        position: relative;
+
+        &.selected:before {
+            position: absolute;
+            content: "";
+            border: 2px solid #4c5866;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            pointer-events: none;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        &:hover {
+            @include selection(10px);
+        }
+    }
+}

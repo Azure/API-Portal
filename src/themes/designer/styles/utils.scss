@@ -1,0 +1,63 @@
+@import "variables.scss";
+
+.text-center {
+    text-align: center;
+}
+
+.text-hide {
+    overflow: hidden;
+    position: fixed;
+    top: -1000px;
+    left: -1000px;
+    width: 0;
+    height: 0;
+}
+
+.text-overflow {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.no-overflow {
+    overflow: hidden;
+}
+
+.d-none {
+    display: none !important;
+}
+
+.d-xl-inline-block {
+    @media (min-width: $breakpoint-xl) {
+        display: inline-block !important;
+    }
+}
+
+.d-lg-inline-block {
+    @media (min-width: $breakpoint-lg) {
+        display: inline-block !important;
+    }
+}
+.d-md-inline-block {
+    @media (min-width: $breakpoint-md) {
+        display: inline-block !important;
+    }
+}
+
+.d-sm-inline-block {
+    @media (min-width: $breakpoint-sm) {
+        display: inline-block !important;
+    }
+}
+
+.mt-0 {
+    margin-top: 0;
+}
+
+.ml-5 {
+    margin-left: 5px;
+}
+
+.max-w300 {
+    max-width: 300px;
+}

@@ -1,0 +1,96 @@
+﻿/* Breakpoints */
+$breakpoint-xs: 0;
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px
+  ) !default;
+
+/* Typography */
+$font-family-base: 'OpenSans', sans-serif;
+$font-size-base: 13px;
+$font-weight-base: 500;
+$font-weight-headers: 600;
+$lineheight: 2em;
+
+/* Toolboxes */
+$toolbox-background: #fff;
+$toolbox-btn-size: 45px;
+$toolbox-btn-padding: 5px;
+$toolbox-btn-active-bg: #F9FBFC;
+$toolbox-btn-active-border: #96989A;
+$toolbox-border-radius: 10px;
+$toolbox-padding: 8px;
+
+/* Workshops */
+$workshop-button-height: 2em;
+$workshop-help-button-size: 24px;
+$workshop-max-height: 300px;
+$workshop-subtitle-color: #AFBD77;
+$workshop-padding: 20px;
+$workshop-journey-step-border-color: #eceaea;
+
+/* Buttons */
+$button-danger-text-color: #fff;
+$button-link-color: #99c248;
+
+/* Balloons */
+$balloon-background: $toolbox-background;
+
+/* Palette */
+$tab-selected-color: #A8CF45;
+$collapse-button-color: #91D8F7;
+$color-base: #5b5f61;
+$color-danger: #e46969;
+$color-info: #5b5f61;
+$color-watermark: #CCC;
+$link-color: #00AFEF;
+$arrow-active-color: #F58634;
+$icon-base-color: #57585a;
+
+/* Forms */
+$form-control-font-size: 0.9em;
+$form-control-border: #7f7f7fd9;
+$form-control-border-focused: #0078d4;
+$form-control-bg: #ffffff;
+$form-control-bg-readonly: #e6e7e8;
+$form-control-bg-disabled: #e6e7e8;
+$form-control-padding: 7px;
+$form-control-focus-color: #61b2e8;
+$form-control-slider-thumb-bg: #fff;
+$form-control-slider-thumb-size: 17px;
+$form-collapsible-section-gutter-color: #ddd;
+
+/* Lists */
+$list-item-thumbnail-bg: #f8f8f8;
+
+/* Spinners */
+$spinner-shutter-bg: #fff;
+$spinner-dot-border-color: #003255;
+$spinner-inverted-bg: #fff;
+$spinner-inverted-dot-border-color: #fff;
+
+/* Scrollbars */
+$scrollbar-rail-active-bg: #eee;
+$scrollbar-thumb-bg: #aaa;
+$scrollbar-thumb-active-bg: #999;
+
+/* Layout editor */
+$layout-editor-selection-color: #3c3c3c;
+$layout-editor-splitter-color: #ccc;
+
+/* Others */
+$z-index-base: 9100;
+$z-index-popup: 9110;
+$z-index-balloon: 9120;
+$z-index-dragging: 9130;
+$z-index-arrows: 9140;
+$z-index-selection: 9000;
+$list-item-size: 2.5em;

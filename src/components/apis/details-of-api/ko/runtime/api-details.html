@@ -1,0 +1,41 @@
+<div class="flex flex-row">
+    <!-- ko if: working-->
+    <spinner class="fit"></spinner>
+    <!-- /ko -->
+
+    <!-- ko ifnot: working -->
+    <div class="flex-item flex-grow animation-fade-in">
+        <!-- ko if: api -->
+        <h1>
+            <span data-bind="text: api().displayName"></span>
+            <!-- ko if: api().type === 'soap' -->
+            <span class="badge badge-soap">SOAP</span>
+            <!-- /ko -->
+        </h1>
+
+        <div class="form-inline">
+            <div class="form-group">
+                <!-- ko if: versionApis().length > 0 -->
+                <label for="apiVersions">API version: </label>
+                <select id="apiVersions" class="form-control"
+                    data-bind="options: versionApis, optionsValue: 'name', optionsText: 'apiVersion', value: currentApiVersion">
+                </select>
+                <!-- /ko -->
+            </div>
+        </div>
+
+        <!-- ko if: api().description  -->
+        <p data-bind="markdown: api().description"></p>
+        <!-- /ko -->
+
+        <!-- /ko -->
+
+        <!-- ko ifnot: api -->
+        <p>The specified API does not exist.</p>
+        <!-- /ko -->
+
+    </div>
+    <!-- /ko -->
+
+
+</div>

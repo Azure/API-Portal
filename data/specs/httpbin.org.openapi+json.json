@@ -1,0 +1,204 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "httpbin.org",
+        "description": "API Management facade for a very handy and free online HTTP tool.",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "https://httpbin.org"
+        }
+    ],
+    "paths": {
+        "/status/{code}": {
+            "get": {
+                "summary": "/status",
+                "description": "Returns provided HTTP Status code.",
+                "operationId": "status",
+                "parameters": [
+                    {
+                        "name": "code",
+                        "in": "path",
+                        "description": "HTTP code to return.",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                200
+                            ],
+                            "type": "number",
+                            "default": 200
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": null
+                    }
+                }
+            }
+        },
+        "/get": {
+            "get": {
+                "summary": "/get",
+                "description": "Returns GET data.",
+                "operationId": "get",
+                "responses": {
+                    "200": {
+                        "description": null
+                    }
+                }
+            }
+        },
+        "/post": {
+            "post": {
+                "summary": "/post",
+                "description": "Returns POST data.",
+                "operationId": "post",
+                "responses": {
+                    "200": {
+                        "description": null
+                    }
+                }
+            }
+        },
+        "/patch": {
+            "patch": {
+                "summary": "/patch",
+                "description": "Returns PATCH data.",
+                "operationId": "patch",
+                "responses": {
+                    "200": {
+                        "description": null
+                    }
+                }
+            }
+        },
+        "/put": {
+            "put": {
+                "summary": "/put",
+                "description": "Returns PUT data.",
+                "operationId": "put",
+                "responses": {
+                    "200": {
+                        "description": null
+                    }
+                }
+            }
+        },
+        "/delete": {
+            "delete": {
+                "summary": "/delete",
+                "description": "Returns DELETE data.",
+                "operationId": "delete",
+                "responses": {
+                    "200": {
+                        "description": null
+                    }
+                }
+            }
+        },
+        "/xml": {
+            "get": {
+                "summary": "/xml",
+                "description": "Returns some XML.",
+                "operationId": "xml",
+                "responses": {
+                    "200": {
+                        "description": null
+                    }
+                }
+            }
+        },
+        "/ip": {
+            "get": {
+                "summary": "/ip",
+                "description": "Returns origin IP.",
+                "operationId": "ip",
+                "responses": {
+                    "200": {
+                        "description": null
+                    }
+                }
+            }
+        },
+        "/user-agent": {
+            "get": {
+                "summary": "/user-agent",
+                "description": "Returns user agent string.",
+                "operationId": "user-agent",
+                "responses": {
+                    "200": {
+                        "description": null
+                    }
+                }
+            }
+        },
+        "/headers": {
+            "get": {
+                "summary": "/headers",
+                "description": "Returns headers dictionary.",
+                "operationId": "headers",
+                "responses": {
+                    "200": {
+                        "description": null
+                    }
+                }
+            }
+        },
+        "/delay/{seconds}": {
+            "get": {
+                "summary": "/delay",
+                "description": "Delays responding for n–10 seconds.",
+                "operationId": "delay",
+                "parameters": [
+                    {
+                        "name": "seconds",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "2"
+                            ],
+                            "type": "string",
+                            "default": "2"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": null
+                    }
+                }
+            }
+        },
+        "/cache/{maxAge}": {
+            "get": {
+                "summary": "/cache",
+                "operationId": "cache",
+                "parameters": [
+                    {
+                        "name": "maxAge",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "10"
+                            ],
+                            "type": "string",
+                            "default": "10"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": null
+                    }
+                }
+            }
+        }
+    },
+    "components": {}
+}

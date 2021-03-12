@@ -1,0 +1,112 @@
+@import "../animations.scss";
+
+.collapsible-container {
+    flex-wrap: wrap;
+}
+
+.collapsible-content {
+    display: none;
+    flex-basis: 100%;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.collapsible-panel {
+    flex: 1;
+    // min-width: 1px;
+
+    .collapsible-panel-open {
+        display: block;
+        border: none;
+        background: none;
+        padding: 10px;
+        border-radius: 10px;
+        margin: 0 10px;
+        cursor: pointer;
+        margin-left: auto;
+    }
+
+    .collapsible-panel-close {
+        display: none;
+        border: none;
+        background: none;
+        padding: 10px;
+        margin: 0 10px;
+        cursor: pointer;
+        position: absolute;
+        right: 0;
+    }
+}
+
+.backdrop {
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000000c9;
+    z-index: 8500;
+    display: none;
+    animation: fadeIn 0.2s linear forwards;
+}
+
+@media (min-width: $breakpoint-md) {
+    .collapsible-panel {
+        & > .collapsible-content {
+            display: flex;
+        }
+
+        .collapsible-panel-open {
+            display: none;
+        }
+    }
+}
+
+.collapsible.expanded {
+    & > .collapsible-content {
+        display: flex;
+        position: absolute;
+    }
+}
+
+.collapsible-panel.collapsible.expanded {
+    & > .collapsible-content {
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 9000;
+        position: fixed;
+        animation: slideInRight 0.2s linear forwards;
+
+        & > .collapsible-panel-close {
+            display: block;
+            top: 0;
+            right: 0;
+        }
+    }
+
+    .backdrop {
+        display: block;
+    }
+}
+
+@media (max-width: $breakpoint-md) {
+    .collapsible-panel {
+        .collapsible-panel-open {
+            display: block;
+        }
+    }
+}
+
+.collapsible-dropdown {
+    position: absolute;
+    background: #fff;
+    box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.5);
+    z-index: 9000;
+    padding: 20px;
+    width: 100%;
+    top: 100%;
+    left: 0;
+    right: 0;
+}

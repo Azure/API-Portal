@@ -1,0 +1,5 @@
+{
+    "environment": "host",
+    "dataPath": "../../data",
+    "mediaPath": "../../data/media"
+}

@@ -1,0 +1,276 @@
+﻿@import "variables.scss";
+@import "mixins.scss";
+@import "icons.scss";
+@import "animation.scss";
+@import "layouts.scss";
+
+h1,
+h2 {
+    font-family: $font-family-base;
+    color: $color-base;
+    display: block;
+    margin: 0;
+    cursor: default;
+}
+
+h1 {
+    font-size: 1.2em;
+}
+
+h2 {
+    font-size: 1.1em;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+.toolbox {
+    display: flex;
+    flex-direction: column;
+    padding: $toolbox-padding;
+    z-index: $z-index-base;
+    max-height: calc(100% - 40px);
+
+    @include surface();
+    @include animation-fadein(0.3s);
+
+    &.toolbox-popup {
+        z-index: $z-index-base + 1;
+    }
+
+    &.toolbox-horizontal {
+        flex-direction: row;
+    }
+
+    &.toolbox-vertical {
+        flex-direction: column;
+    }
+
+    &.toolbox-position-left {
+        left: 20px;
+        max-width: calc(100%-40px);
+    }
+
+    &.toolbox-position-left-bottom {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        flex-direction: row;
+    }
+
+    &.toolbox-position-right-top {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        flex-direction: row;
+    }
+
+    &.toolbox-position-left-offset {
+        position: fixed;
+        top: 20px;
+        left: 150px;
+        min-width: 320px;
+    }
+
+    .toolbox-btn {
+        color: $icon-base-color;
+        line-height: $toolbox-btn-size;
+        min-width: $toolbox-btn-size;
+        height: $toolbox-btn-size;
+        display: inline-block;
+        padding: 0;
+        box-sizing: border-box;
+        border: none;
+        background-color: transparent;
+
+        text-decoration: none;
+        text-align: center;
+        position: relative;
+        cursor: pointer;
+        @include no-select();
+        @include no-drag();
+
+        &.toolbox-btn-is-active {
+            position: relative;
+
+            &:before {
+                @include fit();
+                position: absolute;
+                background-color: $toolbox-btn-active-bg;
+                border: 1px solid $toolbox-btn-active-border;
+                border-radius: $toolbox-border-radius - 5px;
+                content: "";
+            }
+        }
+
+        &.toolbox-dropdown {
+            a {
+                padding-left: 15px;
+                padding-right: 15px;
+                text-align: center;
+            }
+        }
+
+        &.pull-down {
+            margin-top: auto;
+        }
+
+        a {
+            display: inline-block;
+            height: $toolbox-btn-size;
+            line-height: $toolbox-btn-size;
+            background-size: cover;
+            outline: none;
+            color: $color-base;
+            text-decoration: none;
+            width: 100%;
+            padding-left: 12px;
+            padding-right: 12px;
+            @include tabable();
+        }
+
+        &[disabled] {
+            opacity: 0.2;
+        }
+
+        .toolbox-btn-addon {
+            width: 15px;
+            left: 3px;
+        }
+    }
+
+    .toolbox-btn-group {
+        display: flex;
+        padding: 0;
+        margin: 0;
+    }
+
+    .toolbox-btn-group-vertical {
+        display: flex;
+        flex-direction: column;
+
+        .toolbox-btn-is-active:before {
+            position: absolute;
+            left: -7px;
+            content: "";
+            width: 4px;
+            background: $tab-selected-color;
+            top: 0;
+            bottom: 0;
+            border: none;
+        }
+    }
+
+    .toolbox-splitter {
+        height: 1px;
+        border: none;
+        border-bottom: 1px solid lightgray;
+    }
+
+    &.toolbox-resizable {
+        resize: horizontal;
+    }
+
+    &::after {
+        clear: both;
+        content: "";
+        display: block;
+    }
+
+    .resize-handle {
+        background: transparent;
+        position: absolute;
+        z-index: $z-index-base + 1;
+
+        &.resize-handle-right {
+            cursor: e-resize;
+            width: 5px;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+
+        &.resize-handle-left {
+            cursor: w-resize;
+            width: 5px;
+            left: 0;
+            top: 0;
+            bottom: 0;
+        }
+
+        &.resize-handle-top {
+            cursor: n-resize;
+            height: 5px;
+            left: 0;
+            right: 0;
+            top: 0;
+        }
+
+        &.resize-handle-bottom {
+            cursor: s-resize;
+            height: 5px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+    }
+
+    &.resize-suspended {
+        .resize-handle {
+            pointer-events: none;
+        }
+    }
+
+    &.resized-horizontally {
+        .resizable-content {
+        }
+    }
+
+    &.resized-vertically {
+        .resizable-content {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}
+
+.balloon {
+    .toolbox {
+        padding: 0;
+        box-shadow: none;
+    }
+}
+
+.editor {
+    padding: 10px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+
+    .flex-row {
+        flex-wrap: wrap;
+    }
+
+    h1 {
+        margin: 3px 0;
+    }
+}
+
+.no-pointer-events {
+    pointer-events: none;
+}
+
+.photo {
+    @include fit;
+    background-size: cover;
+}
+
+.subtle {
+    font-size: .9em;
+    color: lighten($color-base, 10%);
+    font-family: monospace;
+    padding-top: 5px;
+}

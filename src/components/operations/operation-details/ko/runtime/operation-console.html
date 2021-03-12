@@ -1,0 +1,367 @@
+<!-- ko if: working -->
+<div class="panel panel-dark fit">
+    <spinner class="fit"></spinner>
+</div>
+<!-- /ko -->
+
+<!-- ko ifnot: working -->
+
+<div class="panel panel-dark animation-fade-in" data-bind="with: consoleOperation">
+    <button type="button" class="no-border pull-right" data-dismiss="modal" aria-label="Close console"
+        data-bind="click: $parents[1].closeConsole">
+        <i class="icon-emb icon-emb-simple-remove"></i>
+    </button>
+
+    <nav aria-label="breadcrumb" style="margin-right: 20px">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#" data-bind="text: api.displayName, attr: { href: $component.getApiReferenceUrl() }"></a>
+            </li>
+            <!-- ko if: api.apiVersion -->
+            <li class="breadcrumb-item">
+                <span data-bind="text: api.apiVersion"></span>
+            </li>
+            <!-- /ko -->
+            <li class="breadcrumb-item">
+                <span data-bind="text: name"></span>
+            </li>
+        </ol>
+    </nav>
+
+    <div class="monospace" data-bind="text: urlTemplate, attr: { 'data-method': method }"></div>
+
+
+    <!-- ko if: $component.hostnameSelectionEnabled -->
+    <h3>Host</h3>
+
+    <div class="row flex flex-row">
+        <div class="col-4">
+            <label for="hostname" class="text-monospace form-label">
+                Hostname
+            </label>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <select id="hostname" class="form-control" data-bind="value: $component.selectedHostname">
+                    <!-- ko foreach: { data: $component.hostnames, as: 'hostname' } -->
+                    <option data-bind="value: hostname, text: hostname"></option>
+                    <!-- /ko -->
+                </select>
+            </div>
+        </div>
+    </div>
+    <!-- /ko -->
+
+    <!-- ko if: $component.isHostnameWildcarded -->
+    <div class="row flex flex-row">
+        <div class="col-4">
+            <label for="wildcardSegment" class="text-monospace form-label">
+                Wildcard segment
+            </label>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <input id="wildcardSegment" type="text" autocomplete="off" class="form-control form-control-sm"
+                    placeholder="name" spellcheck="false"
+                    data-bind="event: { keyup: $component.updateRequestSummary }, textInput: $component.wildcardSegment">
+            </div>
+        </div>
+    </div>
+    <!-- /ko -->
+
+    <!-- ko if: $component.authorizationServer() || $component.subscriptionKeyRequired() -->
+    <h3>Authorization</h3>
+    <!-- /ko -->
+
+    <!-- ko if: $component.authorizationServer -->
+    <div class="row flex flex-row">
+        <div class="col-4">
+            <label for="authServer" class="text-monospace form-label"
+                data-bind="text: $component.authorizationServer().displayName"></label>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <select id="authServer" class="form-control"
+                    data-bind="options: $component.authorizationServer().grantTypes, value: $component.selectedGrantType, optionsCaption: 'No auth'">
+                </select>
+            </div>
+        </div>
+    </div>
+    <!-- /ko -->
+
+    <!-- ko if: $component.subscriptionKeyRequired -->
+    <div class="row flex flex-row">
+        <div class="col-4">
+            <label for="subscriptionKey" class="text-monospace form-label">
+                Subscription key
+            </label>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <!-- ko if: $component.products() && $component.products().length > 0 -->
+                <select id="subscriptionKey" class="form-control" data-bind="value: $component.selectedSubscriptionKey">
+                    <!-- ko foreach: { data: $component.products, as: 'product' } -->
+                    <optgroup data-bind="attr: { label: product.name }">
+                        <!-- ko foreach: { data: product.subscriptionKeys, as: 'subscriptionKey' } -->
+                        <option data-bind="value: subscriptionKey.value, text: subscriptionKey.name"></option>
+                        <!-- /ko -->
+                    </optgroup>
+                    <!-- /ko -->
+                </select>
+                <!-- /ko -->
+                <!-- ko if: !$component.products() || $component.products().length === 0 -->
+                <input id="subscriptionKey" type="text" class="form-control" placeholder="subscription key"
+                    data-bind="textInput: $component.selectedSubscriptionKey" />
+                <!-- /ko -->
+            </div>
+        </div>
+    </div>
+    <!-- /ko -->
+
+    <h3>Parameters</h3>
+    <!-- ko if: (templateParameters && templateParameters().length > 0) || (request.queryParameters && request.queryParameters().length > 0) -->
+    <div data-bind="foreach: { data: templateParameters, as: 'parameter' }">
+        <div class="row flex flex-row">
+            <div class="col-4">
+                <label class="text-monospace form-label" data-bind="text: parameter.name">
+                </label>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <!-- ko if: parameter.options.length > 0 -->
+                    <select class="form-control" aria-label="Parameter value"
+                        data-bind="value: parameter.value, options: parameter.options, optionsAfterRender: $component.updateRequestSummary, event:{ change: $component.updateRequestSummary }"></select>
+                    <!-- /ko -->
+                    <!-- ko if: parameter.options.length === 0 -->
+                    <div class="input-group">
+                        <input type="text" autocomplete="off" class="form-control form-control-sm" placeholder="value"
+                            spellcheck="false" aria-label="Parameter value"
+                            data-bind="event: { keyup: $component.updateRequestSummary }, textInput: parameter.value">
+                        <span class="invalid-feedback" data-bind="validationMessage: parameter.value"></span>
+                    </div>
+                    <!-- /ko -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div data-bind="foreach: { data: request.queryParameters, as: 'parameter' }">
+        <div class="row flex flex-row">
+            <div class="col-4">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" autocomplete="off" class="form-control form-control-sm" placeholder="name"
+                            spellcheck="false" aria-label="Parameter name" data-bind="textInput: parameter.name">
+                        <span class="invalid-feedback" data-bind="validationMessage: parameter.name"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <!-- ko if: parameter.options.length > 0 -->
+                    <select class="form-control" aria-label="Parameter value"
+                        data-bind="value: parameter.value, options: parameter.options, optionsAfterRender: $component.updateRequestSummary, event:{ change: $component.updateRequestSummary }"></select>
+                    <!-- /ko -->
+                    <!-- ko if: parameter.options.length === 0 -->
+                    <input type="text" autocomplete="off" class="form-control form-control-sm" placeholder="value"
+                        spellcheck="false" aria-label="Parameter value"
+                        data-bind="event: { keyup: $component.updateRequestSummary }, textInput: parameter.value">
+                    <!-- /ko -->
+                </div>
+            </div>
+            <div class="col-2">
+                <a href="#" role="button" data-bind="click: $component.removeQueryParameter">Remove</a>
+            </div>
+        </div>
+    </div>
+    <!-- /ko -->
+
+    <a href="#" role="button" data-bind="click: $component.addQueryParameter">
+        <i class="icon-emb icon-emb-plus"></i>
+        Add parameter
+    </a>
+
+    <h3>Headers</h3>
+
+    <!-- ko if: request.headers().length > 0 -->
+    <div data-bind="foreach: { data: request.headers, as: 'header' }">
+        <div class="row flex flex-row">
+            <div class="col-4">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" autocomplete="off" class="form-control form-control-sm" placeholder="name"
+                            spellcheck="false" aria-label="Header name" data-bind="textInput: header.name">
+                        <span class="invalid-feedback" data-bind="validationMessage: header.name"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <!-- ko if: header.options && header.options.length > 0 -->
+                    <select class="form-control" aria-label="Header value"
+                        data-bind="value: header.value, options: header.options, optionsAfterRender: $component.updateRequestSummary, event:{ change: $component.updateRequestSummary }"></select>
+                    <!-- /ko -->
+                    <!-- ko if: !header.options || header.options.length === 0 -->
+                    <div class="input-group">
+                        <input type="text" autocomplete="off" class="form-control form-control-sm" placeholder="value"
+                            spellcheck="false" aria-label="Header value"
+                            data-bind="event: { keyup: $component.updateRequestSummary }, textInput: header.value">
+                        <span class="invalid-feedback" data-bind="validationMessage: header.value"></span>
+                    </div>
+                    <!-- /ko -->
+                </div>
+            </div>
+            <div class="col-2">
+                <a href="#" role="button" data-bind="click: $component.removeHeader">Remove</a>
+            </div>
+        </div>
+    </div>
+    <!-- /ko -->
+
+    <a href="#" role="button" data-bind="click: $component.addHeader">
+        <i class="icon-emb icon-emb-plus"></i> Add header
+    </a>
+
+    <!-- ko if: hasBody -->
+    <h3>Body</h3>
+
+    <div class="flex justify-content-end">
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="bodyFormat" id="bodyFormatRaw" value="raw"
+                data-bind="checked: request.bodyFormat">
+            <label class="form-check-label" for="bodyFormatRaw">Raw</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="bodyFormat" id="bodyFormatBinary" value="binary"
+                data-bind="checked: request.bodyFormat">
+            <label class="form-check-label" for="bodyFormatBinary">Binary</label>
+        </div>
+    </div>
+    <div class="form-group">
+        <!-- ko if: request.bodyFormat() === 'raw' -->
+        <textarea class="form-control form-control-sm" rows="5" aria-label="Request body"
+            data-bind="event: { keyup: $component.updateRequestSummary }, textInput: request.body, valueUpdate: 'keyup'"></textarea>
+        <!-- /ko -->
+        <!-- ko if: request.bodyFormat() === 'binary' -->
+        <file-input params="{ onSelect: $component.onFileSelect }" class="form-control" aria-label="Request body"
+            data-bind="css: { 'is-invalid': !request.binary.isValid() }"></file-input>
+        <span class="invalid-feedback" data-bind="validationMessage: request.binary"></span>
+        <!-- /ko -->
+    </div>
+    <!-- /ko -->
+</div>
+
+<div class="panel panel-dark animation-fade-in panel-highlight flex-item flex-grow menu menu-horizontal">
+    <ul class="nav" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" href="#" role="tab"
+                data-bind="click: $component.selectedLanguage.bind(this, 'http'), css: { 'nav-link-active': $component.selectedLanguage() === 'http' }">
+                HTTP
+            </a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" href="#" role="tab"
+                data-bind="click: $component.selectedLanguage.bind(this, 'curl'), css: { 'nav-link-active': $component.selectedLanguage() === 'curl' }">
+                Curl
+            </a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" href="#" role="tab"
+                data-bind="click: $component.selectedLanguage.bind(this, 'csharp'), css: { 'nav-link-active': $component.selectedLanguage() === 'csharp' }">
+                C#
+            </a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" href="#" role="tab"
+                data-bind="click: $component.selectedLanguage.bind(this, 'java'), css: { 'nav-link-active': $component.selectedLanguage() === 'java' }">
+                Java
+            </a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" href="#" role="tab"
+                data-bind="click: $component.selectedLanguage.bind(this, 'javascript'), css: { 'nav-link-active': $component.selectedLanguage() === 'javascript' }">
+                JavaScript
+            </a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" href="#" role="tab"
+                data-bind="click: $component.selectedLanguage.bind(this, 'php'), css: { 'nav-link-active': $component.selectedLanguage() === 'php' }">
+                PHP
+            </a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" href="#" role="tab"
+                data-bind="click: $component.selectedLanguage.bind(this, 'python'), css: { 'nav-link-active': $component.selectedLanguage() === 'python' }">
+                Python
+            </a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" href="#" role="tab"
+                data-bind="click: $component.selectedLanguage.bind(this, 'ruby'), css: { 'nav-link-active': $component.selectedLanguage() === 'ruby' }">
+                Ruby
+            </a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" href="#" role="tab"
+                data-bind="click: $component.selectedLanguage.bind(this, 'objc'), css: { 'nav-link-active': $component.selectedLanguage() === 'objc' }">
+                Objective C
+            </a>
+        </li>
+    </ul>
+
+    <h3>HTTP request</h3>
+    <div class="code-block">
+        <div class="code-block-heading">
+            <button class="code-block-command" data-bind="copyToClipboard: $component.codeSample"
+                aria-label="Copy to clipboard">
+                <i class="icon-emb icon-emb-duplicate"></i> Copy
+            </button>
+        </div>
+    </div>
+
+    <!-- ko if: $component.codeSample -->
+    <pre data-bind="syntaxHighlight: { code: $component.codeSample, language: $component.selectedLanguage }"></pre>
+    <!-- /ko -->
+
+    <div class="flex flex-column align-items-end">
+        <div class="btn-group" role="group">
+            <!-- ko ifnot: sendingRequest -->
+            <button type="button" class="button button-primary btn-sm" data-bind="click: validateAndSendRequest">
+                Send
+            </button>
+            <!-- /ko -->
+            <!-- ko if: sendingRequest -->
+            <button type="button" class="button button-primary btn-sm" disabled>
+                Sending...
+            </button>
+            <!-- /ko -->
+        </div>
+    </div>
+</div>
+
+<!-- ko if: sendingRequest -->
+<div class="panel panel-dark" data-bind="scrollintoview: {}">
+    <spinner class="fit"></spinner>
+</div>
+<!-- /ko -->
+
+<!-- ko if: requestError -->
+<div class="panel panel-dark animation-fade-in" data-bind="scrollintoview: {}">
+    <p>Unable to complete the request</p>
+    <p class="text-muted" data-bind="html: requestError"></p>
+</div>
+<!-- /ko -->
+
+<!-- ko if: responseStatusCode -->
+<div class="panel panel-dark menu menu-horizontal animation-fade-in" data-bind="scrollintoview: {}">
+
+    <h3>HTTP response</h3>
+    <pre><span>HTTP/1.1</span> <span data-bind="attr: { 'data-code': responseStatusCode  }"><span data-bind="text: responseStatusCode, attr: { 'data-code':responseStatusCode  }"></span> <span data-bind="text: responseStatusText"></span></span>
+
+<span data-bind="text: responseHeadersString"></span>
+
+<span data-bind="text: responseBody"></span></pre>
+
+</div>
+<!--/ko-->
+
+<!--/ko-->
