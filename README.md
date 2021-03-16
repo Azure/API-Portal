@@ -1,6 +1,6 @@
 # API documentation portal
 
-API documentation portal lets you effortlessly create and publish a customized site with API documentation, automatically generated from OpenAPI files. The drag-and-drop administrative interface allows for customizations without writing any code and the default GitHub-based workflow enables communication and collaboration between API providers and API consumers, automation with GitHub Actions, and free hosting with GitHub Pages. API documentation portal relies on the same technology as the Azure API Management’s developer portal ([documentation](https://aka.ms/apimdocs/portal), [GitHub](https://aka.ms/apimdevportal)), which is used by thousands of Azure customers.
+API documentation portal lets you create and publish a customized site with API documentation, for free and without writing any code. GitHub-based workflow enables collaboration between API providers and API consumers, automation, and free hosting.
 
 ![API Catalog](readme.gif)
 
@@ -10,6 +10,7 @@ API documentation portal lets you effortlessly create and publish a customized s
 - **GitHub-based API ecosystem**. Create a GitHub-based API ecosystem for communication and collaboration between API providers and API consumers. Portal deployments can be automated with GitHub Actions and hosted for free with GitHub Pages.
 - **Enterprise-wide API catalog**. Publish the portal within the organization to catalog APIs for discoverability, deduplication of assets, and business efficiency.
 - **Branded API documentation portal**. Publish the branded portal to partners or external consumers for discoverability and self-onboarding.
+- **Proven technology**. API documentation portal relies on the same technology as the Azure API Management’s developer portal ([documentation](https://aka.ms/apimdocs/portal), [GitHub](https://aka.ms/apimdevportal)), which is used by thousands of Microsoft Azure customers.
 
 ## Get started
 
