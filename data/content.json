@@ -1201,19 +1201,6 @@
                         "file": "https://fonts.gstatic.com/s/montserrat/v15/JTUPjIg1_i6t8kCHKm459WxZSgnD-_xxrCq7qg.ttf"
                     }
                 ]
-            },
-            "icons": {
-                "displayName": "Icons",
-                "family": "Website Icons",
-                "key": "fonts/icons",
-                "variants": [
-                    {
-                        "sourceKey": "fonts/icons/regular",
-                        "permalink": "/styles/fonts/icons-regular.ttf",
-                        "style": "normal",
-                        "weight": "400"
-                    }
-                ]
             }
         },
         "globals": {
@@ -1696,14 +1683,6 @@
                     }
                 },
                 "key": "utils/text"
-            }
-        },
-        "icons": {
-            "f7LPr": {
-                "key": "icons/f7LPr",
-                "name": "star",
-                "displayName": "star",
-                "unicode": 61445
             }
         }
     },
@@ -2816,13 +2795,19 @@
                                             "itemStyleView": "dropdown",
                                             "allowSelection": true,
                                             "defaultGroupByTagToEnabled": false,
-                                            "detailsPageHyperlink": null
+                                            "detailsPageHyperlink": {
+                                                "target": "_self",
+                                                "targetKey": "pages/1b2a9e4c-d53b-99d1-e363-348630d982b5"
+                                            }
                                         },
                                         {
                                             "type": "operationList",
                                             "allowSelection": true,
                                             "defaultGroupByTagToEnabled": false,
-                                            "detailsPageHyperlink": null
+                                            "detailsPageHyperlink": {
+                                                "target": "_self",
+                                                "targetKey": "pages/1b2a9e4c-d53b-99d1-e363-348630d982b5"
+                                            }
                                         }
                                     ],
                                     "role": "aside",
