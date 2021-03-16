@@ -36,18 +36,6 @@
                 }
             }
         },
-        "38b4a583-e611-dbf8-b945-a2d591c61614": {
-            "key": "pages/38b4a583-e611-dbf8-b945-a2d591c61614",
-            "locales": {
-                "en-us": {
-                    "title": "APIs: List",
-                    "description": "",
-                    "keywords": "",
-                    "contentKey": "files/38b4a583-e611-dbf8-b945-a2d591c61614",
-                    "permalink": "/apis"
-                }
-            }
-        },
         "3bc2e097-114e-cd8d-dc51-4139bcbdb8c0": {
             "key": "pages/3bc2e097-114e-cd8d-dc51-4139bcbdb8c0",
             "locales": {
@@ -954,43 +942,6 @@
                         "bottom": 8
                     }
                 }
-            },
-            "tabPanel": {
-                "default": {
-                    "displayName": "Normal tab panel",
-                    "key": "components/tabPanel/default",
-                    "category": "appearance",
-                    "components": {
-                        "navLink": {
-                            "default": {
-                                "key": "components/tabPanel/default/components/navLink/default",
-                                "allowedStates": [
-                                    "hover",
-                                    "focus",
-                                    "active",
-                                    "disabled"
-                                ],
-                                "displayName": "Navigation link",
-                                "typography": {
-                                    "colorKey": "colors/default"
-                                }
-                            },
-                            "active": {
-                                "key": "components/tabPanel/default/components/navLink/active",
-                                "allowedStates": [
-                                    "hover",
-                                    "focus",
-                                    "active",
-                                    "disabled"
-                                ],
-                                "displayName": "Navigation link (active)",
-                                "typography": {
-                                    "fontWeight": "bold"
-                                }
-                            }
-                        }
-                    }
-                }
             }
         },
         "fonts": {
@@ -1250,6 +1201,19 @@
                         "file": "https://fonts.gstatic.com/s/montserrat/v15/JTUPjIg1_i6t8kCHKm459WxZSgnD-_xxrCq7qg.ttf"
                     }
                 ]
+            },
+            "icons": {
+                "displayName": "Icons",
+                "family": "Website Icons",
+                "key": "fonts/icons",
+                "variants": [
+                    {
+                        "sourceKey": "fonts/icons/regular",
+                        "permalink": "/styles/fonts/icons-regular.ttf",
+                        "style": "normal",
+                        "weight": "400"
+                    }
+                ]
             }
         },
         "globals": {
@@ -1291,8 +1255,7 @@
                     "displayName": "Regular",
                     "key": "globals/body/default",
                     "typography": {
-                        "fontKey": "fonts/3LI3m",
-                        "fontSize": 15
+                        "fontKey": "fonts/h4ilD"
                     }
                 },
                 "nq5w8": {
@@ -1734,15 +1697,23 @@
                 },
                 "key": "utils/text"
             }
+        },
+        "icons": {
+            "f7LPr": {
+                "key": "icons/f7LPr",
+                "name": "star",
+                "displayName": "star",
+                "unicode": 61445
+            }
         }
     },
     "settings": {
         "site": {
-            "title": "Microsoft Azure API Management - developer portal",
-            "description": "Discover APIs, learn how to use them, try them out interactively, and sign up to acquire keys.",
-            "keywords": "Azure, API Management, API, developer",
+            "title": "API catalog - explore our APIs",
+            "description": "Discover APIs, learn how to use them, and try them out interactively.",
+            "keywords": "",
             "faviconSourceKey": null,
-            "author": "Microsoft Azure API Management"
+            "author": "Azure API Catalog"
         }
     },
     "files": {
@@ -1889,15 +1860,14 @@
                                             "nodes": [
                                                 {
                                                     "type": "paragraph",
-                                                    "attrs": {
-                                                        "styles": {
-                                                            "alignment": {
-                                                                "xl": "utils/text/alignCenter",
-                                                                "xs": "utils/text/alignCenter"
-                                                            },
-                                                            "appearance": "globals/body/nq5w8"
-                                                        }
+                                                    "styles": {
+                                                        "alignment": {
+                                                            "xl": "utils/text/alignCenter",
+                                                            "xs": "utils/text/alignCenter"
+                                                        },
+                                                        "appearance": "globals/body/nq5w8"
                                                     },
+                                                    "identifier": null,
                                                     "nodes": [
                                                         {
                                                             "type": "text",
@@ -1913,7 +1883,7 @@
                                                         },
                                                         {
                                                             "type": "text",
-                                                            "text": "Azure API Management",
+                                                            "text": "Azure API Catalog",
                                                             "marks": [
                                                                 {
                                                                     "type": "color",
@@ -1924,8 +1894,8 @@
                                                                 {
                                                                     "type": "hyperlink",
                                                                     "attrs": {
-                                                                        "target": "_blank",
-                                                                        "targetKey": "urls/e4a52924-c46c-8797-b4d2-025e1f41896a"
+                                                                        "target": "_self",
+                                                                        "targetKey": "urls/7d45f28d-da95-d470-c9fc-b85be8dc60fe"
                                                                     }
                                                                 }
                                                             ]
@@ -1995,7 +1965,8 @@
                     ]
                 }
             ],
-            "key": "files/7fe21f13-d1dd-00c1-c00e-a296b2cdcdca"
+            "key": "files/7fe21f13-d1dd-00c1-c00e-a296b2cdcdca",
+            "type": "layout"
         },
         "f95c292b-b40b-e2cd-b5dc-71fffc97083d": {
             "nodes": [
@@ -2325,6 +2296,7 @@
                                                             "xs": "utils/text/alignCenter"
                                                         }
                                                     },
+                                                    "identifier": null,
                                                     "nodes": [
                                                         {
                                                             "type": "text",
@@ -2340,7 +2312,7 @@
                                                         },
                                                         {
                                                             "type": "text",
-                                                            "text": "Azure API Management",
+                                                            "text": "Azure API Catalog",
                                                             "marks": [
                                                                 {
                                                                     "type": "color",
@@ -2351,7 +2323,8 @@
                                                                 {
                                                                     "type": "hyperlink",
                                                                     "attrs": {
-                                                                        "targetKey": "urls/e4a52924-c46c-8797-b4d2-025e1f41896a"
+                                                                        "target": "_self",
+                                                                        "targetKey": "urls/7d45f28d-da95-d470-c9fc-b85be8dc60fe"
                                                                     }
                                                                 }
                                                             ]
@@ -2473,7 +2446,7 @@
                                                     "nodes": [
                                                         {
                                                             "type": "text",
-                                                            "text": "Welcome to API Catalog",
+                                                            "text": "Explore our APIs",
                                                             "marks": [
                                                                 {
                                                                     "type": "color",
@@ -2486,59 +2459,6 @@
                                                     ]
                                                 }
                                             ]
-                                        },
-                                        {
-                                            "type": "text-block",
-                                            "nodes": [
-                                                {
-                                                    "type": "paragraph",
-                                                    "styles": {
-                                                        "alignment": {
-                                                            "xl": "utils/text/alignCenter",
-                                                            "xs": "utils/text/alignCenter"
-                                                        }
-                                                    },
-                                                    "nodes": [
-                                                        {
-                                                            "type": "text",
-                                                            "text": "We provide industry-leading APIs.",
-                                                            "marks": [
-                                                                {
-                                                                    "type": "color",
-                                                                    "attrs": {
-                                                                        "colorKey": "colors/primaryText"
-                                                                    }
-                                                                }
-                                                            ]
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            "type": "button",
-                                            "label": "Sign up",
-                                            "styles": {
-                                                "appearance": "components/button/primary"
-                                            },
-                                            "roles": [
-                                                "anonymous"
-                                            ],
-                                            "hyperlink": {
-                                                "targetKey": "pages/0145411a-2c82-325a-4390-76cff184530b"
-                                            }
-                                        },
-                                        {
-                                            "type": "button",
-                                            "label": "Explore APIs",
-                                            "styles": {
-                                                "appearance": "components/button/default"
-                                            },
-                                            "roles": null,
-                                            "hyperlink": {
-                                                "target": "_self",
-                                                "targetKey": "urls/db6d0be2-ec1a-2850-6476-ff53b65b00b9"
-                                            }
                                         }
                                     ],
                                     "role": "article",
@@ -2773,14 +2693,6 @@
                 },
                 {
                     "type": "layout-section",
-                    "styles": {
-                        "instance": {
-                            "background": {
-                                "colorKey": "colors/s7KlY"
-                            },
-                            "key": "wxeloxxdda"
-                        }
-                    },
                     "nodes": [
                         {
                             "type": "grid",
@@ -2789,1646 +2701,13 @@
                                     "type": "grid-cell",
                                     "nodes": [
                                         {
-                                            "type": "text-block",
-                                            "nodes": [
-                                                {
-                                                    "type": "heading3",
-                                                    "styles": {
-                                                        "alignment": {
-                                                            "xl": "utils/text/alignCenter",
-                                                            "lg": "utils/text/alignCenter",
-                                                            "xs": "utils/text/alignCenter"
-                                                        },
-                                                        "appearance": "globals/body/inte3"
-                                                    },
-                                                    "identifier": "xIPMs",
-                                                    "nodes": [
-                                                        {
-                                                            "type": "text",
-                                                            "text": "99.95% availability",
-                                                            "marks": [
-                                                                {
-                                                                    "type": "color",
-                                                                    "attrs": {
-                                                                        "colorKey": "colors/primaryText"
-                                                                    }
-                                                                }
-                                                            ]
-                                                        }
-                                                    ]
-                                                },
-                                                {
-                                                    "type": "paragraph",
-                                                    "styles": {
-                                                        "alignment": {
-                                                            "xl": "utils/text/alignCenter",
-                                                            "lg": "utils/text/alignCenter",
-                                                            "xs": "utils/text/alignCenter"
-                                                        },
-                                                        "appearance": "globals/body/nhhbu"
-                                                    },
-                                                    "nodes": [
-                                                        {
-                                                            "type": "text",
-                                                            "text": "Our APIs can be used for mission-critical systems.",
-                                                            "marks": [
-                                                                {
-                                                                    "type": "color",
-                                                                    "attrs": {
-                                                                        "colorKey": "colors/primaryText"
-                                                                    }
-                                                                }
-                                                            ]
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        }
-                                    ],
-                                    "role": "article",
-                                    "styles": {
-                                        "instance": {
-                                            "grid-cell": {
-                                                "md": {
-                                                    "position": {
-                                                        "col": 1,
-                                                        "row": 1
-                                                    },
-                                                    "span": {
-                                                        "cols": 1,
-                                                        "rows": 1
-                                                    }
-                                                },
-                                                "xs": {
-                                                    "position": {
-                                                        "col": 1,
-                                                        "row": 1
-                                                    },
-                                                    "span": {
-                                                        "cols": 1,
-                                                        "rows": 1
-                                                    }
-                                                }
-                                            },
-                                            "key": "svhetdurxe",
-                                            "padding": {
-                                                "xs": {
-                                                    "top": 5,
-                                                    "left": 5,
-                                                    "right": 5,
-                                                    "bottom": 5
-                                                },
-                                                "md": {
-                                                    "top": 15,
-                                                    "left": 15,
-                                                    "right": 15,
-                                                    "bottom": 15
-                                                }
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "type": "grid-cell",
-                                    "nodes": [
-                                        {
-                                            "type": "text-block",
-                                            "nodes": [
-                                                {
-                                                    "type": "heading3",
-                                                    "styles": {
-                                                        "alignment": {
-                                                            "xl": "utils/text/alignCenter",
-                                                            "lg": "utils/text/alignCenter",
-                                                            "xs": "utils/text/alignCenter"
-                                                        },
-                                                        "appearance": "globals/body/inte3"
-                                                    },
-                                                    "identifier": "obLSJ",
-                                                    "nodes": [
-                                                        {
-                                                            "type": "text",
-                                                            "text": "25 million API calls daily",
-                                                            "marks": [
-                                                                {
-                                                                    "type": "color",
-                                                                    "attrs": {
-                                                                        "colorKey": "colors/primaryText"
-                                                                    }
-                                                                }
-                                                            ]
-                                                        }
-                                                    ]
-                                                },
-                                                {
-                                                    "type": "paragraph",
-                                                    "styles": {
-                                                        "alignment": {
-                                                            "xl": "utils/text/alignCenter",
-                                                            "lg": "utils/text/alignCenter",
-                                                            "xs": "utils/text/alignCenter"
-                                                        },
-                                                        "appearance": "globals/body/nhhbu"
-                                                    },
-                                                    "nodes": [
-                                                        {
-                                                            "type": "text",
-                                                            "text": "Our APIs define the industry's standards.",
-                                                            "marks": [
-                                                                {
-                                                                    "type": "color",
-                                                                    "attrs": {
-                                                                        "colorKey": "colors/primaryText"
-                                                                    }
-                                                                }
-                                                            ]
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        }
-                                    ],
-                                    "role": "article",
-                                    "styles": {
-                                        "instance": {
-                                            "grid-cell": {
-                                                "md": {
-                                                    "position": {
-                                                        "col": 2,
-                                                        "row": 1
-                                                    },
-                                                    "span": {
-                                                        "cols": 1,
-                                                        "rows": 1
-                                                    },
-                                                    "alignment": {
-                                                        "vertical": "center",
-                                                        "horizontal": "center"
-                                                    }
-                                                },
-                                                "xs": {
-                                                    "position": {
-                                                        "col": 1,
-                                                        "row": 2
-                                                    },
-                                                    "span": {
-                                                        "cols": 1,
-                                                        "rows": 1
-                                                    }
-                                                }
-                                            },
-                                            "key": "xtdjcepukv",
-                                            "padding": {
-                                                "xs": {
-                                                    "top": 5,
-                                                    "left": 5,
-                                                    "right": 5,
-                                                    "bottom": 5
-                                                },
-                                                "md": {
-                                                    "top": 15,
-                                                    "left": 15,
-                                                    "right": 15,
-                                                    "bottom": 15
-                                                }
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "type": "grid-cell",
-                                    "nodes": [
-                                        {
-                                            "type": "text-block",
-                                            "nodes": [
-                                                {
-                                                    "type": "heading3",
-                                                    "styles": {
-                                                        "alignment": {
-                                                            "xl": "utils/text/alignCenter",
-                                                            "lg": "utils/text/alignCenter",
-                                                            "xs": "utils/text/alignCenter"
-                                                        },
-                                                        "appearance": "globals/body/inte3"
-                                                    },
-                                                    "identifier": "k8DRf",
-                                                    "nodes": [
-                                                        {
-                                                            "type": "text",
-                                                            "text": "1 million active users",
-                                                            "marks": [
-                                                                {
-                                                                    "type": "color",
-                                                                    "attrs": {
-                                                                        "colorKey": "colors/primaryText"
-                                                                    }
-                                                                }
-                                                            ]
-                                                        }
-                                                    ]
-                                                },
-                                                {
-                                                    "type": "paragraph",
-                                                    "styles": {
-                                                        "alignment": {
-                                                            "xl": "utils/text/alignCenter",
-                                                            "lg": "utils/text/alignCenter",
-                                                            "xs": "utils/text/alignCenter"
-                                                        },
-                                                        "appearance": "globals/body/nhhbu"
-                                                    },
-                                                    "nodes": [
-                                                        {
-                                                            "type": "text",
-                                                            "text": "Millions of people trust us.",
-                                                            "marks": [
-                                                                {
-                                                                    "type": "color",
-                                                                    "attrs": {
-                                                                        "colorKey": "colors/primaryText"
-                                                                    }
-                                                                }
-                                                            ]
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        }
-                                    ],
-                                    "role": "article",
-                                    "styles": {
-                                        "instance": {
-                                            "grid-cell": {
-                                                "md": {
-                                                    "position": {
-                                                        "col": 3,
-                                                        "row": 1
-                                                    },
-                                                    "span": {
-                                                        "cols": 1,
-                                                        "rows": 1
-                                                    },
-                                                    "alignment": {
-                                                        "vertical": "center",
-                                                        "horizontal": "center"
-                                                    }
-                                                },
-                                                "xs": {
-                                                    "position": {
-                                                        "col": 1,
-                                                        "row": 3
-                                                    },
-                                                    "span": {
-                                                        "cols": 1,
-                                                        "rows": 1
-                                                    }
-                                                }
-                                            },
-                                            "key": "vlilnfnukq",
-                                            "padding": {
-                                                "xs": {
-                                                    "top": 5,
-                                                    "left": 5,
-                                                    "right": 5,
-                                                    "bottom": 5
-                                                },
-                                                "md": {
-                                                    "top": 15,
-                                                    "left": 15,
-                                                    "right": 15,
-                                                    "bottom": 15
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "styles": {
-                                "instance": {
-                                    "grid": {
-                                        "md": {
-                                            "rows": [
-                                                "auto"
-                                            ],
-                                            "cols": [
-                                                "1fr",
-                                                "1fr",
-                                                "1fr"
-                                            ]
-                                        },
-                                        "xs": {
-                                            "rows": [
-                                                "auto",
-                                                "auto",
-                                                "auto"
-                                            ],
-                                            "cols": [
-                                                "1fr"
-                                            ]
-                                        }
-                                    },
-                                    "key": "jpmkcaqsue",
-                                    "size": {
-                                        "sm": {
-                                            "maxWidth": 540
-                                        },
-                                        "md": {
-                                            "maxWidth": 720
-                                        },
-                                        "lg": {
-                                            "maxWidth": 960
-                                        },
-                                        "xl": {
-                                            "maxWidth": 1140
-                                        }
-                                    },
-                                    "margin": {
-                                        "xs": {
-                                            "top": 10,
-                                            "left": "auto",
-                                            "right": "auto",
-                                            "bottom": 10
-                                        },
-                                        "md": {
-                                            "top": 15,
-                                            "bottom": 15
-                                        },
-                                        "xl": {
-                                            "top": 25,
-                                            "bottom": 25
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    ]
-                },
-                {
-                    "type": "layout-section",
-                    "nodes": [
-                        {
-                            "type": "grid",
-                            "nodes": [
-                                {
-                                    "type": "grid-cell",
-                                    "nodes": [
-                                        {
-                                            "type": "text-block",
-                                            "nodes": [
-                                                {
-                                                    "type": "heading1",
-                                                    "styles": {
-                                                        "alignment": {
-                                                            "xl": "utils/text/alignCenter",
-                                                            "lg": "utils/text/alignCenter",
-                                                            "xs": "utils/text/alignCenter"
-                                                        }
-                                                    },
-                                                    "identifier": "lPwsE",
-                                                    "nodes": [
-                                                        {
-                                                            "type": "text",
-                                                            "text": "About us"
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        }
-                                    ],
-                                    "role": "article",
-                                    "styles": {
-                                        "instance": {
-                                            "grid-cell": {
-                                                "md": {
-                                                    "position": {
-                                                        "col": 1,
-                                                        "row": 1
-                                                    },
-                                                    "span": {
-                                                        "cols": 2,
-                                                        "rows": 1
-                                                    }
-                                                },
-                                                "xs": {
-                                                    "position": {
-                                                        "col": 1,
-                                                        "row": 1
-                                                    },
-                                                    "span": {
-                                                        "cols": 1,
-                                                        "rows": 1
-                                                    }
-                                                }
-                                            },
-                                            "key": "gylequrdpy",
-                                            "padding": {
-                                                "xs": {
-                                                    "top": 5,
-                                                    "left": 5,
-                                                    "right": 5,
-                                                    "bottom": 5
-                                                },
-                                                "md": {
-                                                    "top": 15,
-                                                    "left": 15,
-                                                    "right": 15,
-                                                    "bottom": 15
-                                                }
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "type": "grid-cell",
-                                    "nodes": [
-                                        {
-                                            "type": "text-block",
-                                            "nodes": [
-                                                {
-                                                    "type": "paragraph",
-                                                    "nodes": [
-                                                        {
-                                                            "type": "text",
-                                                            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                                                        }
-                                                    ]
-                                                },
-                                                {
-                                                    "type": "paragraph",
-                                                    "nodes": [
-                                                        {
-                                                            "type": "text",
-                                                            "text": "<h1>Hello world</h1>",
-                                                            "marks": [
-                                                                {
-                                                                    "type": "code"
-                                                                }
-                                                            ]
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        }
-                                    ],
-                                    "role": "footer",
-                                    "styles": {
-                                        "instance": {
-                                            "grid-cell": {
-                                                "md": {
-                                                    "position": {
-                                                        "col": 1,
-                                                        "row": 2
-                                                    },
-                                                    "span": {
-                                                        "cols": 1,
-                                                        "rows": 1
-                                                    }
-                                                },
-                                                "xs": {
-                                                    "position": {
-                                                        "col": 1,
-                                                        "row": 3
-                                                    },
-                                                    "span": {
-                                                        "cols": 1,
-                                                        "rows": 1
-                                                    }
-                                                }
-                                            },
-                                            "key": "mjwspbqeoo",
-                                            "padding": {
-                                                "xs": {
-                                                    "top": 5,
-                                                    "left": 5,
-                                                    "right": 5,
-                                                    "bottom": 5
-                                                },
-                                                "md": {
-                                                    "top": 15,
-                                                    "left": 15,
-                                                    "right": 15,
-                                                    "bottom": 15
-                                                }
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "type": "grid-cell",
-                                    "nodes": [
-                                        {
-                                            "type": "text-block",
-                                            "nodes": [
-                                                {
-                                                    "type": "paragraph",
-                                                    "nodes": [
-                                                        {
-                                                            "type": "text",
-                                                            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        }
-                                    ],
-                                    "role": "footer",
-                                    "styles": {
-                                        "instance": {
-                                            "grid-cell": {
-                                                "md": {
-                                                    "position": {
-                                                        "col": 2,
-                                                        "row": 2
-                                                    },
-                                                    "span": {
-                                                        "cols": 1,
-                                                        "rows": 1
-                                                    }
-                                                },
-                                                "xs": {
-                                                    "position": {
-                                                        "col": 1,
-                                                        "row": 4
-                                                    },
-                                                    "span": {
-                                                        "cols": 1,
-                                                        "rows": 1
-                                                    }
-                                                }
-                                            },
-                                            "key": "buwtfysbmg",
-                                            "padding": {
-                                                "xs": {
-                                                    "top": 5,
-                                                    "left": 5,
-                                                    "right": 5,
-                                                    "bottom": 5
-                                                },
-                                                "md": {
-                                                    "top": 15,
-                                                    "left": 15,
-                                                    "right": 15,
-                                                    "bottom": 15
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "styles": {
-                                "instance": {
-                                    "grid": {
-                                        "md": {
-                                            "rows": [
-                                                "1fr",
-                                                "auto"
-                                            ],
-                                            "cols": [
-                                                "1fr",
-                                                "1fr"
-                                            ]
-                                        },
-                                        "xs": {
-                                            "rows": [
-                                                "auto",
-                                                "auto",
-                                                "auto"
-                                            ],
-                                            "cols": [
-                                                "1fr"
-                                            ]
-                                        }
-                                    },
-                                    "key": "aunlekjvme",
-                                    "size": {
-                                        "sm": {
-                                            "maxWidth": 540
-                                        },
-                                        "md": {
-                                            "maxWidth": 720
-                                        },
-                                        "lg": {
-                                            "maxWidth": 960
-                                        },
-                                        "xl": {
-                                            "maxWidth": 1140
-                                        }
-                                    },
-                                    "margin": {
-                                        "xs": {
-                                            "top": 10,
-                                            "left": "auto",
-                                            "right": "auto",
-                                            "bottom": 10
-                                        },
-                                        "md": {
-                                            "top": 15,
-                                            "bottom": 15
-                                        },
-                                        "xl": {
-                                            "top": "80",
-                                            "bottom": 25,
-                                            "left": "auto",
-                                            "right": "auto"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    ]
-                },
-                {
-                    "type": "layout-section",
-                    "nodes": [
-                        {
-                            "type": "grid",
-                            "nodes": [
-                                {
-                                    "type": "grid-cell",
-                                    "nodes": [
-                                        {
-                                            "type": "text-block",
-                                            "nodes": [
-                                                {
-                                                    "type": "heading1",
-                                                    "styles": {
-                                                        "alignment": {
-                                                            "xl": "utils/text/alignCenter",
-                                                            "lg": "utils/text/alignCenter",
-                                                            "xs": "utils/text/alignCenter"
-                                                        }
-                                                    },
-                                                    "identifier": "KWDpT",
-                                                    "nodes": [
-                                                        {
-                                                            "type": "text",
-                                                            "text": "Our APIs"
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        }
-                                    ],
-                                    "role": "article",
-                                    "styles": {
-                                        "instance": {
-                                            "grid-cell": {
-                                                "md": {
-                                                    "position": {
-                                                        "col": 1,
-                                                        "row": 1
-                                                    },
-                                                    "span": {
-                                                        "cols": 3,
-                                                        "rows": 1
-                                                    }
-                                                },
-                                                "xs": {
-                                                    "position": {
-                                                        "col": 1,
-                                                        "row": 1
-                                                    },
-                                                    "span": {
-                                                        "cols": 1,
-                                                        "rows": 1
-                                                    }
-                                                }
-                                            },
-                                            "key": "payfxwkevd"
-                                        }
-                                    }
-                                },
-                                {
-                                    "type": "grid-cell",
-                                    "nodes": [
-                                        {
-                                            "type": "card",
-                                            "styles": {
-                                                "appearance": "components/card/sf67m"
-                                            },
-                                            "nodes": [
-                                                {
-                                                    "type": "picture",
-                                                    "caption": "Picture",
-                                                    "width": "500",
-                                                    "styles": {
-                                                        "appearance": "components/picture/om81e"
-                                                    },
-                                                    "sourceKey": "uploads/c5d2da83-b255-245c-144b-cd3c242e9791"
-                                                },
-                                                {
-                                                    "type": "text-block",
-                                                    "nodes": [
-                                                        {
-                                                            "type": "heading2",
-                                                            "styles": {
-                                                                "alignment": {
-                                                                    "xl": "utils/text/alignCenter"
-                                                                }
-                                                            },
-                                                            "identifier": "B1pSe",
-                                                            "nodes": [
-                                                                {
-                                                                    "type": "text",
-                                                                    "text": "Contoso API 1"
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            "type": "paragraph",
-                                                            "styles": {
-                                                                "appearance": "globals/body/tini5",
-                                                                "alignment": {
-                                                                    "xl": "utils/text/alignCenter"
-                                                                }
-                                                            },
-                                                            "nodes": [
-                                                                {
-                                                                    "type": "text",
-                                                                    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor..."
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            "type": "paragraph",
-                                                            "styles": {
-                                                                "appearance": "globals/body/tini5",
-                                                                "alignment": {
-                                                                    "xl": "utils/text/alignCenter"
-                                                                }
-                                                            },
-                                                            "nodes": [
-                                                                {
-                                                                    "type": "text",
-                                                                    "text": "Try it out.",
-                                                                    "marks": [
-                                                                        {
-                                                                            "type": "hyperlink",
-                                                                            "attrs": {
-                                                                                "targetKey": "urls/db6d0be2-ec1a-2850-6476-ff53b65b00b9"
-                                                                            }
-                                                                        }
-                                                                    ]
-                                                                }
-                                                            ]
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        }
-                                    ],
-                                    "role": "footer",
-                                    "styles": {
-                                        "instance": {
-                                            "grid-cell": {
-                                                "md": {
-                                                    "position": {
-                                                        "col": 1,
-                                                        "row": 2
-                                                    },
-                                                    "span": {
-                                                        "cols": 1,
-                                                        "rows": 1
-                                                    }
-                                                },
-                                                "xs": {
-                                                    "position": {
-                                                        "col": 1,
-                                                        "row": 2
-                                                    },
-                                                    "span": {
-                                                        "cols": 1,
-                                                        "rows": 1
-                                                    }
-                                                }
-                                            },
-                                            "key": "mdomdchrfo"
-                                        }
-                                    }
-                                },
-                                {
-                                    "type": "grid-cell",
-                                    "nodes": [
-                                        {
-                                            "type": "card",
-                                            "styles": {
-                                                "appearance": "components/card/sf67m"
-                                            },
-                                            "nodes": [
-                                                {
-                                                    "type": "picture",
-                                                    "caption": "Picture",
-                                                    "width": "500",
-                                                    "styles": {
-                                                        "appearance": "components/picture/om81e"
-                                                    },
-                                                    "sourceKey": "uploads/a2514081-47cb-95b1-ef0b-aef128c7a7ed"
-                                                },
-                                                {
-                                                    "type": "text-block",
-                                                    "nodes": [
-                                                        {
-                                                            "type": "heading2",
-                                                            "styles": {
-                                                                "alignment": {
-                                                                    "xl": "utils/text/alignCenter"
-                                                                }
-                                                            },
-                                                            "identifier": "fbVUi",
-                                                            "nodes": [
-                                                                {
-                                                                    "type": "text",
-                                                                    "text": "Contoso API 2"
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            "type": "paragraph",
-                                                            "styles": {
-                                                                "appearance": "globals/body/tini5",
-                                                                "alignment": {
-                                                                    "xl": "utils/text/alignCenter"
-                                                                }
-                                                            },
-                                                            "nodes": [
-                                                                {
-                                                                    "type": "text",
-                                                                    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor..."
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            "type": "paragraph",
-                                                            "styles": {
-                                                                "appearance": "globals/body/tini5",
-                                                                "alignment": {
-                                                                    "xl": "utils/text/alignCenter"
-                                                                }
-                                                            },
-                                                            "nodes": [
-                                                                {
-                                                                    "type": "text",
-                                                                    "text": "Try it out.",
-                                                                    "marks": [
-                                                                        {
-                                                                            "type": "hyperlink",
-                                                                            "attrs": {
-                                                                                "targetKey": "urls/db6d0be2-ec1a-2850-6476-ff53b65b00b9"
-                                                                            }
-                                                                        }
-                                                                    ]
-                                                                }
-                                                            ]
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        }
-                                    ],
-                                    "role": "footer",
-                                    "styles": {
-                                        "instance": {
-                                            "grid-cell": {
-                                                "md": {
-                                                    "position": {
-                                                        "col": 2,
-                                                        "row": 2
-                                                    },
-                                                    "span": {
-                                                        "cols": 1,
-                                                        "rows": 1
-                                                    },
-                                                    "alignment": {
-                                                        "vertical": "center",
-                                                        "horizontal": "center"
-                                                    }
-                                                },
-                                                "xs": {
-                                                    "position": {
-                                                        "col": 1,
-                                                        "row": 3
-                                                    },
-                                                    "span": {
-                                                        "cols": 1,
-                                                        "rows": 1
-                                                    }
-                                                }
-                                            },
-                                            "key": "ouerzkxcik"
-                                        }
-                                    }
-                                },
-                                {
-                                    "type": "grid-cell",
-                                    "nodes": [
-                                        {
-                                            "type": "card",
-                                            "styles": {
-                                                "appearance": "components/card/sf67m"
-                                            },
-                                            "nodes": [
-                                                {
-                                                    "type": "picture",
-                                                    "caption": "Picture",
-                                                    "width": "500",
-                                                    "styles": {
-                                                        "appearance": "components/picture/om81e"
-                                                    },
-                                                    "sourceKey": "uploads/ed8e43d0-5f8e-af38-5536-8f0274656ce4"
-                                                },
-                                                {
-                                                    "type": "text-block",
-                                                    "nodes": [
-                                                        {
-                                                            "type": "heading2",
-                                                            "styles": {
-                                                                "alignment": {
-                                                                    "xl": "utils/text/alignCenter"
-                                                                }
-                                                            },
-                                                            "identifier": "Erug1",
-                                                            "nodes": [
-                                                                {
-                                                                    "type": "text",
-                                                                    "text": "Contoso API 3"
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            "type": "paragraph",
-                                                            "styles": {
-                                                                "appearance": "globals/body/tini5",
-                                                                "alignment": {
-                                                                    "xl": "utils/text/alignCenter"
-                                                                }
-                                                            },
-                                                            "nodes": [
-                                                                {
-                                                                    "type": "text",
-                                                                    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor..."
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            "type": "paragraph",
-                                                            "styles": {
-                                                                "appearance": "globals/body/tini5",
-                                                                "alignment": {
-                                                                    "xl": "utils/text/alignCenter"
-                                                                }
-                                                            },
-                                                            "nodes": [
-                                                                {
-                                                                    "type": "text",
-                                                                    "text": "Try it out.",
-                                                                    "marks": [
-                                                                        {
-                                                                            "type": "hyperlink",
-                                                                            "attrs": {
-                                                                                "targetKey": "urls/db6d0be2-ec1a-2850-6476-ff53b65b00b9"
-                                                                            }
-                                                                        }
-                                                                    ]
-                                                                }
-                                                            ]
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        }
-                                    ],
-                                    "role": "footer",
-                                    "styles": {
-                                        "instance": {
-                                            "grid-cell": {
-                                                "md": {
-                                                    "position": {
-                                                        "col": 3,
-                                                        "row": 2
-                                                    },
-                                                    "span": {
-                                                        "cols": 1,
-                                                        "rows": 1
-                                                    },
-                                                    "alignment": {
-                                                        "vertical": "center",
-                                                        "horizontal": "center"
-                                                    }
-                                                },
-                                                "xs": {
-                                                    "position": {
-                                                        "col": 1,
-                                                        "row": 4
-                                                    },
-                                                    "span": {
-                                                        "cols": 1,
-                                                        "rows": 1
-                                                    }
-                                                }
-                                            },
-                                            "key": "itrwvwryyy"
-                                        }
-                                    }
-                                }
-                            ],
-                            "styles": {
-                                "instance": {
-                                    "grid": {
-                                        "md": {
-                                            "rows": [
-                                                "auto",
-                                                "auto"
-                                            ],
-                                            "cols": [
-                                                "1fr",
-                                                "1fr",
-                                                "1fr"
-                                            ]
-                                        },
-                                        "xs": {
-                                            "rows": [
-                                                "auto",
-                                                "auto",
-                                                "auto",
-                                                "auto"
-                                            ],
-                                            "cols": [
-                                                "1fr"
-                                            ]
-                                        }
-                                    },
-                                    "key": "aslksrrwnj",
-                                    "size": {
-                                        "sm": {
-                                            "maxWidth": 540
-                                        },
-                                        "md": {
-                                            "maxWidth": 720
-                                        },
-                                        "lg": {
-                                            "maxWidth": 960
-                                        },
-                                        "xl": {
-                                            "maxWidth": 1140
-                                        }
-                                    },
-                                    "margin": {
-                                        "xs": {
-                                            "top": 10,
-                                            "left": "auto",
-                                            "right": "auto",
-                                            "bottom": 10
-                                        },
-                                        "md": {
-                                            "top": 15,
-                                            "bottom": 15
-                                        },
-                                        "xl": {
-                                            "top": 25,
-                                            "bottom": 25
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    ]
-                },
-                {
-                    "type": "layout-section",
-                    "nodes": [
-                        {
-                            "type": "grid",
-                            "nodes": [
-                                {
-                                    "type": "grid-cell",
-                                    "nodes": [
-                                        {
-                                            "type": "text-block",
-                                            "nodes": [
-                                                {
-                                                    "type": "paragraph",
-                                                    "nodes": [
-                                                        {
-                                                            "type": "text",
-                                                            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        }
-                                    ],
-                                    "role": "header",
-                                    "styles": {
-                                        "instance": {
-                                            "grid-cell": {
-                                                "md": {
-                                                    "position": {
-                                                        "col": 1,
-                                                        "row": 1
-                                                    },
-                                                    "span": {
-                                                        "cols": 1,
-                                                        "rows": 1
-                                                    }
-                                                },
-                                                "xs": {
-                                                    "position": {
-                                                        "col": 1,
-                                                        "row": 1
-                                                    },
-                                                    "span": {
-                                                        "cols": 1,
-                                                        "rows": 1
-                                                    }
-                                                }
-                                            },
-                                            "key": "fqsmmbookf",
-                                            "padding": {
-                                                "xs": {
-                                                    "top": 5,
-                                                    "left": 5,
-                                                    "right": 5,
-                                                    "bottom": 5
-                                                },
-                                                "md": {
-                                                    "top": 15,
-                                                    "left": 15,
-                                                    "right": 15,
-                                                    "bottom": 15
-                                                }
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "type": "grid-cell",
-                                    "nodes": [
-                                        {
-                                            "type": "text-block",
-                                            "nodes": [
-                                                {
-                                                    "type": "formatted",
-                                                    "styles": {
-                                                        "alignment": {
-                                                            "xl": "utils/text/alignLeft"
-                                                        },
-                                                        "appearance": "globals/body/tini5"
-                                                    },
-                                                    "nodes": [
-                                                        {
-                                                            "type": "text",
-                                                            "text": "POST ",
-                                                            "marks": [
-                                                                {
-                                                                    "type": "color",
-                                                                    "attrs": {
-                                                                        "colorKey": "colors/O6nZg"
-                                                                    }
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            "type": "text",
-                                                            "text": "/api/transactions",
-                                                            "marks": [
-                                                                {
-                                                                    "type": "color",
-                                                                    "attrs": {
-                                                                        "colorKey": "colors/s7KlY"
-                                                                    }
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            "type": "break"
-                                                        },
-                                                        {
-                                                            "type": "break"
-                                                        },
-                                                        {
-                                                            "type": "text",
-                                                            "text": "{"
-                                                        },
-                                                        {
-                                                            "type": "break"
-                                                        },
-                                                        {
-                                                            "type": "text",
-                                                            "text": "    \""
-                                                        },
-                                                        {
-                                                            "type": "text",
-                                                            "text": "id",
-                                                            "marks": [
-                                                                {
-                                                                    "type": "color",
-                                                                    "attrs": {
-                                                                        "colorKey": "colors/O6nZg"
-                                                                    }
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            "type": "text",
-                                                            "text": "\": \""
-                                                        },
-                                                        {
-                                                            "type": "text",
-                                                            "text": "16833741-33a0-437c-9c82-368bed96b7f6",
-                                                            "marks": [
-                                                                {
-                                                                    "type": "color",
-                                                                    "attrs": {
-                                                                        "colorKey": "colors/s7KlY"
-                                                                    }
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            "type": "text",
-                                                            "text": "\","
-                                                        },
-                                                        {
-                                                            "type": "break"
-                                                        },
-                                                        {
-                                                            "type": "text",
-                                                            "text": "    \""
-                                                        },
-                                                        {
-                                                            "type": "text",
-                                                            "text": "from",
-                                                            "marks": [
-                                                                {
-                                                                    "type": "color",
-                                                                    "attrs": {
-                                                                        "colorKey": "colors/O6nZg"
-                                                                    }
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            "type": "text",
-                                                            "text": "\": \""
-                                                        },
-                                                        {
-                                                            "type": "text",
-                                                            "text": "562b5682-7861-49ac-ad60-074fe12ddac2",
-                                                            "marks": [
-                                                                {
-                                                                    "type": "color",
-                                                                    "attrs": {
-                                                                        "colorKey": "colors/s7KlY"
-                                                                    }
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            "type": "text",
-                                                            "text": "\","
-                                                        },
-                                                        {
-                                                            "type": "break"
-                                                        },
-                                                        {
-                                                            "type": "text",
-                                                            "text": "    \""
-                                                        },
-                                                        {
-                                                            "type": "text",
-                                                            "text": "to",
-                                                            "marks": [
-                                                                {
-                                                                    "type": "color",
-                                                                    "attrs": {
-                                                                        "colorKey": "colors/O6nZg"
-                                                                    }
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            "type": "text",
-                                                            "text": "\": \""
-                                                        },
-                                                        {
-                                                            "type": "text",
-                                                            "text": "7d334e64-d0d3-4941-be6c-f59facf781d6",
-                                                            "marks": [
-                                                                {
-                                                                    "type": "color",
-                                                                    "attrs": {
-                                                                        "colorKey": "colors/s7KlY"
-                                                                    }
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            "type": "text",
-                                                            "text": "\","
-                                                        },
-                                                        {
-                                                            "type": "break"
-                                                        },
-                                                        {
-                                                            "type": "text",
-                                                            "text": "    \""
-                                                        },
-                                                        {
-                                                            "type": "text",
-                                                            "text": "currency",
-                                                            "marks": [
-                                                                {
-                                                                    "type": "color",
-                                                                    "attrs": {
-                                                                        "colorKey": "colors/O6nZg"
-                                                                    }
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            "type": "text",
-                                                            "text": "\": \""
-                                                        },
-                                                        {
-                                                            "type": "text",
-                                                            "text": "USD",
-                                                            "marks": [
-                                                                {
-                                                                    "type": "color",
-                                                                    "attrs": {
-                                                                        "colorKey": "colors/s7KlY"
-                                                                    }
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            "type": "text",
-                                                            "text": "\","
-                                                        },
-                                                        {
-                                                            "type": "break"
-                                                        },
-                                                        {
-                                                            "type": "text",
-                                                            "text": "    \""
-                                                        },
-                                                        {
-                                                            "type": "text",
-                                                            "text": "amount",
-                                                            "marks": [
-                                                                {
-                                                                    "type": "color",
-                                                                    "attrs": {
-                                                                        "colorKey": "colors/O6nZg"
-                                                                    }
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            "type": "text",
-                                                            "text": "\": "
-                                                        },
-                                                        {
-                                                            "type": "text",
-                                                            "text": "314.55",
-                                                            "marks": [
-                                                                {
-                                                                    "type": "color",
-                                                                    "attrs": {
-                                                                        "colorKey": "colors/s7KlY"
-                                                                    }
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            "type": "break"
-                                                        },
-                                                        {
-                                                            "type": "text",
-                                                            "text": "}"
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        }
-                                    ],
-                                    "role": "header",
-                                    "styles": {
-                                        "instance": {
-                                            "grid-cell": {
-                                                "md": {
-                                                    "position": {
-                                                        "col": 2,
-                                                        "row": 1
-                                                    },
-                                                    "span": {
-                                                        "cols": 1,
-                                                        "rows": 1
-                                                    }
-                                                },
-                                                "xs": {
-                                                    "position": {
-                                                        "col": 1,
-                                                        "row": 2
-                                                    },
-                                                    "span": {
-                                                        "cols": 1,
-                                                        "rows": 1
-                                                    }
-                                                }
-                                            },
-                                            "key": "nitbwtwjtc",
-                                            "padding": {
-                                                "xs": {
-                                                    "top": 5,
-                                                    "left": 5,
-                                                    "right": 5,
-                                                    "bottom": 5
-                                                },
-                                                "md": {
-                                                    "top": 15,
-                                                    "left": 15,
-                                                    "right": 15,
-                                                    "bottom": 15
-                                                }
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "type": "grid-cell",
-                                    "nodes": [
-                                        {
-                                            "type": "button",
-                                            "label": "Sign up",
-                                            "styles": {
-                                                "appearance": "components/button/primary"
-                                            },
-                                            "roles": [
-                                                "anonymous"
-                                            ],
-                                            "hyperlink": {
+                                            "type": "listOfApis",
+                                            "itemStyleView": "list",
+                                            "defaultGroupByTagToEnabled": false,
+                                            "detailsPageHyperlink": {
                                                 "target": "_self",
-                                                "targetKey": "pages/0145411a-2c82-325a-4390-76cff184530b"
+                                                "targetKey": "pages/1b2a9e4c-d53b-99d1-e363-348630d982b5"
                                             }
-                                        },
-                                        {
-                                            "type": "button",
-                                            "label": "Explore APIs",
-                                            "styles": {
-                                                "appearance": "components/button/default"
-                                            },
-                                            "roles": null,
-                                            "hyperlink": {
-                                                "target": "_self",
-                                                "targetKey": "urls/db6d0be2-ec1a-2850-6476-ff53b65b00b9"
-                                            }
-                                        }
-                                    ],
-                                    "role": "article",
-                                    "styles": {
-                                        "instance": {
-                                            "grid-cell": {
-                                                "md": {
-                                                    "position": {
-                                                        "col": 1,
-                                                        "row": 2
-                                                    },
-                                                    "span": {
-                                                        "cols": 2,
-                                                        "rows": 1
-                                                    }
-                                                },
-                                                "xs": {
-                                                    "position": {
-                                                        "col": 1,
-                                                        "row": 3
-                                                    },
-                                                    "span": {
-                                                        "cols": 1,
-                                                        "rows": 1
-                                                    }
-                                                }
-                                            },
-                                            "key": "bmopsfqduz",
-                                            "padding": {
-                                                "xs": {
-                                                    "top": 5,
-                                                    "left": 5,
-                                                    "right": 5,
-                                                    "bottom": 5
-                                                },
-                                                "md": {
-                                                    "top": 15,
-                                                    "left": 15,
-                                                    "right": 15,
-                                                    "bottom": 15
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "styles": {
-                                "instance": {
-                                    "grid": {
-                                        "md": {
-                                            "rows": [
-                                                "auto",
-                                                "1fr"
-                                            ],
-                                            "cols": [
-                                                "1fr",
-                                                "1fr"
-                                            ]
-                                        },
-                                        "xs": {
-                                            "rows": [
-                                                "auto",
-                                                "auto",
-                                                "auto"
-                                            ],
-                                            "cols": [
-                                                "1fr"
-                                            ]
-                                        }
-                                    },
-                                    "key": "mpnzysqgtk",
-                                    "size": {
-                                        "sm": {
-                                            "maxWidth": 540
-                                        },
-                                        "md": {
-                                            "maxWidth": 720
-                                        },
-                                        "lg": {
-                                            "maxWidth": 960
-                                        },
-                                        "xl": {
-                                            "maxWidth": 1140,
-                                            "minHeight": ""
-                                        }
-                                    },
-                                    "margin": {
-                                        "xs": {
-                                            "top": 10,
-                                            "left": "auto",
-                                            "right": "auto",
-                                            "bottom": 10
-                                        },
-                                        "md": {
-                                            "top": 15,
-                                            "bottom": 15
-                                        },
-                                        "xl": {
-                                            "top": 25,
-                                            "bottom": 25
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    ]
-                },
-                {
-                    "type": "layout-section",
-                    "nodes": [
-                        {
-                            "type": "grid",
-                            "nodes": [
-                                {
-                                    "type": "grid-cell",
-                                    "nodes": [
-                                        {
-                                            "type": "text-block",
-                                            "nodes": [
-                                                {
-                                                    "type": "heading1",
-                                                    "styles": {
-                                                        "alignment": {
-                                                            "xl": "utils/text/alignCenter",
-                                                            "lg": "utils/text/alignCenter",
-                                                            "xs": "utils/text/alignCenter"
-                                                        },
-                                                        "appearance": "globals/body/chdr7"
-                                                    },
-                                                    "identifier": "7wFGm",
-                                                    "nodes": [
-                                                        {
-                                                            "type": "text",
-                                                            "text": "Trust is our priority"
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            "type": "testimonials",
-                                            "textContent": "\"Contoso APIs drive our digital transformation. They are highly reliable and blazingly fast.\"",
-                                            "starsCount": 0,
-                                            "allStarsCount": 0,
-                                            "author": "John Doe",
-                                            "authorTitle": "CTO at Fabrikam"
                                         }
                                     ],
                                     "role": "article",
@@ -4450,7 +2729,7 @@
                                                     }
                                                 }
                                             },
-                                            "key": "ujghaaxckg",
+                                            "key": "kyqlxtkbra",
                                             "padding": {
                                                 "xs": {
                                                     "top": 5,
@@ -4481,7 +2760,7 @@
                                             ]
                                         }
                                     },
-                                    "key": "tylzlaxtjk",
+                                    "key": "jwndfwmfeo",
                                     "size": {
                                         "sm": {
                                             "maxWidth": 540
@@ -4537,19 +2816,13 @@
                                             "itemStyleView": "dropdown",
                                             "allowSelection": true,
                                             "defaultGroupByTagToEnabled": false,
-                                            "detailsPageHyperlink": {
-                                                "target": "_self",
-                                                "targetKey": "pages/1b2a9e4c-d53b-99d1-e363-348630d982b5"
-                                            }
+                                            "detailsPageHyperlink": null
                                         },
                                         {
                                             "type": "operationList",
                                             "allowSelection": true,
                                             "defaultGroupByTagToEnabled": false,
-                                            "detailsPageHyperlink": {
-                                                "target": "_self",
-                                                "targetKey": "pages/1b2a9e4c-d53b-99d1-e363-348630d982b5"
-                                            }
+                                            "detailsPageHyperlink": null
                                         }
                                     ],
                                     "role": "aside",
@@ -4746,132 +3019,6 @@
             "key": "files/1b2a9e4c-d53b-99d1-e363-348630d982b5",
             "type": "page"
         },
-        "38b4a583-e611-dbf8-b945-a2d591c61614": {
-            "nodes": [
-                {
-                    "type": "layout-section",
-                    "styles": null,
-                    "nodes": [
-                        {
-                            "type": "grid",
-                            "nodes": [
-                                {
-                                    "type": "grid-cell",
-                                    "nodes": [
-                                        {
-                                            "type": "text-block",
-                                            "nodes": [
-                                                {
-                                                    "type": "heading1",
-                                                    "attrs": {
-                                                        "key": "6YERT"
-                                                    },
-                                                    "nodes": [
-                                                        {
-                                                            "type": "text",
-                                                            "text": "APIs"
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            "type": "listOfApis",
-                                            "itemStyleView": "list",
-                                            "detailsPageHyperlink": {
-                                                "targetKey": "pages/1b2a9e4c-d53b-99d1-e363-348630d982b5"
-                                            }
-                                        }
-                                    ],
-                                    "role": "article",
-                                    "styles": {
-                                        "instance": {
-                                            "grid-cell": {
-                                                "xs": {
-                                                    "position": {
-                                                        "col": 1,
-                                                        "row": 1
-                                                    },
-                                                    "span": {
-                                                        "cols": 1,
-                                                        "rows": 1
-                                                    },
-                                                    "alignment": {
-                                                        "vertical": "center",
-                                                        "horizontal": "center"
-                                                    }
-                                                }
-                                            },
-                                            "key": "cbtmarloqy",
-                                            "padding": {
-                                                "xs": {
-                                                    "top": 5,
-                                                    "left": 5,
-                                                    "right": 5,
-                                                    "bottom": 5
-                                                },
-                                                "md": {
-                                                    "top": 15,
-                                                    "left": 15,
-                                                    "right": 15,
-                                                    "bottom": 15
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "styles": {
-                                "instance": {
-                                    "grid": {
-                                        "xs": {
-                                            "rows": [
-                                                "auto"
-                                            ],
-                                            "cols": [
-                                                "1fr"
-                                            ]
-                                        }
-                                    },
-                                    "key": "eehtgpxfrf",
-                                    "size": {
-                                        "sm": {
-                                            "maxWidth": 540
-                                        },
-                                        "md": {
-                                            "maxWidth": 720
-                                        },
-                                        "lg": {
-                                            "maxWidth": 960
-                                        },
-                                        "xl": {
-                                            "maxWidth": 1140
-                                        }
-                                    },
-                                    "margin": {
-                                        "xs": {
-                                            "top": 10,
-                                            "left": "auto",
-                                            "right": "auto",
-                                            "bottom": 10
-                                        },
-                                        "md": {
-                                            "top": 15,
-                                            "bottom": 15
-                                        },
-                                        "xl": {
-                                            "top": 25,
-                                            "bottom": 25
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    ]
-                }
-            ],
-            "key": "files/38b4a583-e611-dbf8-b945-a2d591c61614"
-        },
         "3bc2e097-114e-cd8d-dc51-4139bcbdb8c0": {
             "nodes": [
                 {
@@ -4888,9 +3035,8 @@
                                             "nodes": [
                                                 {
                                                     "type": "heading1",
-                                                    "attrs": {
-                                                        "key": "UKXkJ"
-                                                    },
+                                                    "styles": null,
+                                                    "identifier": "UKXkJ",
                                                     "nodes": [
                                                         {
                                                             "type": "text",
@@ -4900,10 +3046,12 @@
                                                 },
                                                 {
                                                     "type": "paragraph",
+                                                    "styles": null,
+                                                    "identifier": null,
                                                     "nodes": [
                                                         {
                                                             "type": "text",
-                                                            "text": "Try reloading the page. If the problem persists, contact the support."
+                                                            "text": "Try reloading the page. "
                                                         }
                                                     ]
                                                 }
@@ -4997,7 +3145,8 @@
                     ]
                 }
             ],
-            "key": "files/3bc2e097-114e-cd8d-dc51-4139bcbdb8c0"
+            "key": "files/3bc2e097-114e-cd8d-dc51-4139bcbdb8c0",
+            "type": "page"
         }
     },
     "navigationItems": [
@@ -5009,12 +3158,6 @@
                     "key": "0901ccd9-9c01-8a2b-5d86-7edd429f3a9a",
                     "label": "Home",
                     "targetKey": "pages/e0987ca1-f458-b546-7697-7be594b35583",
-                    "navigationItems": null
-                },
-                {
-                    "key": "32fea618-15ed-f8ab-e3fa-ec71a144632f",
-                    "label": "APIs",
-                    "targetKey": "pages/38b4a583-e611-dbf8-b945-a2d591c61614",
                     "navigationItems": null
                 }
             ]
@@ -5055,36 +3198,6 @@
             "mimeType": "image/jpeg",
             "key": "uploads/09879768-b2c8-afbd-a945-934c046b3c2d"
         },
-        "c5d2da83-b255-245c-144b-cd3c242e9791": {
-            "blobKey": "",
-            "fileName": "featured-1.jpg",
-            "description": "",
-            "keywords": "",
-            "downloadUrl": "https://apimdeveloperportal.blob.core.windows.net/content/c5d2da83-b255-245c-144b-cd3c242e9791",
-            "permalink": "/content/featured-1.jpg",
-            "mimeType": "image/jpeg",
-            "key": "uploads/c5d2da83-b255-245c-144b-cd3c242e9791"
-        },
-        "a2514081-47cb-95b1-ef0b-aef128c7a7ed": {
-            "blobKey": "",
-            "fileName": "featured-2.jpg",
-            "description": "",
-            "keywords": "",
-            "downloadUrl": "https://apimdeveloperportal.blob.core.windows.net/content/a2514081-47cb-95b1-ef0b-aef128c7a7ed",
-            "permalink": "/content/featured-2.jpg",
-            "mimeType": "image/jpeg",
-            "key": "uploads/a2514081-47cb-95b1-ef0b-aef128c7a7ed"
-        },
-        "ed8e43d0-5f8e-af38-5536-8f0274656ce4": {
-            "blobKey": "",
-            "fileName": "featured-3.jpg",
-            "description": "",
-            "keywords": "",
-            "downloadUrl": "https://apimdeveloperportal.blob.core.windows.net/content/ed8e43d0-5f8e-af38-5536-8f0274656ce4",
-            "permalink": "/content/featured-3.jpg",
-            "mimeType": "image/jpeg",
-            "key": "uploads/ed8e43d0-5f8e-af38-5536-8f0274656ce4"
-        },
         "70add409-0933-e01e-acef-99999a71167e": {
             "blobKey": "",
             "fileName": "logo-contoso-small.png",
@@ -5123,6 +3236,11 @@
             "title": "https://aka.ms/apimrocks",
             "permalink": "https://aka.ms/apimrocks",
             "key": "urls/e4a52924-c46c-8797-b4d2-025e1f41896a"
+        },
+        "7d45f28d-da95-d470-c9fc-b85be8dc60fe": {
+            "key": "urls/7d45f28d-da95-d470-c9fc-b85be8dc60fe",
+            "title": "https://aka.ms/azureapicatalog",
+            "permalink": "https://aka.ms/azureapicatalog"
         }
     },
     "blocks": {
