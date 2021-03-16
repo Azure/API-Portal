@@ -619,14 +619,14 @@ main {
   display: block;
   flex-basis: 100%;
   max-width: 100%; }
-  .block * {
+  .block > * {
     max-width: 100%; }
 
 .inline-block {
   display: inline-block;
   flex-basis: auto;
   max-width: 100%; }
-  .inline-block * {
+  .inline-block > * {
     max-width: 100%; }
 
 .legacy {
