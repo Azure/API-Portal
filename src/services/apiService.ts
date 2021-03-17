@@ -1,6 +1,5 @@
 import * as lunr from "lunr";
 import { HttpClient, HttpResponse } from "@paperbits/common/http";
-import { AzureBlobStorage } from "@paperbits/azure";
 import { SearchQuery } from "../contracts/searchQuery";
 import { Api } from "../models/api";
 import { VersionSet } from "../models/versionSet";
@@ -266,13 +265,13 @@ export class ApiService {
      * Returns API schema with sepcified identifier.
      * @param schemaId {string} ARM-formatted schema identifier.
      */
-    public async getApiSchema(schemaId: string): Promise<Schema> {
-        // const contract = await this.mapiClient.get<SchemaContract>(`${schemaId}`);
-        // const model = new Schema(contract);
+    public async getApiSchema(apiName: string): Promise<Schema> {
+        const specs = await this.fetchSpecs();
+        const converter = new OpenApiConverter();
+        const spec = specs.find(spec => spec.info.title === apiName);
+        const schema = converter.getSchema(spec);
 
-        // return model;
-
-        return null;
+        return schema;
     }
 
     public async getApiHostnames(apiName: string): Promise<string[]> {

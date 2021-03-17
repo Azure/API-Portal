@@ -8,7 +8,7 @@
     },
     "servers": [
         {
-            "url": "https://alzasloneuap05.azure-api.net/book-store-api"
+            "url": "https://contoso.com"
         }
     ],
     "paths": {

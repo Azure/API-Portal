@@ -211,7 +211,7 @@ export class OperationDetails {
             .map(p => p.typeName)
             .filter((item, pos, self) => self.indexOf(item) === pos);
 
-        const schemasPromises = schemaIds.map(schemaId => this.apiService.getApiSchema(`${apiId}/${schemaId}`));
+        const schemasPromises = schemaIds.map(schemaId => this.apiService.getApiSchema(this.selectedApiName()));
         const schemas = await Promise.all(schemasPromises);
         const definitions = schemas.map(x => x.definitions).flat();
 

@@ -76,6 +76,8 @@ export class StaticContentMiddleware implements ExpressMiddlewareInterface {
                 return;
             }
 
+            // if no published website yet, we can serve specs from /data/spec folder directly
+
             // if (!websiteVersion) { // no website yet, non-admins receive error message.
             //     response.statusCode = 200;
             //     return "Developer portal has not been published yet.";
