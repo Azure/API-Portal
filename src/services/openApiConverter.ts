@@ -1,104 +1,123 @@
+import { OpenApiOperation } from "./../contracts/openapi/openApiOperation";
+import { OpenApiMediaType } from "../contracts/openapi/openApiMediaType";
+import { OpenApiParameter } from "../contracts/openapi/openApiParameter";
 import { RepresentationContract } from "./../contracts/representation";
 import { ResponseContract } from "./../contracts/response";
 import { ParameterContract } from "../contracts/parameter";
 import { RequestContract } from "../contracts/request";
 import { OperationContract } from "./../contracts/operation";
 import { ApiContract } from "../contracts/api";
+import { Schema } from "../models/schema";
+import { TypeDefinition } from "../models/typeDefinition";
+import { OpenApiSpec30 } from "../contracts/openapi/openApi";
+import { OpenApiResponse } from "../contracts/openapi/openApiResponse";
+import { Bag } from "@paperbits/common";
 
 export class OpenApiConverter {
-    public convertParameter(parameterObject: object): ParameterContract {
+    public convertParameter(openApiParameter: OpenApiParameter): ParameterContract {
         const parameter: ParameterContract = {
-            name: parameterObject["name"],
-            description: parameterObject["description"],
-            in: parameterObject["in"],
-            type: parameterObject["schema"]
-                ? parameterObject["schema"]["type"]
-                : null,
+            name: openApiParameter.name,
+            description: openApiParameter.description,
+            in: openApiParameter.in,
+            type: openApiParameter.schema?.type,
             values: [],
-            required: parameterObject["required"]
+            required: openApiParameter.required
         };
 
         return parameter;
     }
 
-    // public convertRequest(requestObject: object): RequestContract {
-
-    //     const request: RequestContract = {
-    //         description: "",
-    //         queryParameters: ParameterContract[];
-    //         headers: ParameterContract[];
-    //         representations: RepresentationContract[];
-    //     }
-    // }
-
-    public convertResponse(statusCode: number, responseObject: object): ResponseContract {
-        const response: ResponseContract = {
-            statusCode: statusCode,
-            // representations?: RepresentationContract[];
-            description: responseObject["description"]
+    public convertRequest(spec: OpenApiSpec30, openApiOperation: OpenApiOperation): RequestContract {
+        const request: RequestContract = {
+            description: openApiOperation.description,
         };
 
-        const headersObject = responseObject["headers"];
+        if (openApiOperation.parameters) {
+            request.queryParameters = openApiOperation.parameters
+                ? openApiOperation.parameters
+                    .filter(parameter => parameter.in === "query")
+                    .map(parameter => this.convertParameter(parameter))
+                : [];
 
-        if (headersObject) {
-            const headers: ParameterContract[] = [];
-
-            for (const headerKey of Object.keys(headersObject)) {
-                const headerObject = headersObject[headerKey];
-
-                const header: ParameterContract = {
-                    name: headerKey,
-                    description: headerObject["description"],
-                    in: headerObject["in"],
-                    type: headerObject["schema"]
-                        ? headerObject["schema"]["type"]
-                        : null
-                };
-
-                headers.push(header);
-            }
-
-            response.headers = headers;
+            request.headers = openApiOperation.parameters
+                ? openApiOperation.parameters
+                    .filter(parameter => parameter.in === "header")
+                    .map(parameter => this.convertParameter(parameter))
+                : [];
         }
 
-        const contentObject = responseObject["content"];
+        if (openApiOperation.requestBody) {
+            request.representations = this.convertRepresentations(spec, openApiOperation.requestBody.content);
+        }
+
+        return request;
+    }
+
+    public getTypeNameFromRef($ref: string): string {
+        return $ref && $ref.split("/").pop();
+    }
+
+    public convertRepresentation(spec: OpenApiSpec30, contentType: string, mediaType: OpenApiMediaType): RepresentationContract {
+        const representation: RepresentationContract = {
+            contentType: contentType,
+            typeName: this.getTypeNameFromRef(mediaType.schema?.$ref),
+            schemaId: `${spec.info.title}`
+        };
+
+        return representation;
+    }
+
+    public convertRepresentations(spec: OpenApiSpec30, representationObjects: Bag<OpenApiMediaType>): RepresentationContract[] {
+        const mediaTypes = Object.keys(representationObjects);
+
+        const representations = mediaTypes.map(mediaType =>
+            this.convertRepresentation(spec, mediaType, representationObjects[mediaType]));
+
+        return representations;
+    }
+
+    private convertHeaders(headersObject: Bag<OpenApiParameter>): ParameterContract[] {
+        const parameters: ParameterContract[] = [];
+
+        for (const headerKey of Object.keys(headersObject)) {
+            const headerObject = headersObject[headerKey];
+
+            const header: ParameterContract = {
+                name: headerKey,
+                description: headerObject.description,
+                in: headerObject.in,
+                type: headerObject.schema?.type
+            };
+
+            parameters.push(header);
+        }
+
+        return parameters;
+    }
+
+    public convertResponse(spec: OpenApiSpec30, statusCode: number, responseObject: OpenApiResponse): ResponseContract {
+        const response: ResponseContract = {
+            statusCode: statusCode,
+            description: responseObject.description
+        };
+
+        const headersObject = responseObject.headers;
+
+        if (headersObject) {
+            response.headers = this.convertHeaders(headersObject);
+        }
+
+        const contentObject = responseObject.content;
 
         if (contentObject) {
-            const representations: RepresentationContract[] = [];
-
-            for (const representationKey of Object.keys(contentObject)) {
-                const representationObject = contentObject[representationKey];
-
-                const representation: RepresentationContract = {
-                    contentType: representationKey,
-                    sample: representationObject.examples?.["response"]
-                    // generatedSample?: string;
-                    // schemaId?: string;
-                    // typeName?: string;
-                    // formParameters?: ParameterContract[];
-                };
-
-                const representationExamplesObject = representationObject.examples;
-
-                if (representationExamplesObject) {
-                    const exampleKeys = Object.keys(representationExamplesObject);
-
-                    if (exampleKeys.length > 0) {
-                        representation.sample = JSON.stringify(representationExamplesObject[exampleKeys[0]]);
-                    }
-                }
-
-
-                representations.push(representation);
-            }
-
-            response.representations = representations;
+            response.representations = this.convertRepresentations(spec, contentObject);
         }
 
         return response;
     }
 
-    public convertPaths(pathsObject: object): OperationContract[] {
+    public convertPaths(spec: OpenApiSpec30): OperationContract[] {
+        const pathsObject = spec.paths;
         const operations: OperationContract[] = [];
 
         for (const pathKey of Object.keys(pathsObject)) {
@@ -117,19 +136,19 @@ export class OpenApiConverter {
                         urlTemplate: pathKey,
                         templateParameters: methodObject.parameters
                             ? methodObject.parameters
-                                .filter(x => x["in"] === "template")
-                                .map(x => this.convertParameter(x))
+                                .filter(parameter => parameter.in === "template")
+                                .map(parameter => this.convertParameter(parameter))
                             : [],
                         method: methodKey.toUpperCase(),
                         version: "",
-                        request: null, // RequestContract;
+                        request: this.convertRequest(spec, methodObject)
                     }
                 };
 
-                const responsesObject = methodObject["responses"];
+                const responsesObject = methodObject.responses;
 
                 if (responsesObject) {
-                    const responses: ResponseContract[] = [];
+                    const responseContracts: ResponseContract[] = [];
 
                     for (const responseKey of Object.keys(responsesObject)) {
                         const statusCode = parseInt(responseKey);
@@ -138,10 +157,10 @@ export class OpenApiConverter {
                             continue;
                         }
 
-                        const response = this.convertResponse(statusCode, responsesObject[responseKey]);
-                        responses.push(response);
+                        const responseContract = this.convertResponse(spec, statusCode, responsesObject[responseKey]);
+                        responseContracts.push(responseContract);
                     }
-                    operation.properties.responses = responses;
+                    operation.properties.responses = responseContracts;
                 }
 
                 operations.push(operation);
@@ -151,27 +170,53 @@ export class OpenApiConverter {
         return operations;
     }
 
-    public getApi(spec: any): ApiContract {
-        const api: ApiContract = {
+    public getApi(spec: OpenApiSpec30): ApiContract {
+        const apiContract: ApiContract = {
             name: spec.info.title,
             properties: {
                 displayName: spec.info.title,
                 description: spec.info.description,
                 subscriptionRequired: false,
                 protocols: ["http", "https"],
-                thumbnail: spec.info["x:thumbnail"] || "https://repository-images.githubusercontent.com/168243877/bc582a00-838e-11e9-82cd-708afc2d2a11"
+                thumbnail: spec.info["x:thumbnail"]
             }
         };
 
-        return api;
+        return apiContract;
     }
 
-    public getOperations(spec: any): OperationContract[] {
-        const operations = this.convertPaths(spec.paths);
+    public getOperations(spec: OpenApiSpec30): OperationContract[] {
+        const operations = this.convertPaths(spec);
         return operations;
     }
 
-    public getHostnames(spec: any): string[] {
-        return spec.servers?.map(x => new URL(x.url).hostname) || [];
+    public getHostnames(spec: OpenApiSpec30): string[] {
+        if (!spec.servers) {
+            return [];
+        }
+
+        return spec.servers?.map(server =>
+            server.url.startsWith("http://") || server.url.startsWith("https://")
+                ? new URL(server.url).hostname
+                : "https://contoso.com");
+    }
+
+    public getSchema(spec: OpenApiSpec30): Schema {
+        const schemasObject = spec.components?.schemas;
+
+        if (!schemasObject) {
+            return null;
+        }
+
+        const definitions = Object
+            .keys(schemasObject)
+            .map(definitionName => {
+                return new TypeDefinition(definitionName, schemasObject[definitionName]);
+            });
+
+        const schema = new Schema();
+        schema.definitions = definitions;
+
+        return schema;
     }
 }
