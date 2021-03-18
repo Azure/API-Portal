@@ -6,7 +6,7 @@ const runtimeConfig = require("./webpack.runtime");
  
 
 const publisherConfig = {
-    mode: "none",
+    mode: "development",
     target: "node",
     node: {
         __dirname: false,

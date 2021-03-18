@@ -1,5 +1,5 @@
 .history/
 .vs/
 .vscode/
-dist/
-node_modules/
+catalog/dist/
+catalog/node_modules/

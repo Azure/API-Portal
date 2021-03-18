@@ -1,8 +1,9 @@
 export const defaultFileEncoding = "utf8";
 export const websiteContentFileName = "content.json";
 export const metadataFileExt = ".metadata.json";
-export const dataPathSettingName = "dataPath";
-export const mediaPathSettingName = "mediaPath";
+export const dataPathSettingName = "dataFilesPath";
+export const mediaPathSettingName = "dataFilesPath";
+export const openapiSpecsPathSettingName = "openapiSpecsPath";
 
 
 /**
