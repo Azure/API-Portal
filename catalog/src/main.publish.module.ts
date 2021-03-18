@@ -19,7 +19,7 @@ import { OAuthService } from "./services/oauthService";
 import { FileSystemBlobStorage } from "./components/fileSystemBlobStorage";
 import { FileSystemDataProvider } from "./persistence/fileSystemDataProvider";
 import { FileSystemObjectStorage } from "./persistence/fileSystemObjectStorage";
-import { dataPathSettingName, mediaPathSettingName, websiteContentFileName } from "./constants";
+import { openapiSpecsPathSettingName, dataPathSettingName, mediaPathSettingName, websiteContentFileName } from "./constants";
 
 export class MainPublishModule implements IInjectorModule {
     public register(injector: IInjector): void {
@@ -43,9 +43,11 @@ export class MainPublishModule implements IInjectorModule {
         const config = JSON.parse(configRaw);
         const mediaFolder = config[mediaPathSettingName];
         const contentFolder = config[dataPathSettingName];
+        const openapiSpecsFolder = config[openapiSpecsPathSettingName];
+
         const basePath = path.dirname(__filename);
         const contentFilePath = path.resolve(basePath, contentFolder, websiteContentFileName);
-        const specsFolderPath = path.resolve(basePath, contentFolder, "specs");
+        const specsFolderPath = path.resolve(basePath, openapiSpecsFolder);
         const mediaFolderPath = path.resolve(basePath, mediaFolder);
 
         injector.bindInstance("specsBlobStorage", new FileSystemBlobStorage(specsFolderPath));

@@ -1,0 +1,6 @@
+{
+    "environment": "publishing",
+    "dataFilesPath": "../../data",
+    "mediaFilesPath": "../../data/media",
+    "openapiSpecsPath": "../../../api-specs"
+}
