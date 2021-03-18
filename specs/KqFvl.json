@@ -1,0 +1,133 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Book store API",
+        "description": "Useful API for book tracking and cataloging.",
+        "version": "1.0",
+        "x:thumbnail": "https://www.mediaplace.us/wp-content/uploads/2018/08/Barnes-Noble-logo.png"
+    },
+    "servers": [
+        {
+            "url": "https://contoso.com"
+        }
+    ],
+    "paths": {
+        "/books": {
+            "get": {
+                "summary": "Get all books",
+                "description": "Get all books",
+                "operationId": "get-all-books",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Book"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Author": {
+                "required": [
+                    "firstName",
+                    "lastName"
+                ],
+                "type": "object",
+                "properties": {
+                    "firstName": {
+                        "type": "string",
+                        "description": "Author's first name.",
+                        "example": "Rudyard"
+                    },
+                    "lastName": {
+                        "type": "string",
+                        "description": "Author's last name.",
+                        "example": "Kipling"
+                    },
+                    "address": {
+                        "type": "object",
+                        "properties": {
+                            "street": {
+                                "type": "string",
+                                "example": "7319 Douglas Ave SE"
+                            },
+                            "city": {
+                                "type": "string",
+                                "example": "Snoqualmie"
+                            }
+                        }
+                    }
+                },
+                "description": "Entity that describes a book author."
+            },
+            "Book": {
+                "required": [
+                    "title",
+                    "author",
+                    "published"
+                ],
+                "type": "object",
+                "properties": {
+                    "isbn": {
+                        "type": "string",
+                        "description": "The International Standard Book Number (ISBN) is a numeric commercial book identifier which is intended to be unique.",
+                        "example": "X-XXXXXX-XX-1"
+                    },
+                    "title": {
+                        "type": "string",
+                        "description": "Book title.",
+                        "example": "The Jungle Book"
+                    },
+                    "author": {
+                        "$ref": "#/components/schemas/Author"
+                    },
+                    "coAuthors": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Author"
+                        }
+                    },
+                    "published": {
+                        "type": "number",
+                        "description": "Year the book was published.",
+                        "example": 1894
+                    }
+                },
+                "description": "A book.",
+                "example": {
+                    "isbn": "X-XXXXXX-XX-1",
+                    "title": "The Jungle book",
+                    "author": "Rudyard Kipling",
+                    "published": 1894
+                }
+            }
+        },
+        "securitySchemes": {
+            "apiKeyHeader": {
+                "type": "apiKey",
+                "name": "Ocp-Apim-Subscription-Key",
+                "in": "header"
+            },
+            "apiKeyQuery": {
+                "type": "apiKey",
+                "name": "subscription-key",
+                "in": "query"
+            }
+        }
+    },
+    "security": [
+        {
+            "apiKeyHeader": []
+        },
+        {
+            "apiKeyQuery": []
+        }
+    ]
+}
