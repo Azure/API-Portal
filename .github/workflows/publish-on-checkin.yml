@@ -1,5 +1,9 @@
 name: Publish and deploy to GitHub Pages
 
+defaults:
+  run:
+    working-directory: ./catalog
+
 on:
   push:
     branches:
@@ -16,7 +20,6 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: cd catalog
     - run: npm install
     - run: npm run publish
 
@@ -24,4 +27,4 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./catalog/dist/website
+        publish_dir: ./dist/website
