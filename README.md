@@ -14,4 +14,4 @@ API Portal lets you create and publish a customized site with API documentation,
 
 ## Get started
 
-[The tutorial in the wiki section](https://github.com/Azure/API-Portal/wiki/Publish-API-documentation) describes how to publish the first API, customize the site, and deploy it with GitHub Pages.
+[The tutorial in the wiki section](https://github.com/Azure/API-Portal/wiki) describes how to publish the first API, customize the portal, and publish it with GitHub Pages or your preferred hosting solution.
