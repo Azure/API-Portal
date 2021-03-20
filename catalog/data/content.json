@@ -1688,11 +1688,11 @@
     },
     "settings": {
         "site": {
-            "title": "API catalog - explore our APIs",
+            "title": "API Portal - explore our APIs",
             "description": "Discover APIs, learn how to use them, and try them out interactively.",
             "keywords": "",
             "faviconSourceKey": null,
-            "author": "Azure API Catalog"
+            "author": "Azure API Portal"
         }
     },
     "files": {
@@ -1862,7 +1862,7 @@
                                                         },
                                                         {
                                                             "type": "text",
-                                                            "text": "Azure API Catalog",
+                                                            "text": "Azure API Portal",
                                                             "marks": [
                                                                 {
                                                                     "type": "color",
@@ -2291,7 +2291,7 @@
                                                         },
                                                         {
                                                             "type": "text",
-                                                            "text": "Azure API Catalog",
+                                                            "text": "Azure API Portal",
                                                             "marks": [
                                                                 {
                                                                     "type": "color",
@@ -3224,8 +3224,8 @@
         },
         "7d45f28d-da95-d470-c9fc-b85be8dc60fe": {
             "key": "urls/7d45f28d-da95-d470-c9fc-b85be8dc60fe",
-            "title": "https://aka.ms/azureapicatalog",
-            "permalink": "https://aka.ms/azureapicatalog"
+            "title": "https://aka.ms/apiportal",
+            "permalink": "https://aka.ms/apiportal"
         }
     },
     "blocks": {
