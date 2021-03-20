@@ -1,5 +1,6 @@
 {
     "environment": "host",
-    "dataPath": "../../data",
-    "mediaPath": "../../data/media"
+    "dataFilesPath": "../../data",
+    "mediaFilesPath": "../../data/media",
+    "openapiSpecsPath": "../../../api-specs"
 }

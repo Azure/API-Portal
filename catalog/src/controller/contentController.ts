@@ -15,7 +15,18 @@ export class ContentController {
     @Get("/api/content.json")
     public async getData(): Promise<any> {
         const dataPath = await this.settingsProvider.getSetting<string>(dataPathSettingName);
-        return JSON.parse(await fs.promises.readFile(path.resolve(__dirname, dataPath, websiteContentFileName), defaultFileEncoding));
+
+        if (!dataPathSettingName) {
+            throw new Error(`Setting "${dataPathSettingName}" not specified.`);
+        }
+
+        try {
+            const contentFilePath = path.resolve(__dirname, dataPath, websiteContentFileName);
+            return JSON.parse(await fs.promises.readFile(contentFilePath, defaultFileEncoding));
+        }
+        catch (error) {
+            throw new Error(`Unable to load content from storage. ${error.stack}`);
+        }
     }
 
     @HttpCode(201)
@@ -23,10 +34,22 @@ export class ContentController {
     @Put("/api/content.json")
     public async setData(@Body() data: any): Promise<string> {
         const dataPath = await this.settingsProvider.getSetting<string>(dataPathSettingName);
-        await fs.promises.mkdir(dataPath, { recursive: true });
-        await fs.promises.writeFile(path.resolve(__dirname, dataPath, websiteContentFileName), JSON.stringify(data));
 
-        return "OK";
+        if (!dataPathSettingName) {
+            throw new Error(`Setting "${dataPathSettingName}" not specified.`);
+        }
+
+        try {
+            const contentFilePath = path.resolve(__dirname, dataPath, websiteContentFileName);
+
+            await fs.promises.mkdir(dataPath, { recursive: true });
+            await fs.promises.writeFile(contentFilePath, JSON.stringify(data));
+
+            return "OK";
+        }
+        catch (error) {
+            throw new Error(`Unable to save content to storage. ${error.stack}`);
+        }
     }
 
     @HttpCode(200)
