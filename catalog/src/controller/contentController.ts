@@ -14,8 +14,8 @@ export class ContentController {
 
     @HttpCode(200)
     @ContentType("application/json")
-    @Get("/api/content.json")
-    public async getData(): Promise<any> {
+    @Get("/data/:fileKey")
+    public async getData(@Param("fileKey") fileKey: string): Promise<any> {
         const dataPath = await this.settingsProvider.getSetting<string>(dataPathSettingName);
 
         if (!dataPathSettingName) {
@@ -23,7 +23,7 @@ export class ContentController {
         }
 
         try {
-            const contentFilePath = path.resolve(__dirname, dataPath, websiteContentFileName);
+            const contentFilePath = path.resolve(__dirname, dataPath, fileKey);
             return JSON.parse(await fs.promises.readFile(contentFilePath, defaultFileEncoding));
         }
         catch (error) {
@@ -33,7 +33,7 @@ export class ContentController {
 
     @HttpCode(201)
     @ContentType("application/json")
-    @Put("/api/content.json")
+    @Put("/data/content.json")
     public async setData(@Body() data: any): Promise<string> {
         const dataPath = await this.settingsProvider.getSetting<string>(dataPathSettingName);
 
@@ -43,10 +43,7 @@ export class ContentController {
 
         try {
             const contentFilePath = path.resolve(__dirname, dataPath, websiteContentFileName);
-
-            await fs.promises.mkdir(dataPath, { recursive: true });
             await fs.promises.writeFile(contentFilePath, JSON.stringify(data));
-
             return "OK";
         }
         catch (error) {
