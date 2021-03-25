@@ -13,6 +13,8 @@ import { OpenApiSpec30 } from "../contracts/openapi/openApi";
 import { OpenApiResponse } from "../contracts/openapi/openApiResponse";
 import { Bag } from "@paperbits/common";
 
+const defaultApiServerHost = "api.contoso.com";
+
 export class OpenApiConverter {
     public convertParameter(openApiParameter: OpenApiParameter): ParameterContract {
         const parameter: ParameterContract = {
@@ -191,14 +193,14 @@ export class OpenApiConverter {
     }
 
     public getHostnames(spec: OpenApiSpec30): string[] {
-        if (!spec.servers) {
-            return [];
+        if (!spec.servers || spec.servers.length === 0) {
+            return [defaultApiServerHost];
         }
 
         return spec.servers?.map(server =>
             server.url.startsWith("http://") || server.url.startsWith("https://")
                 ? new URL(server.url).hostname
-                : "https://contoso.com");
+                : defaultApiServerHost);
     }
 
     public getSchema(spec: OpenApiSpec30): Schema {

@@ -21,7 +21,7 @@ export class ApiService {
         const searchRawResults = index.search(`*${searchPattern}*`);
 
         const promises = searchRawResults
-            .map(result => this.httpClient.send({ url: `/specs/${result.ref}.json` }));
+            .map(result => this.httpClient.send({ url: `/specs/${result.ref}` }));
 
         const results = await Promise.all<HttpResponse<any>>(promises);
 
@@ -277,7 +277,7 @@ export class ApiService {
     public async getApiHostnames(apiName: string): Promise<string[]> {
         const specs = await this.fetchSpecs();
         const converter = new OpenApiConverter();
-        const spec = specs.find(spec => spec.info.title === apiName); // apiId.replace("apis/", ""));
+        const spec = specs.find(spec => spec.info.title === apiName);
 
         return converter.getHostnames(spec);
     }

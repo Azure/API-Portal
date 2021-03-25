@@ -1,9 +1,9 @@
-import * as lunr from "lunr";
 import * as Utils from "@paperbits/common/utils";
 import { IPublisher } from "@paperbits/common/publishing";
 import { IBlobStorage } from "@paperbits/common/persistence";
 import { Logger } from "@paperbits/common/logging";
-import { OpenApiConverter } from "../services/openApiConverter";
+import { OpenApiIndexBuilder } from "../services/openApiIndexBuilder";
+import { OpenApiSpec30 } from "../contracts/openapi/openApi";
 
 
 export class OpenApiPublisher implements IPublisher {
@@ -15,34 +15,20 @@ export class OpenApiPublisher implements IPublisher {
 
     public async publish(): Promise<void> {
         try {
-            const searchables = [];
-            const converter = new OpenApiConverter();
+            const openApiIndexBuilder = new OpenApiIndexBuilder();
             const downloadKeys = await this.specsBlobStorage.listBlobs();
 
             for (const blobKey of downloadKeys) {
                 const specContent = await this.specsBlobStorage.downloadBlob(blobKey);
-                const apiContract = converter.getApi(JSON.parse(Utils.uint8ArrayToString(specContent)));
-                const uploadKey = Utils.identifier();
+                const openApiSpec: OpenApiSpec30 = JSON.parse(Utils.uint8ArrayToString(specContent));
 
-                searchables.push({
-                    key: uploadKey,
-                    name: apiContract.properties.displayName,
-                    description: apiContract.properties.description
-                });
+                openApiIndexBuilder.appendSpec(blobKey, openApiSpec);
 
-                await this.outputBlobStorage.uploadBlob(`/specs/${uploadKey}.json`, specContent, "application/json");
-                this.logger.trackEvent("Publishing", { message: `Publishing OpenAPI spec ${apiContract.properties.displayName}...` });
+                await this.outputBlobStorage.uploadBlob(`/specs/${blobKey}`, specContent, "application/json");
+                this.logger.trackEvent("Publishing", { message: `Publishing OpenAPI spec ${openApiSpec.info.title}...` });
             }
 
-            const buildIndexFunction = function (): void {
-                this.ref("key");
-                this.field("name");
-                this.field("description");
-
-                searchables.forEach(searchable => { this.add(searchable); }, this);
-            };
-
-            const index = lunr(buildIndexFunction);
+            const index = openApiIndexBuilder.buildIndex();
             const indexFile = Utils.stringToUnit8Array(JSON.stringify(index));
             await this.outputBlobStorage.uploadBlob(`/specs/index.json`, indexFile, "application/json");
         }

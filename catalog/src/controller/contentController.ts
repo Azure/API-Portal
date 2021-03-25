@@ -1,9 +1,11 @@
 import * as express from "express";
 import * as fs from "fs";
 import * as path from "path";
-import { defaultFileEncoding, websiteContentFileName, metadataFileExt, dataPathSettingName, mediaPathSettingName } from "../constants";
+import { OpenApiSpec30 } from "./../contracts/openapi/openApi";
+import { defaultFileEncoding, websiteContentFileName, metadataFileExt, dataPathSettingName, mediaPathSettingName, openapiSpecsPathSettingName } from "../constants";
 import { ISettingsProvider } from "@paperbits/common/configuration";
-import { Controller, HttpCode, Get, Put, ContentType, Body, Param, UploadedFile, Res } from "routing-controllers";
+import { Controller, HttpCode, Get, Put, ContentType, Body, Param, UploadedFile, Res, NotFoundError } from "routing-controllers";
+import { OpenApiIndexBuilder } from "../services/openApiIndexBuilder";
 
 
 @Controller()
@@ -60,8 +62,7 @@ export class ContentController {
             const filePath = path.resolve(__dirname, mediaPath, blobKey);
 
             if (!fs.existsSync(filePath)) {
-                response.statusCode = 404;
-                return null;
+                throw new NotFoundError();
             }
 
             const metadataFile = await fs.promises.readFile(filePath + metadataFileExt, defaultFileEncoding);
@@ -103,6 +104,10 @@ export class ContentController {
             const mediaFolder = path.resolve(__dirname, mediaPath);
             const filePath = path.resolve(mediaFolder, blobKey);
 
+            if (!fs.existsSync(filePath)) {
+                return "OK";
+            }
+
             await fs.promises.unlink(filePath);
             await fs.promises.unlink(filePath + ".metacontent.json");
 
@@ -111,5 +116,42 @@ export class ContentController {
         catch (error) {
             throw new Error(`Unable to delete media from storage. ${error.stack}`);
         }
+    }
+
+    @HttpCode(200)
+    @ContentType("application/json")
+    @Get("/specs/index.json")
+    public async getSpecsIndex(): Promise<Object> {
+        try {
+            const basePath = path.dirname(__filename);
+            const openapiSpecsFolder = await this.settingsProvider.getSetting<string>(openapiSpecsPathSettingName);
+            const specsFolderPath = path.resolve(basePath, openapiSpecsFolder);
+            const fileNames = await fs.promises.readdir(specsFolderPath);
+            const openApiIndexBuilder = new OpenApiIndexBuilder();
+
+            for (const fileName of fileNames) {
+                const filePath = path.resolve(specsFolderPath, fileName);
+                const spec: OpenApiSpec30 = JSON.parse(await fs.promises.readFile(filePath, defaultFileEncoding));
+                openApiIndexBuilder.appendSpec(fileName, spec);
+            }
+
+            const searchIndex = openApiIndexBuilder.buildIndex();
+            return JSON.parse(JSON.stringify(searchIndex));
+        }
+        catch (error) {
+            throw new Error(`Unable to build spec index. ${error.stack}`);
+        }
+    }
+
+    @HttpCode(200)
+    @ContentType("application/json")
+    @Get("/specs/:specKey")
+    public async getSpecs(@Param("specKey") specKey: string): Promise<Object> {
+        const basePath = path.dirname(__filename);
+        const openapiSpecsFolder = await this.settingsProvider.getSetting<string>(openapiSpecsPathSettingName);
+        const specsFilePath = path.resolve(basePath, openapiSpecsFolder, specKey);
+        const spec: OpenApiSpec30 = JSON.parse(await fs.promises.readFile(specsFilePath, defaultFileEncoding));
+
+        return spec;
     }
 }

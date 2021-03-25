@@ -1,6 +1,6 @@
 import * as express from "express";
 import * as mime from "mime-types";
-import { Req, Res, ExpressMiddlewareInterface, Middleware } from "routing-controllers";
+import { Req, Res, ExpressMiddlewareInterface, Middleware, NotFoundError, InternalServerError } from "routing-controllers";
 import { Logger } from "@paperbits/common/logging";
 import { IBlobStorage } from "@paperbits/common/persistence";
 
@@ -34,7 +34,7 @@ export class StaticContentMiddleware implements ExpressMiddlewareInterface {
             || referrer?.pathname.startsWith("/admin");
     }
 
-    private async render(basePath: string, path: string, response: express.Response, selectedStorage: IBlobStorage): Promise<void> {
+    private async render(basePath: string, path: string, response: express.Response, sourceStorage: IBlobStorage): Promise<void> {
         path = basePath + path;
 
         const requestingFile = this.isFile(path);
@@ -43,12 +43,33 @@ export class StaticContentMiddleware implements ExpressMiddlewareInterface {
             path += (path.endsWith("/") ? "" : "/") + "index.html";
         }
 
-        const fileName = path.split("/").pop();
-        const contentType = mime.lookup(fileName) || "application/octet-stream";
-        response.setHeader("Content-Type", contentType);
+        const blob = await sourceStorage.downloadBlob(path);
 
-        const blob = await selectedStorage.downloadBlob(path);
-        response.end(Buffer.from(blob), "binary");
+        if (blob) {
+            const fileName = path.split("/").pop();
+            const contentType = mime.lookup(fileName) || "application/octet-stream";
+
+            response
+                .header("Content-Type", contentType)
+                .end(Buffer.from(blob), "binary");
+
+            return;
+        }
+
+        const blob404 = await sourceStorage.downloadBlob(`/${basePath}/404/index.html`);
+
+        if (blob404) {
+            response
+                .status(404)
+                .header("Content-Type", "text/html")
+                .end(Buffer.from(blob), "binary");
+            return;
+        }
+
+        response
+            .status(404)
+            .header("Content-Type", "text/plain")
+            .end("Resource not found");
     }
 
     public async processRequest(@Req() request: express.Request, @Res() response: express.Response): Promise<any> {
@@ -91,37 +112,16 @@ export class StaticContentMiddleware implements ExpressMiddlewareInterface {
             await this.render(basePath, path, response, storage);
         }
         catch (error) {
-            if (error.statusCode && error.statusCode === 404) {
-                try {
-                    response.setHeader("Content-Type", "text/html");
-                    // const readableStream = await storage.getBlobAsStream(`/${basePath}/404/index.html`);
-                    // readableStream.pipe(response);
-                    response.send("Not found");
-                }
-                catch (er) {
-                    if (error.statusCode && error.statusCode === 404) {
-                        response.send("Resource not found.");
-                    }
-                    else {
-                        this.logger.trackError(er);
-                        response.send("Oops. Something went wrong. Please try again later.");
-                    }
-                }
-            }
-            else {
-                this.logger.trackError(error);
-                response.send("Oops. Something went wrong. Please try again later.");
-            }
+            response
+                .status(500)
+                .header("Content-Type", "text/html")
+                .send("Oops. Something went wrong. Please try again later.");
         }
     }
 
     public use(@Req() request: express.Request, @Res() response: express.Response, next: express.NextFunction): any {
-        if (response.headersSent) {
-            next();
-            return;
-        }
-
         this.processRequest(request, response)
-            .finally(() => next());
+            .then(() => next())
+            .catch(error => next(error));
     }
 }

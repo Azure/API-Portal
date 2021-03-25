@@ -17,9 +17,12 @@ export class UnhandledErrorMiddleware implements ExpressErrorMiddlewareInterface
             return;
         }
 
-        response.status(500).send({
-            code: "InternalServerError",
-            message: `Oops, something went wrong.`
-        });
+        response
+            .header("Content-Type", "application/json")
+            .status(500)
+            .send({
+                code: "InternalServerError",
+                message: `Oops, something went wrong.`
+            });
     }
 }
