@@ -127,9 +127,10 @@ export class ContentController {
             const openApiIndexBuilder = new OpenApiIndexBuilder();
 
             for (const fileName of fileNames) {
+                const specKey = fileName.startsWith("/") ? fileName.substr(1) : fileName;
                 const filePath = path.resolve(specsFolderPath, fileName);
                 const spec: OpenApiSpec30 = JSON.parse(await fs.promises.readFile(filePath, defaultFileEncoding));
-                openApiIndexBuilder.appendSpec(fileName, spec);
+                openApiIndexBuilder.appendSpec(specKey, spec);
             }
 
             const searchIndex = openApiIndexBuilder.buildIndex();
