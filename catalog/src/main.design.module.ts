@@ -23,6 +23,7 @@ import { OldContentRouteGuard } from "./routing/oldContentRouteGuard";
 import { RemoteObjectStorage } from "./persistence/remoteObjectStorage";
 import { RelativePathRouter } from "./routing/relativePathRouter";
 import { RemoteBlobStorage } from "./persistence/remoteBlobStorage";
+import { PopupDesignModule } from "@paperbits/core/popup";
 
 
 export class MainDesignModule implements IInjectorModule {
@@ -52,5 +53,6 @@ export class MainDesignModule implements IInjectorModule {
         injector.bindSingleton("oauthService", OAuthService);
         injector.bindSingleton("router", RelativePathRouter);
         injector.bindToCollection("autostart", HistoryRouteHandler);
+        injector.bindModule(new PopupDesignModule());
     }
 }

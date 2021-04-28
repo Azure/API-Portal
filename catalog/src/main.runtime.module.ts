@@ -47,7 +47,6 @@ export class MainRuntimeModule implements IInjectorModule {
     public register(injector: IInjector): void {
         injector.bindModule(new KnockoutRegistrationLoaders());
         injector.bindSingleton("eventManager", DefaultEventManager);
-        injector.bindSingleton("logger", ConsoleLogger);
         injector.bindCollection("autostart");
         injector.bindToCollection("autostart", UnhandledErrorHandler);
         injector.bindToCollection("autostart", BalloonBindingHandler);
@@ -85,9 +84,12 @@ export class MainRuntimeModule implements IInjectorModule {
             ? HistoryRouteHandler
             : LocationRouteHandler);
 
+        const logger = new ConsoleLogger();
+        injector.bindInstance("logger", logger);
+
         const azureBlobStorage = new AzureBlobStorage(new StaticSettingsProvider({
             blobStorageUrl: "https://alzaslonstaticwebsite.blob.core.windows.net/specs"
-        }));
+        }), logger);
 
         injector.bindInstance("azureBlobStorage", azureBlobStorage);
     }
