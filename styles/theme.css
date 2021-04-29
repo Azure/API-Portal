@@ -753,6 +753,9 @@ pre {
 .icon-emb-add-filter:before {
   content: "\e910"; }
 
+.icon-emb-menu-8:before {
+  content: "\e90e"; }
+
 .icon-emb-wadl {
   margin-left: 5px;
   background-position: center;
@@ -1097,12 +1100,12 @@ operation-console {
     border-radius: 4px;
     transition-duration: .4s;
     height: 30px;
-    background-color: #218739;
+    background-color: #128930;
     color: white;
     cursor: pointer;
     white-space: nowrap; }
     .operation-header .open-console-button:hover {
-      color: #218739;
+      color: #128930;
       background-color: white; }
 
 api-list,
@@ -1143,7 +1146,8 @@ signup-social-runtime,
 subscriptions-runtime,
 validation-summary {
   flex-basis: 100%;
-  max-width: 100%; }
+  max-width: 100%;
+  display: block; }
 
 operation-console {
   background: #fafafa; }
@@ -1196,6 +1200,8 @@ operation-console {
   margin-bottom: 20px;
   list-style: none;
   background-color: none; }
+  .breadcrumb a {
+    text-decoration: underline; }
 
 .breadcrumb-item + .breadcrumb-item {
   padding-left: .5rem; }
@@ -1389,7 +1395,8 @@ spinner {
     background-color: none; }
 
 .table {
-  margin: 20px 0; }
+  margin: 20px 0;
+  overflow-x: auto; }
   .table .table-row {
     display: flex;
     flex-basis: 100%;
@@ -1690,8 +1697,7 @@ text.subunit-label {
   flex: 1;
   flex-wrap: wrap;
   align-items: flex-start;
-  max-width: 500px;
-  margin-bottom: 20px; }
+  max-width: 500px; }
   .search-input tag-input {
     display: block;
     margin: 5px 0;
@@ -1738,6 +1744,13 @@ text.subunit-label {
   pointer-events: none;
   cursor: default; }
 
+.dropdown {
+  display: none;
+  position: absolute;
+  z-index: 9000; }
+  .dropdown.show {
+    display: block; }
+
 .nav {
   display: flex;
   flex-wrap: wrap; }
@@ -1774,7 +1787,7 @@ text.subunit-label {
   border-bottom: 0;
   border-left: 0.3em solid transparent; }
 
-.menu.menu-horizontal .nav-item.collapsible.expanded > .nav-link::after {
+.menu.menu-horizontal .nav-item.collapsible.show > .nav-link::after {
   transform: rotate(180deg); }
 
 .menu.menu-horizontal .nav-item.collapsible .dropdown {
@@ -1812,8 +1825,24 @@ map,
 map-runtime {
   display: block; }
 
+[contenteditable]:focus {
+  outline: none; }
+
 p:empty:before {
   content: " "; }
+
+.ProseMirror {
+  position: relative;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  white-space: break-spaces;
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0;
+  /* the above doesn't seem to work in Edge */ }
+  .ProseMirror pre {
+    white-space: pre-wrap; }
+  .ProseMirror li {
+    position: relative; }
 
 @keyframes bounce {
   20%,
@@ -1895,8 +1924,8 @@ p:empty:before {
     position: absolute;
     right: 0; }
 
-.backdrop {
-  opacity: 0;
+.collapsible-backdrop {
+  opacity: 0.5;
   position: fixed;
   top: 0;
   left: 0;
@@ -1914,11 +1943,11 @@ p:empty:before {
   .collapsible-panel .collapsible-panel-open {
     display: none; } }
 
-.collapsible.expanded > .collapsible-content {
+.collapsible-panel.show > .collapsible-content {
   display: flex;
   position: absolute; }
 
-.collapsible-panel.collapsible.expanded > .collapsible-content {
+.collapsible-panel.show > .collapsible-content {
   top: 0;
   right: 0;
   bottom: 0;
@@ -1926,12 +1955,12 @@ p:empty:before {
   position: fixed;
   -webkit-animation: slideInRight 0.2s linear forwards;
           animation: slideInRight 0.2s linear forwards; }
-  .collapsible-panel.collapsible.expanded > .collapsible-content > .collapsible-panel-close {
+  .collapsible-panel.show > .collapsible-content > .collapsible-panel-close {
     display: block;
     top: 0;
     right: 0; }
 
-.collapsible-panel.collapsible.expanded .backdrop {
+.collapsible-panel.show .collapsible-backdrop {
   display: block; }
 
 @media (max-width: 768px) {
@@ -2054,6 +2083,30 @@ p:empty:before {
     flex-grow: 1; }
     .tab-panel .tab-content.tab-content-active {
       display: flex; }
+
+.popup {
+  display: none; }
+  .popup.show {
+    display: block; }
+  .popup .popup-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000; }
+  .popup .popup-container {
+    z-index: 1001; }
+  .popup .popup-close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    border: none;
+    background: none;
+    z-index: 1002; }
+
+.popup-host {
+  display: contents; }
 
 /* Breakpoints */
 /* Defaults */
