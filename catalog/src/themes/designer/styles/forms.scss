@@ -7,7 +7,8 @@
     padding: 0;
     border: none;
 
-    &.ps { // perfect-scrollbar
+    &.ps {
+        // perfect-scrollbar
         padding-right: 15px;
     }
 }
@@ -23,7 +24,7 @@
     }
 
     &.form-group-collapsible {
-        .form-label {
+        & > .form-label {
             position: unset;
         }
 
@@ -176,6 +177,20 @@ textarea {
         border: none;
         line-height: inherit;
         cursor: pointer;
+        display: inline-block;
+        line-height: 2em;
+        font-size: $form-control-font-size;
+
+        &:active,
+        &:focus,
+        &:hover {
+            outline: none;
+            @include selection(10px, -4px);
+        }
+
+        &.disabled {
+            color: #ccc;
+        }
     }
 
     .input-group-addon {
