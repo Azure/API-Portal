@@ -1,12 +1,9 @@
-import { StaticSettingsProvider } from "./components/staticSettingsProvider";
-import { AzureBlobStorage } from "@paperbits/azure";
 import "./polyfills";
 import "./bindingHandlers/scrollintoview";
 import "./bindingHandlers/copyToClipboard";
 import "./bindingHandlers/syntaxHighlight";
 import "./bindingHandlers/markdown";
 import "./bindingHandlers/acceptChange";
-import "./themes/website/scripts";
 import "@paperbits/core/ko/bindingHandlers/bindingHandlers.component";
 import "@paperbits/core/ko/bindingHandlers/bindingHandlers.focus";
 import "@paperbits/core/ko/bindingHandlers/bindingHandlers.activate";
@@ -27,6 +24,7 @@ import { OperationDetails } from "./components/operations/operation-details/ko/r
 import { OperationConsole } from "./components/operations/operation-details/ko/runtime/operation-console";
 import { FileInput } from "./components/file-input/file-input";
 import { MapiClient } from "./services/mapiClient";
+import { StaticSettingsProvider } from "./components/staticSettingsProvider";
 import { DefaultAuthenticator } from "./components/defaultAuthenticator";
 import { Spinner } from "./components/spinner/spinner";
 import { OperationList } from "./components/operations/operation-list/ko/runtime/operation-list";
@@ -45,6 +43,7 @@ import { DefaultSessionManager } from "./authentication/defaultSessionManager";
 
 export class MainRuntimeModule implements IInjectorModule {
     public register(injector: IInjector): void {
+        injector.bindSingleton("logger", ConsoleLogger);
         injector.bindModule(new KnockoutRegistrationLoaders());
         injector.bindSingleton("eventManager", DefaultEventManager);
         injector.bindCollection("autostart");
@@ -83,14 +82,5 @@ export class MainRuntimeModule implements IInjectorModule {
         injector.bindToCollection("autostart", location.href.includes("designtime=true")
             ? HistoryRouteHandler
             : LocationRouteHandler);
-
-        const logger = new ConsoleLogger();
-        injector.bindInstance("logger", logger);
-
-        const azureBlobStorage = new AzureBlobStorage(new StaticSettingsProvider({
-            blobStorageUrl: "https://alzaslonstaticwebsite.blob.core.windows.net/specs"
-        }), logger);
-
-        injector.bindInstance("azureBlobStorage", azureBlobStorage);
     }
 }
