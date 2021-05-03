@@ -1,0 +1,7239 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "ACS Web APIs",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/account/GetCustomerAccountDetails": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/account/OrderHistory/{pageNo}/{pageSize}": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "parameters": [
+          {
+            "name": "pageNo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/account/ForgotPassword": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ForgotPasswordDTO"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ForgotPasswordDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ForgotPasswordDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ForgotPasswordDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/account/ChangePassword": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePasswordDTO"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePasswordDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePasswordDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePasswordDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/account/ViewDetails/{orderNumber}/{kitLineNumber}": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "parameters": [
+          {
+            "name": "orderNumber",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "kitLineNumber",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/account/GetOrdersDetailHTML/{orderNumber}/{kitLineNumber}": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "parameters": [
+          {
+            "name": "orderNumber",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "kitLineNumber",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/account/GetSiteMaintenanceStatus": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SiteMaintenanceVM"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SiteMaintenanceVM"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SiteMaintenanceVM"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/token": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomerAuthVM"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomerAuthVM"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomerAuthVM"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomerAuthVM"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/captcha": {
+      "get": {
+        "tags": [
+          "Captcha"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/captcha/{key}/{captchaCode}": {
+      "get": {
+        "tags": [
+          "Captcha"
+        ],
+        "parameters": [
+          {
+            "name": "key",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "captchaCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/certificate": {
+      "get": {
+        "tags": [
+          "Certificates"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Certificates"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CertificateVM"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CertificateVM"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CertificateVM"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CertificateVM"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/certificate/classes": {
+      "get": {
+        "tags": [
+          "Certificates"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/certificate/types": {
+      "get": {
+        "tags": [
+          "Certificates"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/checkout/CartCheckout": {
+      "post": {
+        "tags": [
+          "Checkout"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CheckoutDTO"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CheckoutDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CheckoutDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CheckoutDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/checkout/UpdateShippingAddress": {
+      "post": {
+        "tags": [
+          "Checkout"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ShippingAddressUpdateDTO"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ShippingAddressUpdateDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ShippingAddressUpdateDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ShippingAddressUpdateDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/checkout/ReviewOrder": {
+      "post": {
+        "tags": [
+          "Checkout"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReviewOrrderDTO"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReviewOrrderDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReviewOrrderDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReviewOrrderDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/checkout/GetCustomerCreditCardList": {
+      "get": {
+        "tags": [
+          "Checkout"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/contacts": {
+      "post": {
+        "tags": [
+          "Contacts"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomerAuthDTO"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomerAuthDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomerAuthDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomerAuthDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/contacts/updateContact": {
+      "post": {
+        "tags": [
+          "Contacts"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebContactUIVM"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebContactUIVM"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebContactUIVM"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebContactUIVM"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/contacts/{id}": {
+      "delete": {
+        "tags": [
+          "Contacts"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/contacts/saveContact": {
+      "post": {
+        "tags": [
+          "Contacts"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebContactUIVM"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebContactUIVM"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebContactUIVM"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebContactUIVM"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/contacts/GetUserContact": {
+      "get": {
+        "tags": [
+          "Contacts"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/contacts/GetContactForApproval": {
+      "get": {
+        "tags": [
+          "Contacts"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/contacts/ContactApproval": {
+      "post": {
+        "tags": [
+          "Contacts"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebContactUIVM"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebContactUIVM"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebContactUIVM"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebContactUIVM"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/contactus": {
+      "get": {
+        "tags": [
+          "Contactus"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/contactus/ContactUsEmail": {
+      "post": {
+        "tags": [
+          "Contactus"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContactusDTO"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContactusDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContactusDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContactusDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/contactus/GetOption/{Type}": {
+      "get": {
+        "tags": [
+          "Contactus"
+        ],
+        "parameters": [
+          {
+            "name": "Type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Countries": {
+      "get": {
+        "tags": [
+          "Countries"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CountryVM"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CountryVM"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CountryVM"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Countries/all": {
+      "get": {
+        "tags": [
+          "Countries"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CountryVM"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CountryVM"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CountryVM"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/creditCard/Save": {
+      "post": {
+        "tags": [
+          "CreditCard"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebCreditCardVM"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebCreditCardVM"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebCreditCardVM"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebCreditCardVM"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/creditCard": {
+      "get": {
+        "tags": [
+          "CreditCard"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/customer": {
+      "get": {
+        "tags": [
+          "Customers"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Customers"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebCustomerContactDTO"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebCustomerContactDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebCustomerContactDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebCustomerContactDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/customer/Update": {
+      "post": {
+        "tags": [
+          "Customers"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebCustomerVM"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebCustomerVM"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebCustomerVM"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebCustomerVM"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/customer/GetCustomerBillingAddress": {
+      "get": {
+        "tags": [
+          "Customers"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/customer/names": {
+      "get": {
+        "tags": [
+          "Customers"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/customer/CustomerSearch": {
+      "get": {
+        "tags": [
+          "Customers"
+        ],
+        "parameters": [
+          {
+            "name": "searchValue",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/FillingServices": {
+      "get": {
+        "tags": [
+          "FillingServices"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FillingServiceUIVM"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FillingServiceUIVM"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FillingServiceUIVM"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/FillingServices/CorporateType/{fillingserviceCode}/{CorporationCode}/{subCategorycode}": {
+      "get": {
+        "tags": [
+          "FillingServices"
+        ],
+        "parameters": [
+          {
+            "name": "fillingserviceCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "CorporationCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "subCategorycode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductFormationUIVM"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductFormationUIVM"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductFormationUIVM"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/FillingServices/CorporateSubType/{corporateTypeCode}": {
+      "get": {
+        "tags": [
+          "FillingServices"
+        ],
+        "parameters": [
+          {
+            "name": "corporateTypeCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CorporateSubTypeUIVM"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CorporateSubTypeUIVM"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CorporateSubTypeUIVM"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/FillingServices/PDFApplicable": {
+      "post": {
+        "tags": [
+          "FillingServices"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PDFValidate"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PDFValidate"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PDFValidate"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PDFValidate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PDFValidate"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PDFValidate"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PDFValidate"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/FormControlsData/GetFormControls/{productCode}/{categoryCode}/{subCategoryCode}/{stateCode}": {
+      "get": {
+        "tags": [
+          "FormControlsData"
+        ],
+        "parameters": [
+          {
+            "name": "productCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "categoryCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "subCategoryCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "stateCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FormControlVM"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FormControlVM"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FormControlVM"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/IndividualProduct/AddIndividualProductToOrder/{orderNumber}": {
+      "post": {
+        "tags": [
+          "IndividualProduct"
+        ],
+        "parameters": [
+          {
+            "name": "orderNumber",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/IndividualProductOrderVM"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IndividualProductOrderVM"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IndividualProductOrderVM"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/IndividualProductOrderVM"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShoppingCartResponseVM"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShoppingCartResponseVM"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShoppingCartResponseVM"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/IndividualProduct/UpdateIndividualProductToOrder/{orderNumber}": {
+      "post": {
+        "tags": [
+          "IndividualProduct"
+        ],
+        "parameters": [
+          {
+            "name": "orderNumber",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/IndividualProductOrderVM"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IndividualProductOrderVM"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IndividualProductOrderVM"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/IndividualProductOrderVM"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShoppingCartResponseVM"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShoppingCartResponseVM"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShoppingCartResponseVM"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/IndividualProduct/AddUpdateSealEmbosserToCart/{orderNumber}/{isAdd}": {
+      "post": {
+        "tags": [
+          "IndividualProduct"
+        ],
+        "parameters": [
+          {
+            "name": "orderNumber",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "isAdd",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SealEmbosserRequestVM"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SealEmbosserRequestVM"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SealEmbosserRequestVM"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SealEmbosserRequestVM"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShoppingCartResponseVM"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShoppingCartResponseVM"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShoppingCartResponseVM"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Kit/AddKitOrder": {
+      "post": {
+        "tags": [
+          "Kits"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/KitOrderVM"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/KitOrderVM"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/KitOrderVM"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/KitOrderVM"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Kit/UpdateKitOrder": {
+      "post": {
+        "tags": [
+          "Kits"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/KitOrderVM"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/KitOrderVM"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/KitOrderVM"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/KitOrderVM"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Kit/AddEstateKitsOrder/{orderNumber}/{isAdd}": {
+      "post": {
+        "tags": [
+          "Kits"
+        ],
+        "parameters": [
+          {
+            "name": "orderNumber",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "isAdd",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EstatePlanningKitVM"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EstatePlanningKitVM"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EstatePlanningKitVM"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EstatePlanningKitVM"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Kit/addons/{productCode}/{categoryCode}": {
+      "get": {
+        "tags": [
+          "Kits"
+        ],
+        "parameters": [
+          {
+            "name": "productCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "categoryCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Leads": {
+      "get": {
+        "tags": [
+          "Leads"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LeadVM"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LeadVM"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LeadVM"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Packages": {
+      "get": {
+        "tags": [
+          "Packages"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PackageUIVM"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PackageUIVM"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PackageUIVM"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/PayTypes": {
+      "get": {
+        "tags": [
+          "PayTypes"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PayTypeVM"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PayTypeVM"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PayTypeVM"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/PayTypes/GetCreditCardType": {
+      "get": {
+        "tags": [
+          "PayTypes"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/PDFFormDownload/GetPDF/{productCode}/{stateCode}/{categoryCode}/{subCategoryCode}/{corpType}": {
+      "get": {
+        "tags": [
+          "PDFFormDownload"
+        ],
+        "parameters": [
+          {
+            "name": "productCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "stateCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "categoryCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "subCategoryCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "corpType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PDFDownloadURLResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PDFDownloadURLResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PDFDownloadURLResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/PDFFormDownload/GetCustomPrintUrl": {
+      "get": {
+        "tags": [
+          "PDFFormDownload"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PDFDownloadURLResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PDFDownloadURLResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PDFDownloadURLResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/PDFFormDownload/{id}": {
+      "put": {
+        "tags": [
+          "PDFFormDownload"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "string",
+                "nullable": true
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "string",
+                "nullable": true
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "string",
+                "nullable": true
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "PDFFormDownload"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/product": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductVM"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductVM"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductVM"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/product/{code}": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductVM"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductVM"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductVM"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/product/filingservices": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductVM"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductVM"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductVM"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/product/GetStateWiseProductPrice": {
+      "post": {
+        "tags": [
+          "Products"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/StateWiseProductPriceDTO"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StateWiseProductPriceDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StateWiseProductPriceDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/StateWiseProductPriceDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Professions": {
+      "get": {
+        "tags": [
+          "Professions"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProfessionVM"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProfessionVM"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProfessionVM"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/shipping/options/{orderNumber}": {
+      "get": {
+        "tags": [
+          "Shippings"
+        ],
+        "parameters": [
+          {
+            "name": "orderNumber",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/shipping/address/{code}": {
+      "get": {
+        "tags": [
+          "Shippings"
+        ],
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/shipping/Save": {
+      "post": {
+        "tags": [
+          "Shippings"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ShippingDetailUIVM"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ShippingDetailUIVM"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ShippingDetailUIVM"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ShippingDetailUIVM"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/shipping/GetAddress": {
+      "get": {
+        "tags": [
+          "Shippings"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/shipping/{Update}": {
+      "patch": {
+        "tags": [
+          "Shippings"
+        ],
+        "parameters": [
+          {
+            "name": "Update",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ShippingDetailUIVM"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ShippingDetailUIVM"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ShippingDetailUIVM"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ShippingDetailUIVM"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/shipping/{id}": {
+      "delete": {
+        "tags": [
+          "Shippings"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/shoppingcart/CartDetails/{orderNumber}": {
+      "get": {
+        "tags": [
+          "ShoppingCart"
+        ],
+        "parameters": [
+          {
+            "name": "orderNumber",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/shoppingcart/GetAssignedOrderNumber/{orderNumber}": {
+      "get": {
+        "tags": [
+          "ShoppingCart"
+        ],
+        "parameters": [
+          {
+            "name": "orderNumber",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/shoppingcart": {
+      "get": {
+        "tags": [
+          "ShoppingCart"
+        ],
+        "parameters": [
+          {
+            "name": "orderNumber",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ACSResponseModel"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ACSResponseModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ACSResponseModel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/shoppingcart/EditCartDetails": {
+      "post": {
+        "tags": [
+          "ShoppingCart"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderEditRequestVM"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderEditRequestVM"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderEditRequestVM"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderEditRequestVM"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/shoppingcart/EditKitOrder": {
+      "post": {
+        "tags": [
+          "ShoppingCart"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderEditRequestVM"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderEditRequestVM"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderEditRequestVM"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderEditRequestVM"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/shoppingcart/EditStockMembership": {
+      "post": {
+        "tags": [
+          "ShoppingCart"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderEditRequestVM"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderEditRequestVM"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderEditRequestVM"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderEditRequestVM"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/shoppingcart/EditEstateKitOrder": {
+      "post": {
+        "tags": [
+          "ShoppingCart"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderEditRequestVM"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderEditRequestVM"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderEditRequestVM"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderEditRequestVM"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/shoppingcart/EditDocuPakOrder": {
+      "post": {
+        "tags": [
+          "ShoppingCart"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderEditRequestVM"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderEditRequestVM"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderEditRequestVM"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderEditRequestVM"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocuPakModel"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocuPakModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocuPakModel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/shoppingcart/EditCorpAndLLCOrder": {
+      "post": {
+        "tags": [
+          "ShoppingCart"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderEditRequestVM"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderEditRequestVM"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderEditRequestVM"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderEditRequestVM"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CorpAndLLCForms"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CorpAndLLCForms"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CorpAndLLCForms"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/shoppingcart/AddToOrder": {
+      "post": {
+        "tags": [
+          "ShoppingCart"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/FillingServicesOrderVM"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FillingServicesOrderVM"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FillingServicesOrderVM"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/FillingServicesOrderVM"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/shoppingcart/filingservices/AddDynamicForm": {
+      "post": {
+        "tags": [
+          "ShoppingCart"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/FillingServicesOrderVM"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FillingServicesOrderVM"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FillingServicesOrderVM"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/FillingServicesOrderVM"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/shoppingcart/filingservices/UpdateDynamicForm": {
+      "post": {
+        "tags": [
+          "ShoppingCart"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/FillingServicesOrderVM"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FillingServicesOrderVM"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FillingServicesOrderVM"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/FillingServicesOrderVM"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/shoppingcart/AddToExistingOrder": {
+      "post": {
+        "tags": [
+          "ShoppingCart"
+        ],
+        "parameters": [
+          {
+            "name": "orderNumber",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "customerNumber",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "contactNumber",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/shoppingcart/AddToRepeatOrder/{orderNumber}": {
+      "get": {
+        "tags": [
+          "ShoppingCart"
+        ],
+        "parameters": [
+          {
+            "name": "orderNumber",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/shoppingcart/UpdateFilingServiceOrder": {
+      "post": {
+        "tags": [
+          "ShoppingCart"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/FillingServicesOrderVM"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FillingServicesOrderVM"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FillingServicesOrderVM"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/FillingServicesOrderVM"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/shoppingcart/GetSealEmbosserForEdit": {
+      "post": {
+        "tags": [
+          "ShoppingCart"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderEditRequestVM"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderEditRequestVM"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderEditRequestVM"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderEditRequestVM"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SealEmbosserRequestVM"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SealEmbosserRequestVM"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SealEmbosserRequestVM"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/shoppingcart/Packages/AddToOrder": {
+      "post": {
+        "tags": [
+          "ShoppingCart"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PackagesOrderVM"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PackagesOrderVM"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PackagesOrderVM"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PackagesOrderVM"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/shoppingcart/Packages/UpdateOrder": {
+      "post": {
+        "tags": [
+          "ShoppingCart"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PackagesOrderVM"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PackagesOrderVM"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PackagesOrderVM"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PackagesOrderVM"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/shoppingcart/Packages/GetOrderDetails": {
+      "post": {
+        "tags": [
+          "ShoppingCart"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderEditRequestVM"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderEditRequestVM"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderEditRequestVM"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderEditRequestVM"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/shoppingcart/{orderNumber}/{kitLineNumber}/{productNumber}": {
+      "delete": {
+        "tags": [
+          "ShoppingCart"
+        ],
+        "parameters": [
+          {
+            "name": "orderNumber",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "kitLineNumber",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "productNumber",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/States": {
+      "get": {
+        "tags": [
+          "States"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StateUIVM"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StateUIVM"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StateUIVM"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/webkit": {
+      "get": {
+        "tags": [
+          "WebKits"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/webkit/kit/{code}": {
+      "get": {
+        "tags": [
+          "WebKits"
+        ],
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/webkit/KitsListing": {
+      "get": {
+        "tags": [
+          "WebKits"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/webkit/MinuteBooksListing": {
+      "get": {
+        "tags": [
+          "WebKits"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/webkit/category/{code}": {
+      "get": {
+        "tags": [
+          "WebKits"
+        ],
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/webkit/individualproduct/{code}": {
+      "get": {
+        "tags": [
+          "WebKits"
+        ],
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/webkit/color": {
+      "post": {
+        "tags": [
+          "WebKits"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ColorRequestVM"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ColorRequestVM"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ColorRequestVM"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ColorRequestVM"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/webkit/legend/{productcode}/{categorycode}": {
+      "get": {
+        "tags": [
+          "WebKits"
+        ],
+        "parameters": [
+          {
+            "name": "productcode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "categorycode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/WebPageData/{controlID}": {
+      "get": {
+        "tags": [
+          "WebPagesData"
+        ],
+        "parameters": [
+          {
+            "name": "controlID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WebPageDataVM"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WebPageDataVM"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WebPageDataVM"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/WebPageData/page/{pageId}": {
+      "get": {
+        "tags": [
+          "WebPagesData"
+        ],
+        "parameters": [
+          {
+            "name": "pageId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WebPageDataVM"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WebPageDataVM"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WebPageDataVM"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/WebPageData/getCorpType/{productCode}/{categoryCode}/{subCategoryCode}/{formationType}": {
+      "get": {
+        "tags": [
+          "WebPagesData"
+        ],
+        "parameters": [
+          {
+            "name": "productCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "categoryCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "subCategoryCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "formationType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductFormationCorpTypeView"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductFormationCorpTypeView"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductFormationCorpTypeView"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ForgotPasswordDTO": {
+        "type": "object",
+        "properties": {
+          "emailAddress": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ChangePasswordDTO": {
+        "type": "object",
+        "properties": {
+          "customerNumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "oldPassword": {
+            "type": "string",
+            "nullable": true
+          },
+          "newPassword": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SiteMaintenanceVM": {
+        "type": "object",
+        "properties": {
+          "maintenanceType": {
+            "type": "string",
+            "nullable": true
+          },
+          "maintenanceMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "maintenanceStatus": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CustomerAuthVM": {
+        "type": "object",
+        "properties": {
+          "customerNumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "contactNumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "customerEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerName": {
+            "type": "string",
+            "nullable": true
+          },
+          "token": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderNumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "responseMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "responseCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "contactHoldForApproval": {
+            "type": "string",
+            "nullable": true
+          },
+          "isAdmin": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CertificateVM": {
+        "type": "object",
+        "properties": {
+          "certificateCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "certificateDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "stateLinePrefix": {
+            "type": "string",
+            "nullable": true
+          },
+          "certificateType": {
+            "type": "string",
+            "nullable": true
+          },
+          "classCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "colorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "share": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalAuthorizedIssue": {
+            "type": "string",
+            "nullable": true
+          },
+          "parValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "printParValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "sharesPrefix": {
+            "type": "string",
+            "nullable": true
+          },
+          "numberingFrom": {
+            "type": "number",
+            "format": "double"
+          },
+          "numberingTo": {
+            "type": "number",
+            "format": "double"
+          },
+          "printSharesNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "numberingToPrint": {
+            "type": "number",
+            "format": "double"
+          },
+          "printWithStubs": {
+            "type": "string",
+            "nullable": true
+          },
+          "class": {
+            "type": "string",
+            "nullable": true
+          },
+          "multiClassDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "printMultiClassText": {
+            "type": "string",
+            "nullable": true
+          },
+          "signatureName1": {
+            "type": "string",
+            "nullable": true
+          },
+          "signatureName2": {
+            "type": "string",
+            "nullable": true
+          },
+          "signatureName3": {
+            "type": "string",
+            "nullable": true
+          },
+          "signatureName4": {
+            "type": "string",
+            "nullable": true
+          },
+          "signatureName5": {
+            "type": "string",
+            "nullable": true
+          },
+          "signatureName6": {
+            "type": "string",
+            "nullable": true
+          },
+          "location1": {
+            "type": "string",
+            "nullable": true
+          },
+          "location2": {
+            "type": "string",
+            "nullable": true
+          },
+          "location3": {
+            "type": "string",
+            "nullable": true
+          },
+          "location4": {
+            "type": "string",
+            "nullable": true
+          },
+          "location5": {
+            "type": "string",
+            "nullable": true
+          },
+          "location6": {
+            "type": "string",
+            "nullable": true
+          },
+          "printLine1": {
+            "type": "string",
+            "nullable": true
+          },
+          "printLine2": {
+            "type": "string",
+            "nullable": true
+          },
+          "printLine3": {
+            "type": "string",
+            "nullable": true
+          },
+          "printLine4": {
+            "type": "string",
+            "nullable": true
+          },
+          "printLine5": {
+            "type": "string",
+            "nullable": true
+          },
+          "printLine6": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WebCreditCardVM": {
+        "type": "object",
+        "properties": {
+          "saveCard": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerNumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "creditCardLine": {
+            "type": "number",
+            "format": "double"
+          },
+          "cardType": {
+            "type": "string",
+            "nullable": true
+          },
+          "securityCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "cardNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "expireMonth": {
+            "type": "number",
+            "format": "double"
+          },
+          "expireYear": {
+            "type": "number",
+            "format": "double"
+          },
+          "nameOnCard": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressLine_1": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressLine_2": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "stateCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "zipCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "zipCode4": {
+            "type": "string",
+            "nullable": true
+          },
+          "countryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "czinyn": {
+            "type": "string",
+            "nullable": true
+          },
+          "action": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CheckoutDTO": {
+        "type": "object",
+        "properties": {
+          "orderNumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "customerNumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "creditCardID": {
+            "type": "number",
+            "format": "double"
+          },
+          "shippingMethod": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerShipNumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "paymentTypeCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "newCreditCard": {
+            "$ref": "#/components/schemas/WebCreditCardVM"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ShippingAddressUpdateDTO": {
+        "type": "object",
+        "properties": {
+          "orderNumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "customerNumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "customerShipNumber": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ReviewOrrderDTO": {
+        "type": "object",
+        "properties": {
+          "customerNumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "orderNumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "contactNumber": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CustomerAuthDTO": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderNumber": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "WebContactUIVM": {
+        "type": "object",
+        "properties": {
+          "customerNumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "contactNumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "fax": {
+            "type": "string",
+            "nullable": true
+          },
+          "emailAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "defaultContact": {
+            "type": "string",
+            "nullable": true
+          },
+          "holdForApproval": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ContactusDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "firmName": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "number",
+            "format": "double"
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "products": {
+            "type": "string",
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          },
+          "services": {
+            "type": "string",
+            "nullable": true
+          },
+          "comments": {
+            "type": "string",
+            "nullable": true
+          },
+          "captchaKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "captchaCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CountryVM": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "countryType": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WebCustomerContactDTO": {
+        "type": "object",
+        "properties": {
+          "customerNumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "customerName": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerAddress1": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerAddress2": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerCity": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerState": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerZipCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerZipCode4": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerFaxNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerCountry": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerPhoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "cUstomerCompanyAssociated": {
+            "type": "string",
+            "nullable": true
+          },
+          "profession": {
+            "type": "string",
+            "nullable": true
+          },
+          "leadCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "contactNumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "contactFirstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "contactLastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "contactPhoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "contactFaxNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "emailAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "captchaKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "captchaCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WebCustomerVM": {
+        "type": "object",
+        "properties": {
+          "customerNumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "customerName": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerAddress1": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerAddress2": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerCity": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerState": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerZipCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerZipCode4": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerFaxNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerCountry": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerPhoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "cUstomerCompanyAssociated": {
+            "type": "string",
+            "nullable": true
+          },
+          "profession": {
+            "type": "string",
+            "nullable": true
+          },
+          "leadCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FillingServiceUIVM": {
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "categoryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "subCategoryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "optionDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "buttonText": {
+            "type": "string",
+            "nullable": true
+          },
+          "sortSequence": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductFormationUIVM": {
+        "type": "object",
+        "properties": {
+          "corporationCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "corporationDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "corporationTypeCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "corporationTypeDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "webSortSequence": {
+            "type": "number",
+            "format": "double"
+          },
+          "corpTypeCodeString": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CorporateSubTypeUIVM": {
+        "type": "object",
+        "properties": {
+          "corporationTypeCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "corporationSubTypeCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "corporationSubTypeDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "webSortSequence": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PDFValidate": {
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "categoryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "entityType": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentType": {
+            "type": "string",
+            "nullable": true
+          },
+          "isPDFDownloadable": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FormControlOptions": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FormControlVM": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "nullable": true
+          },
+          "textSize": {
+            "type": "string",
+            "nullable": true
+          },
+          "inputType": {
+            "type": "string",
+            "nullable": true
+          },
+          "controlId": {
+            "type": "string",
+            "nullable": true
+          },
+          "sectionName": {
+            "type": "string",
+            "nullable": true
+          },
+          "sectionLabel": {
+            "type": "string",
+            "nullable": true
+          },
+          "sectionSequence": {
+            "type": "string",
+            "nullable": true
+          },
+          "inputSequence": {
+            "type": "string",
+            "nullable": true
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "dataType": {
+            "type": "string",
+            "nullable": true
+          },
+          "dropDownValueType": {
+            "type": "string",
+            "nullable": true
+          },
+          "dependentOnControlId": {
+            "type": "string",
+            "nullable": true
+          },
+          "dependentOnControlValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "conditionType": {
+            "type": "string",
+            "nullable": true
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FormControlOptions"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AdditionalLegend": {
+        "type": "object",
+        "properties": {
+          "price": {
+            "type": "number",
+            "format": "double"
+          },
+          "legendID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "legendText": {
+            "type": "string",
+            "nullable": true
+          },
+          "isChecked": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CustomizedLegend": {
+        "type": "object",
+        "properties": {
+          "price": {
+            "type": "number",
+            "format": "double"
+          },
+          "legendID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "legendText": {
+            "type": "string",
+            "nullable": true
+          },
+          "legendText2": {
+            "type": "string",
+            "nullable": true
+          },
+          "isChecked": {
+            "type": "boolean"
+          },
+          "legendValue": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "IndividualProducUIVM": {
+        "type": "object",
+        "properties": {
+          "additionalLegends": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AdditionalLegend"
+            },
+            "nullable": true
+          },
+          "customizedLegends": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomizedLegend"
+            },
+            "nullable": true
+          },
+          "otherLegends": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomizedLegend"
+            },
+            "nullable": true
+          },
+          "corporationType": {
+            "type": "string",
+            "nullable": true
+          },
+          "formationType": {
+            "type": "string",
+            "nullable": true
+          },
+          "filingState": {
+            "type": "string",
+            "nullable": true
+          },
+          "entityName": {
+            "type": "string",
+            "nullable": true
+          },
+          "formationMonth": {
+            "type": "string",
+            "nullable": true
+          },
+          "formationDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "formationYear": {
+            "type": "string",
+            "nullable": true
+          },
+          "isFilingPending": {
+            "type": "string",
+            "nullable": true
+          },
+          "_IsFilingOrFormation": {
+            "type": "string",
+            "nullable": true
+          },
+          "corporationDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "filingStateName": {
+            "type": "string",
+            "nullable": true
+          },
+          "designation": {
+            "type": "string",
+            "nullable": true
+          },
+          "otherDesignation": {
+            "type": "string",
+            "nullable": true
+          },
+          "certificateFromNo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "certificateToNo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "parValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "parValueCustomized": {
+            "type": "string",
+            "nullable": true
+          },
+          "certificateColor": {
+            "type": "string",
+            "nullable": true
+          },
+          "certificateSignature1": {
+            "type": "string",
+            "nullable": true
+          },
+          "otherSignatureTitle1": {
+            "type": "string",
+            "nullable": true
+          },
+          "certificateSignature2": {
+            "type": "string",
+            "nullable": true
+          },
+          "otherSignatureTitle2": {
+            "type": "string",
+            "nullable": true
+          },
+          "addLegends": {
+            "type": "string",
+            "nullable": true
+          },
+          "remarks": {
+            "type": "string",
+            "nullable": true
+          },
+          "subCategoryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "kitLineNumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "orderNumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalAuthorisedShares": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DocuPakModel": {
+        "type": "object",
+        "properties": {
+          "productNumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderInstruction": {
+            "type": "string",
+            "nullable": true
+          },
+          "kitLineNumber": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CorpAndLLCForms": {
+        "type": "object",
+        "properties": {
+          "entityName": {
+            "type": "string",
+            "nullable": true
+          },
+          "instructions": {
+            "type": "string",
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          },
+          "corpType": {
+            "type": "string",
+            "nullable": true
+          },
+          "formatType": {
+            "type": "string",
+            "nullable": true
+          },
+          "kitLineNumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "orderNumber": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "IndividualProductOrderVM": {
+        "type": "object",
+        "properties": {
+          "individualProductUIVM": {
+            "$ref": "#/components/schemas/IndividualProducUIVM"
+          },
+          "docuPakModel": {
+            "$ref": "#/components/schemas/DocuPakModel"
+          },
+          "corpLLCForms": {
+            "$ref": "#/components/schemas/CorpAndLLCForms"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ShoppingCartResponseVM": {
+        "type": "object",
+        "properties": {
+          "responseCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "orderNumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "customerNumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "responseMessage": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SealEmbosserRequestVM": {
+        "type": "object",
+        "properties": {
+          "formationState": {
+            "type": "string",
+            "nullable": true
+          },
+          "formationType": {
+            "type": "string",
+            "nullable": true
+          },
+          "month": {
+            "type": "string",
+            "nullable": true
+          },
+          "day": {
+            "type": "string",
+            "nullable": true
+          },
+          "year": {
+            "type": "number",
+            "format": "double"
+          },
+          "entityName": {
+            "type": "string",
+            "nullable": true
+          },
+          "instructions": {
+            "type": "string",
+            "nullable": true
+          },
+          "subCategoryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderNumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "kitLineNumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "goldStamping": {
+            "type": "number",
+            "format": "double"
+          },
+          "color": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "KeyValue": {
+        "type": "object",
+        "properties": {
+          "productNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "legendValue": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "KitOrderVM": {
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "categoryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "subCategoryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "filingState": {
+            "type": "string",
+            "nullable": true
+          },
+          "entityName": {
+            "type": "string",
+            "nullable": true
+          },
+          "entityType": {
+            "type": "string",
+            "nullable": true
+          },
+          "color": {
+            "type": "string",
+            "nullable": true
+          },
+          "bylawsAndMinutes": {
+            "type": "string",
+            "nullable": true
+          },
+          "operatingAgreements": {
+            "type": "string",
+            "nullable": true
+          },
+          "formationDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "filingStatus": {
+            "type": "boolean"
+          },
+          "certificateNumberingFrom": {
+            "type": "number",
+            "format": "double"
+          },
+          "certificateNumberingTo": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalAuthorizedShares": {
+            "type": "number",
+            "format": "double"
+          },
+          "parValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "parValueLeaveBlank": {
+            "type": "string",
+            "nullable": true
+          },
+          "noParValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "withoutParValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "certificateColor": {
+            "type": "string",
+            "nullable": true
+          },
+          "certificateSignatures1": {
+            "type": "string",
+            "nullable": true
+          },
+          "certificateSignatures2": {
+            "type": "string",
+            "nullable": true
+          },
+          "addLegends": {
+            "type": "string",
+            "nullable": true
+          },
+          "additionalLegends": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "customizedLegends": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/KeyValue"
+            },
+            "nullable": true
+          },
+          "otherLegends": {
+            "type": "string",
+            "nullable": true
+          },
+          "specialInstructions": {
+            "type": "string",
+            "nullable": true
+          },
+          "designation": {
+            "type": "string",
+            "nullable": true
+          },
+          "otherDesignation": {
+            "type": "string",
+            "nullable": true
+          },
+          "otherSignatureTitle1": {
+            "type": "string",
+            "nullable": true
+          },
+          "otherSignatureTitle2": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderNumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "kitLineNumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "professionalCorporation": {
+            "type": "string",
+            "nullable": true
+          },
+          "otherProfessionalCorpType": {
+            "type": "string",
+            "nullable": true
+          },
+          "isCloseCorporation": {
+            "type": "string",
+            "nullable": true
+          },
+          "closeCorpType": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "closeCorporationLegends": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/KeyValue"
+            },
+            "nullable": true
+          },
+          "goldStamping": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "EstatePlanningKitVM": {
+        "type": "object",
+        "properties": {
+          "color": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "copies": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "duplicates": {
+            "type": "string",
+            "nullable": true
+          },
+          "remarks": {
+            "type": "string",
+            "nullable": true
+          },
+          "subCategoryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderNumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "kitLineNumber": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LeadVM": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PackageTypeData": {
+        "type": "object",
+        "properties": {
+          "packageType": {
+            "type": "string",
+            "nullable": true
+          },
+          "partofPackage": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PackageUIVM": {
+        "type": "object",
+        "properties": {
+          "packageCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "packageDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "packagePrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "packageOrder": {
+            "type": "number",
+            "format": "double"
+          },
+          "packageTypeData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PackageTypeData"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PayTypeVM": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PDFDownloadURLResponse": {
+        "type": "object",
+        "properties": {
+          "downloadUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "docName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductVM": {
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "categoryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "productName": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "price": {
+            "type": "number",
+            "format": "double"
+          },
+          "sortSequence": {
+            "type": "number",
+            "format": "double"
+          },
+          "fullDescription": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "StateWiseProductPriceDTO": {
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "categoryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "subCategoryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "entityCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "optionCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProfessionVM": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "payTypeCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ShippingDetailUIVM": {
+        "type": "object",
+        "properties": {
+          "customerNumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "shipToNumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "shipToID": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "lineAddress1": {
+            "type": "string",
+            "nullable": true
+          },
+          "lineAddress2": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          },
+          "zipCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          },
+          "contact": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "fax": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "altEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "shipAttention": {
+            "type": "string",
+            "nullable": true
+          },
+          "inActiveFlag": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ACSResponseModel": {
+        "type": "object",
+        "properties": {
+          "responseCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "responseMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderNumber": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrderEditRequestVM": {
+        "type": "object",
+        "properties": {
+          "orderNumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "productNumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "kitLineNumber": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DBA": {
+        "type": "object",
+        "properties": {
+          "stateCountryFormation": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          },
+          "zip": {
+            "type": "string",
+            "nullable": true
+          },
+          "fictitiousNameToFile": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "additionalFictitiousNameToFile": {
+            "type": "string",
+            "nullable": true
+          },
+          "county": {
+            "type": "string",
+            "nullable": true
+          },
+          "fileNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstFilling": {
+            "type": "string",
+            "nullable": true
+          },
+          "instructions": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Officer": {
+        "type": "object",
+        "properties": {
+          "officerTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "streetAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          },
+          "zip": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AnnualReport": {
+        "type": "object",
+        "properties": {
+          "formationState": {
+            "type": "string",
+            "nullable": true
+          },
+          "filedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "formationType": {
+            "type": "string",
+            "nullable": true
+          },
+          "copyType": {
+            "type": "string",
+            "nullable": true
+          },
+          "corporationType": {
+            "type": "string",
+            "nullable": true
+          },
+          "statementType": {
+            "type": "string",
+            "nullable": true
+          },
+          "stateFileNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "californiaMaintanenceOffice": {
+            "type": "string",
+            "nullable": true
+          },
+          "titleOfFormFiller": {
+            "type": "string",
+            "nullable": true
+          },
+          "nameOfFormFiller": {
+            "type": "string",
+            "nullable": true
+          },
+          "typeOfBusiness": {
+            "type": "string",
+            "nullable": true
+          },
+          "serviceAgentName": {
+            "type": "string",
+            "nullable": true
+          },
+          "agentAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "remarks": {
+            "type": "string",
+            "nullable": true
+          },
+          "officers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Officer"
+            },
+            "nullable": true
+          },
+          "agentCity": {
+            "type": "string",
+            "nullable": true
+          },
+          "agentState": {
+            "type": "string",
+            "nullable": true
+          },
+          "agentZip": {
+            "type": "string",
+            "nullable": true
+          },
+          "entityName": {
+            "type": "string",
+            "nullable": true
+          },
+          "entityNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "principalExecutiveOffice": {
+            "type": "string",
+            "nullable": true
+          },
+          "principalExecutiveOffice2": {
+            "type": "string",
+            "nullable": true
+          },
+          "principalExecutiveOfficeCity": {
+            "type": "string",
+            "nullable": true
+          },
+          "principalExecutiveOfficeState": {
+            "type": "string",
+            "nullable": true
+          },
+          "principalExecutiveOfficeZip": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailAddress2": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailCity": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailState": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailZip": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "principalCaliforniaOfficeAddress1": {
+            "type": "string",
+            "nullable": true
+          },
+          "principalCaliforniaOfficeAddress2": {
+            "type": "string",
+            "nullable": true
+          },
+          "principalCaliforniaOfficeCity": {
+            "type": "string",
+            "nullable": true
+          },
+          "principalCaliforniaOfficeState": {
+            "type": "string",
+            "nullable": true
+          },
+          "principalCaliforniaOfficeZip": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DynamicFormKeyValue": {
+        "type": "object",
+        "properties": {
+          "controlId": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FormLLC": {
+        "type": "object",
+        "properties": {
+          "formationState": {
+            "type": "string",
+            "nullable": true
+          },
+          "filingServiceType": {
+            "type": "string",
+            "nullable": true
+          },
+          "proposedEntityName": {
+            "type": "string",
+            "nullable": true
+          },
+          "alternateName": {
+            "type": "string",
+            "nullable": true
+          },
+          "reservationNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "reservedEntityName": {
+            "type": "string",
+            "nullable": true
+          },
+          "personName": {
+            "type": "string",
+            "nullable": true
+          },
+          "expirationDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "acsPerformNameCheck": {
+            "type": "string",
+            "nullable": true
+          },
+          "management": {
+            "type": "string",
+            "nullable": true
+          },
+          "managerName": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "businessAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          },
+          "zip": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailingAddressSameAsBusinessAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailingAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailingCity": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailingState": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailingZip": {
+            "type": "string",
+            "nullable": true
+          },
+          "acsProvideRegisteredAgentService": {
+            "type": "string",
+            "nullable": true
+          },
+          "registeredAgentName": {
+            "type": "string",
+            "nullable": true
+          },
+          "registeredAgentAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "registeredAgentCity": {
+            "type": "string",
+            "nullable": true
+          },
+          "registeredAgentState": {
+            "type": "string",
+            "nullable": true
+          },
+          "registeredAgentZip": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailForwardingName": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailForwardingStreet": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailForwardingPhone": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailForwardingEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailForwardingCity": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailForwardingState": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailForwardingZip": {
+            "type": "string",
+            "nullable": true
+          },
+          "remarks": {
+            "type": "string",
+            "nullable": true
+          },
+          "raThirdParty": {
+            "type": "string",
+            "nullable": true
+          },
+          "caraName": {
+            "type": "string",
+            "nullable": true
+          },
+          "dynamicFormData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DynamicFormKeyValue"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AdditionalDirector": {
+        "type": "object",
+        "properties": {
+          "directorName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FormCorporation": {
+        "type": "object",
+        "properties": {
+          "formationState": {
+            "type": "string",
+            "nullable": true
+          },
+          "formationType": {
+            "type": "string",
+            "nullable": true
+          },
+          "filingMode": {
+            "type": "string",
+            "nullable": true
+          },
+          "serviceType": {
+            "type": "string",
+            "nullable": true
+          },
+          "isCloseCorporation": {
+            "type": "string",
+            "nullable": true
+          },
+          "shareholderCount": {
+            "type": "string",
+            "nullable": true
+          },
+          "professionType": {
+            "type": "string",
+            "nullable": true
+          },
+          "otherProfession": {
+            "type": "string",
+            "nullable": true
+          },
+          "isHavingDirectors": {
+            "type": "string",
+            "nullable": true
+          },
+          "expedite": {
+            "type": "string",
+            "nullable": true
+          },
+          "requiredCertifiedCopies": {
+            "type": "string",
+            "nullable": true
+          },
+          "certifiedCopiesCount": {
+            "type": "string",
+            "nullable": true
+          },
+          "entityName": {
+            "type": "string",
+            "nullable": true
+          },
+          "alternateName": {
+            "type": "string",
+            "nullable": true
+          },
+          "isEntityReserved": {
+            "type": "string",
+            "nullable": true
+          },
+          "reservationNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "reservedPersonName": {
+            "type": "string",
+            "nullable": true
+          },
+          "expirationDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "isNameCheckRequired": {
+            "type": "string",
+            "nullable": true
+          },
+          "allowedCommonShareCount": {
+            "type": "string",
+            "nullable": true
+          },
+          "directorName1": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          },
+          "zip": {
+            "type": "string",
+            "nullable": true
+          },
+          "isMailingAddressIsBusinessAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailingStreetAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailingCity": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailingState": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailingZip": {
+            "type": "string",
+            "nullable": true
+          },
+          "isStockWithParValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "parValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "principalBusinessActivity": {
+            "type": "string",
+            "nullable": true
+          },
+          "nvDirectorName1": {
+            "type": "string",
+            "nullable": true
+          },
+          "isAgentRequired": {
+            "type": "string",
+            "nullable": true
+          },
+          "agentName": {
+            "type": "string",
+            "nullable": true
+          },
+          "agentAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "agentCity": {
+            "type": "string",
+            "nullable": true
+          },
+          "agentState": {
+            "type": "string",
+            "nullable": true
+          },
+          "agentZip": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailForwardingName": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailForwardingAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailForwardingPhone": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailForwardingEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailForwardingCity": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailForwardingState": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailForwardingZip": {
+            "type": "string",
+            "nullable": true
+          },
+          "remarks": {
+            "type": "string",
+            "nullable": true
+          },
+          "raThirdParty": {
+            "type": "string",
+            "nullable": true
+          },
+          "caraName": {
+            "type": "string",
+            "nullable": true
+          },
+          "additionalDirectors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AdditionalDirector"
+            },
+            "nullable": true
+          },
+          "agent": {
+            "type": "string",
+            "nullable": true
+          },
+          "license": {
+            "type": "string",
+            "nullable": true
+          },
+          "license_state": {
+            "type": "string",
+            "nullable": true
+          },
+          "xpedite": {
+            "type": "string",
+            "nullable": true
+          },
+          "reserved_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "registered_agent": {
+            "type": "string",
+            "nullable": true
+          },
+          "registered_agent_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "registered_agent_address": {
+            "type": "string",
+            "nullable": true
+          },
+          "registered_agent_address_city": {
+            "type": "string",
+            "nullable": true
+          },
+          "registered_agent_contact_phone": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "registered_agent_contact_email": {
+            "type": "string",
+            "nullable": true
+          },
+          "agent_address_state": {
+            "type": "string",
+            "nullable": true
+          },
+          "agent_address_zip": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FormPartnership": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "NameCheckReservation": {
+        "type": "object",
+        "properties": {
+          "formationState": {
+            "type": "string",
+            "nullable": true
+          },
+          "formationType": {
+            "type": "string",
+            "nullable": true
+          },
+          "selectOne": {
+            "type": "string",
+            "nullable": true
+          },
+          "proposedName1": {
+            "type": "string",
+            "nullable": true
+          },
+          "proposedName2": {
+            "type": "string",
+            "nullable": true
+          },
+          "proposedName3": {
+            "type": "string",
+            "nullable": true
+          },
+          "reserveNameTo": {
+            "type": "string",
+            "nullable": true
+          },
+          "reserveNameAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          },
+          "zip": {
+            "type": "string",
+            "nullable": true
+          },
+          "remarks": {
+            "type": "string",
+            "nullable": true
+          },
+          "provisions": {
+            "type": "string",
+            "nullable": true
+          },
+          "provisions_data": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UCCFiling": {
+        "type": "object",
+        "properties": {
+          "state": {
+            "type": "string",
+            "nullable": true
+          },
+          "seceratory": {
+            "type": "string",
+            "nullable": true
+          },
+          "debtorName": {
+            "type": "string",
+            "nullable": true
+          },
+          "contactName": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "certifiedCopies": {
+            "type": "string",
+            "nullable": true
+          },
+          "plainCopies": {
+            "type": "string",
+            "nullable": true
+          },
+          "remarks": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RetrieveFieldDocuments": {
+        "type": "object",
+        "properties": {
+          "formationState": {
+            "type": "string",
+            "nullable": true
+          },
+          "formationType": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentType": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "contactName": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "llcNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "formationDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "certifiedCopiesNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "certifiedPlainNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "remarks": {
+            "type": "string",
+            "nullable": true
+          },
+          "formation_date_m": {
+            "type": "string",
+            "nullable": true
+          },
+          "formation_date_d": {
+            "type": "string",
+            "nullable": true
+          },
+          "formation_date_y": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UCCSearch": {
+        "type": "object",
+        "properties": {
+          "formationState": {
+            "type": "string",
+            "nullable": true
+          },
+          "debtorName": {
+            "type": "string",
+            "nullable": true
+          },
+          "debtorFillingNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "debtorAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          },
+          "zip": {
+            "type": "string",
+            "nullable": true
+          },
+          "searchAnyAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "additionalSearchOption": {
+            "type": "string",
+            "nullable": true
+          },
+          "specificAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "fromDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "toDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "numberOfCertifiedCopies": {
+            "type": "string",
+            "nullable": true
+          },
+          "instructions": {
+            "type": "string",
+            "nullable": true
+          },
+          "numberOfPlainCopies": {
+            "type": "string",
+            "nullable": true
+          },
+          "search_ltd_to_address_city": {
+            "type": "string",
+            "nullable": true
+          },
+          "search_ltd_to_address_state": {
+            "type": "string",
+            "nullable": true
+          },
+          "search_ltd_to_address_zip": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RegisteredAgent": {
+        "type": "object",
+        "properties": {
+          "stateNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "agentJurisdiction": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "contactName": {
+            "type": "string",
+            "nullable": true
+          },
+          "contactEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          },
+          "zip": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "entityType": {
+            "type": "string",
+            "nullable": true
+          },
+          "remarks": {
+            "type": "string",
+            "nullable": true
+          },
+          "entityName": {
+            "type": "string",
+            "nullable": true
+          },
+          "entityFileDate": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EmployerIdentificationNumber": {
+        "type": "object",
+        "properties": {
+          "formationState": {
+            "type": "string",
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "nullable": true
+          },
+          "printedName": {
+            "type": "string",
+            "nullable": true
+          },
+          "entityType": {
+            "type": "string",
+            "nullable": true
+          },
+          "memberCount": {
+            "type": "string",
+            "nullable": true
+          },
+          "isMembersMarried": {
+            "type": "string",
+            "nullable": true
+          },
+          "principalOfficerName": {
+            "type": "string",
+            "nullable": true
+          },
+          "ssN_TIN": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "physicalAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          },
+          "zip": {
+            "type": "string",
+            "nullable": true
+          },
+          "legalName": {
+            "type": "string",
+            "nullable": true
+          },
+          "tradeName_DBA": {
+            "type": "string",
+            "nullable": true
+          },
+          "tradeState": {
+            "type": "string",
+            "nullable": true
+          },
+          "fileDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "closingMonth": {
+            "type": "string",
+            "nullable": true
+          },
+          "isHighwayMotorTaxable": {
+            "type": "string",
+            "nullable": true
+          },
+          "isGambling": {
+            "type": "string",
+            "nullable": true
+          },
+          "isFileReturns": {
+            "type": "string",
+            "nullable": true
+          },
+          "isAlcholSeller": {
+            "type": "string",
+            "nullable": true
+          },
+          "isFormW2": {
+            "type": "string",
+            "nullable": true
+          },
+          "agricultureEmployeeCount": {
+            "type": "string",
+            "nullable": true
+          },
+          "otherEmployeeCount": {
+            "type": "string",
+            "nullable": true
+          },
+          "isTotalWagesPay": {
+            "type": "string",
+            "nullable": true
+          },
+          "primaryBusinessActivity": {
+            "type": "string",
+            "nullable": true
+          },
+          "remarks": {
+            "type": "string",
+            "nullable": true
+          },
+          "file_date_m": {
+            "type": "string",
+            "nullable": true
+          },
+          "file_date_y": {
+            "type": "string",
+            "nullable": true
+          },
+          "file_date_d": {
+            "type": "string",
+            "nullable": true
+          },
+          "dateAnnutiesPaidM": {
+            "type": "string",
+            "nullable": true
+          },
+          "dateAnnutiesPaidY": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpSelling": {
+        "type": "object",
+        "properties": {
+          "annualReport": {
+            "$ref": "#/components/schemas/AnnualReport"
+          },
+          "employerIdentificationNumber": {
+            "$ref": "#/components/schemas/EmployerIdentificationNumber"
+          },
+          "corporateKit": {
+            "$ref": "#/components/schemas/KitOrderVM"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DynamicFormCorporation": {
+        "type": "object",
+        "properties": {
+          "formationState": {
+            "type": "string",
+            "nullable": true
+          },
+          "formationType": {
+            "type": "string",
+            "nullable": true
+          },
+          "filingMode": {
+            "type": "string",
+            "nullable": true
+          },
+          "serviceType": {
+            "type": "string",
+            "nullable": true
+          },
+          "isCloseCorporation": {
+            "type": "string",
+            "nullable": true
+          },
+          "shareholderCount": {
+            "type": "string",
+            "nullable": true
+          },
+          "professionType": {
+            "type": "string",
+            "nullable": true
+          },
+          "otherProfession": {
+            "type": "string",
+            "nullable": true
+          },
+          "isHavingDirectors": {
+            "type": "string",
+            "nullable": true
+          },
+          "expedite": {
+            "type": "string",
+            "nullable": true
+          },
+          "requiredCertifiedCopies": {
+            "type": "string",
+            "nullable": true
+          },
+          "certifiedCopiesCount": {
+            "type": "string",
+            "nullable": true
+          },
+          "entityName": {
+            "type": "string",
+            "nullable": true
+          },
+          "alternateName": {
+            "type": "string",
+            "nullable": true
+          },
+          "isEntityReserved": {
+            "type": "string",
+            "nullable": true
+          },
+          "reservationNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "reservedPersonName": {
+            "type": "string",
+            "nullable": true
+          },
+          "expirationDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "isNameCheckRequired": {
+            "type": "string",
+            "nullable": true
+          },
+          "allowedCommonShareCount": {
+            "type": "string",
+            "nullable": true
+          },
+          "directorName1": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          },
+          "zip": {
+            "type": "string",
+            "nullable": true
+          },
+          "isMailingAddressIsBusinessAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailingStreetAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailingCity": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailingState": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailingZip": {
+            "type": "string",
+            "nullable": true
+          },
+          "isStockWithParValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "parValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "principalBusinessActivity": {
+            "type": "string",
+            "nullable": true
+          },
+          "nvDirectorName1": {
+            "type": "string",
+            "nullable": true
+          },
+          "isAgentRequired": {
+            "type": "string",
+            "nullable": true
+          },
+          "agentName": {
+            "type": "string",
+            "nullable": true
+          },
+          "agentAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "agentCity": {
+            "type": "string",
+            "nullable": true
+          },
+          "agentState": {
+            "type": "string",
+            "nullable": true
+          },
+          "agentZip": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailForwardingName": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailForwardingAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailForwardingPhone": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailForwardingEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailForwardingCity": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailForwardingState": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailForwardingZip": {
+            "type": "string",
+            "nullable": true
+          },
+          "remarks": {
+            "type": "string",
+            "nullable": true
+          },
+          "raThirdParty": {
+            "type": "string",
+            "nullable": true
+          },
+          "caraName": {
+            "type": "string",
+            "nullable": true
+          },
+          "additionalDirectors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AdditionalDirector"
+            },
+            "nullable": true
+          },
+          "agent": {
+            "type": "string",
+            "nullable": true
+          },
+          "license": {
+            "type": "string",
+            "nullable": true
+          },
+          "license_state": {
+            "type": "string",
+            "nullable": true
+          },
+          "xpedite": {
+            "type": "string",
+            "nullable": true
+          },
+          "reserved_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "registered_agent": {
+            "type": "string",
+            "nullable": true
+          },
+          "registered_agent_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "registered_agent_address": {
+            "type": "string",
+            "nullable": true
+          },
+          "registered_agent_address_city": {
+            "type": "string",
+            "nullable": true
+          },
+          "registered_agent_contact_phone": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "registered_agent_contact_email": {
+            "type": "string",
+            "nullable": true
+          },
+          "agent_address_state": {
+            "type": "string",
+            "nullable": true
+          },
+          "agent_address_zip": {
+            "type": "string",
+            "nullable": true
+          },
+          "dynamicFormData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DynamicFormKeyValue"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FillingServicesOrderVM": {
+        "type": "object",
+        "properties": {
+          "orderNumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "productCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "categoryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "subCategoryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "kitLineNumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "dBA": {
+            "$ref": "#/components/schemas/DBA"
+          },
+          "annualReport": {
+            "$ref": "#/components/schemas/AnnualReport"
+          },
+          "formLLC": {
+            "$ref": "#/components/schemas/FormLLC"
+          },
+          "formCorporation": {
+            "$ref": "#/components/schemas/FormCorporation"
+          },
+          "formPartnership": {
+            "$ref": "#/components/schemas/FormPartnership"
+          },
+          "nameCheckRes": {
+            "$ref": "#/components/schemas/NameCheckReservation"
+          },
+          "uCCFiling": {
+            "$ref": "#/components/schemas/UCCFiling"
+          },
+          "retrieveFieldDocs": {
+            "$ref": "#/components/schemas/RetrieveFieldDocuments"
+          },
+          "uCCSearch": {
+            "$ref": "#/components/schemas/UCCSearch"
+          },
+          "registeredAgent": {
+            "$ref": "#/components/schemas/RegisteredAgent"
+          },
+          "employerIdentificationNumber": {
+            "$ref": "#/components/schemas/EmployerIdentificationNumber"
+          },
+          "upselling": {
+            "$ref": "#/components/schemas/UpSelling"
+          },
+          "dynamicFormCorporation": {
+            "$ref": "#/components/schemas/DynamicFormCorporation"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DraftAndPremium": {
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "categoryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "subCategoryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "proposedName1": {
+            "type": "string",
+            "nullable": true
+          },
+          "proposedName2": {
+            "type": "string",
+            "nullable": true
+          },
+          "proposedName3": {
+            "type": "string",
+            "nullable": true
+          },
+          "closeCorporation": {
+            "type": "string",
+            "nullable": true
+          },
+          "numberOfShareholders": {
+            "type": "string",
+            "nullable": true
+          },
+          "directorName1": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyBusinessAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyBusinessCity": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyBusinessState": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyBusinessZip": {
+            "type": "string",
+            "nullable": true
+          },
+          "registeredAgentServices": {
+            "type": "string",
+            "nullable": true
+          },
+          "registeredAgentName": {
+            "type": "string",
+            "nullable": true
+          },
+          "registeredAgentAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "registeredAgentCity": {
+            "type": "string",
+            "nullable": true
+          },
+          "registeredAgentState": {
+            "type": "string",
+            "nullable": true
+          },
+          "registeredAgentZip": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailForwardingName": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailForwardingStreet": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailForwardingPhone": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailForwardingEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailForwardingCity": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailForwardingState": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailForwardingZip": {
+            "type": "string",
+            "nullable": true
+          },
+          "obtainACopy": {
+            "type": "string",
+            "nullable": true
+          },
+          "specialInstructions": {
+            "type": "string",
+            "nullable": true
+          },
+          "filingServiceType": {
+            "type": "string",
+            "nullable": true
+          },
+          "formationType": {
+            "type": "string",
+            "nullable": true
+          },
+          "principalOfficerName": {
+            "type": "string",
+            "nullable": true
+          },
+          "ssn": {
+            "type": "string",
+            "nullable": true
+          },
+          "principalOfficerPhone": {
+            "type": "string",
+            "nullable": true
+          },
+          "principalOfficerAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "principalOfficerCity": {
+            "type": "string",
+            "nullable": true
+          },
+          "principalOfficerState": {
+            "type": "string",
+            "nullable": true
+          },
+          "principalOfficerZip": {
+            "type": "string",
+            "nullable": true
+          },
+          "legalName": {
+            "type": "string",
+            "nullable": true
+          },
+          "tradeName": {
+            "type": "string",
+            "nullable": true
+          },
+          "filingState": {
+            "type": "string",
+            "nullable": true
+          },
+          "fileMonth": {
+            "type": "string",
+            "nullable": true
+          },
+          "fileYear": {
+            "type": "string",
+            "nullable": true
+          },
+          "closingMonth": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessIncludesHighwayMotor": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessIncludesGambling": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessIncludesAlcohol": {
+            "type": "string",
+            "nullable": true
+          },
+          "form720": {
+            "type": "string",
+            "nullable": true
+          },
+          "formW2": {
+            "type": "string",
+            "nullable": true
+          },
+          "numberOfAgriculturalEmployees": {
+            "type": "string",
+            "nullable": true
+          },
+          "numberOfOtherEmployees": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalWages": {
+            "type": "string",
+            "nullable": true
+          },
+          "primaryActivity": {
+            "type": "string",
+            "nullable": true
+          },
+          "proposedEntityName": {
+            "type": "string",
+            "nullable": true
+          },
+          "alternateName": {
+            "type": "string",
+            "nullable": true
+          },
+          "reservationNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "reservationPersonName": {
+            "type": "string",
+            "nullable": true
+          },
+          "expirationDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "reservationWithState": {
+            "type": "string",
+            "nullable": true
+          },
+          "management": {
+            "type": "string",
+            "nullable": true
+          },
+          "managerName": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "entityNameReserved": {
+            "type": "string",
+            "nullable": true
+          },
+          "typeOfProfession": {
+            "type": "string",
+            "nullable": true
+          },
+          "otherProfession": {
+            "type": "string",
+            "nullable": true
+          },
+          "sharesOfCommonStock": {
+            "type": "string",
+            "nullable": true
+          },
+          "isStockWithParValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "parTypeValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "certifiedCopies": {
+            "type": "string",
+            "nullable": true
+          },
+          "howMany": {
+            "type": "string",
+            "nullable": true
+          },
+          "closeCorporationOperating": {
+            "type": "string",
+            "nullable": true
+          },
+          "principleBusinessActivity": {
+            "type": "string",
+            "nullable": true
+          },
+          "howManyMembers": {
+            "type": "string",
+            "nullable": true
+          },
+          "married": {
+            "type": "string",
+            "nullable": true
+          },
+          "dateAnnutiesPaidM": {
+            "type": "string",
+            "nullable": true
+          },
+          "dateAnnutiesPaidY": {
+            "type": "string",
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          },
+          "corporationType": {
+            "type": "string",
+            "nullable": true
+          },
+          "formationDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalAuthorizedShares": {
+            "type": "string",
+            "nullable": true
+          },
+          "filingStatus": {
+            "type": "boolean"
+          },
+          "designation": {
+            "type": "string",
+            "nullable": true
+          },
+          "otherDesignation": {
+            "type": "string",
+            "nullable": true
+          },
+          "certificateNumberingFrom": {
+            "type": "string",
+            "nullable": true
+          },
+          "certificateNumberingTo": {
+            "type": "string",
+            "nullable": true
+          },
+          "parValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "parValueLeaveBlank": {
+            "type": "string",
+            "nullable": true
+          },
+          "noParValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "withoutParValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "certificateColor": {
+            "type": "string",
+            "nullable": true
+          },
+          "certificateSignatures1": {
+            "type": "string",
+            "nullable": true
+          },
+          "otherSignatureTitle1": {
+            "type": "string",
+            "nullable": true
+          },
+          "certificateSignatures2": {
+            "type": "string",
+            "nullable": true
+          },
+          "otherSignatureTitle2": {
+            "type": "string",
+            "nullable": true
+          },
+          "additionalDirectors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AdditionalDirector"
+            },
+            "nullable": true
+          },
+          "llc": {
+            "type": "string",
+            "nullable": true
+          },
+          "kitCertificateColor": {
+            "type": "string",
+            "nullable": true
+          },
+          "raThirdParty": {
+            "type": "string",
+            "nullable": true
+          },
+          "caraName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PackagesOrderVM": {
+        "type": "object",
+        "properties": {
+          "orderNumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "kitLineNumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "productNumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "draftAndPremium": {
+            "$ref": "#/components/schemas/DraftAndPremium"
+          }
+        },
+        "additionalProperties": false
+      },
+      "StateUIVM": {
+        "type": "object",
+        "properties": {
+          "corporationCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "corporationTypeCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "stateCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "fileFeesAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "expediteFeesAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "stateName": {
+            "type": "string",
+            "nullable": true
+          },
+          "isDefault": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ColorRequestVM": {
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "categoryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "subCategoryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "optionCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "entityCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WebPageDataVM": {
+        "type": "object",
+        "properties": {
+          "pageID": {
+            "type": "string",
+            "nullable": true
+          },
+          "pageControlType": {
+            "type": "string",
+            "nullable": true
+          },
+          "controlID": {
+            "type": "string",
+            "nullable": true
+          },
+          "textInformation": {
+            "type": "string",
+            "nullable": true
+          },
+          "controlValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "controlText": {
+            "type": "string",
+            "nullable": true
+          },
+          "controlSequence": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductFormationCorpTypeView": {
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "categoryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "subCategoryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "corporationTypeCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "corporationTypeDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "webSortSequence": {
+            "type": "number",
+            "format": "double"
+          },
+          "corpTypeCodeString": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "Please insert JWT with Bearer into field",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}
