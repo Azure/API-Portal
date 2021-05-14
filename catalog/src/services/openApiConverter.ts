@@ -128,12 +128,16 @@ export class OpenApiConverter {
 
             for (const methodKey of methodKeys) {
                 const methodObject = methodsObject[methodKey];
+                const operationId = `${methodKey}-${pathKey}`
+                    .replace(/\W/g, "-")
+                    .replace(/\-{1,}/g, "-")
+                    .toLowerCase();
 
                 const operation: OperationContract = {
-                    id: methodObject.operationId,
-                    name: methodObject.operationId,
+                    id: operationId,
+                    name: operationId,
                     properties: {
-                        displayName: methodObject.summary || methodObject.operationId,
+                        displayName: methodObject.summary || operationId,
                         description: methodObject.description,
                         urlTemplate: pathKey,
                         templateParameters: methodObject.parameters
