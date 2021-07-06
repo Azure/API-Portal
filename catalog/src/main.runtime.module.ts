@@ -1,47 +1,47 @@
-import { StaticSettingsProvider } from "./components/staticSettingsProvider";
-import { AzureBlobStorage } from "@paperbits/azure";
-import "./polyfills";
-import "./bindingHandlers/scrollintoview";
-import "./bindingHandlers/copyToClipboard";
-import "./bindingHandlers/syntaxHighlight";
-import "./bindingHandlers/markdown";
-import "./bindingHandlers/acceptChange";
-import "./themes/website/scripts";
+import "@paperbits/core/ko/bindingHandlers/bindingHandlers.activate";
 import "@paperbits/core/ko/bindingHandlers/bindingHandlers.component";
 import "@paperbits/core/ko/bindingHandlers/bindingHandlers.focus";
-import "@paperbits/core/ko/bindingHandlers/bindingHandlers.activate";
 import "@paperbits/core/ko/bindingHandlers/bindingHandlers.scrollable";
-import { RouteHelper } from "./routing/routeHelper";
-import { IInjector, IInjectorModule } from "@paperbits/common/injection";
+import "./bindingHandlers/acceptChange";
+import "./bindingHandlers/copyToClipboard";
+import "./bindingHandlers/markdown";
+import "./bindingHandlers/scrollintoview";
+import "./bindingHandlers/syntaxHighlight";
+import { AzureBlobStorage } from "@paperbits/azure";
+import { DefaultSettingsProvider } from "@paperbits/common/configuration";
 import { DefaultEventManager } from "@paperbits/common/events";
 import { XmlHttpRequestClient } from "@paperbits/common/http";
-import { DefaultSettingsProvider } from "@paperbits/common/configuration";
-import { DefaultRouter, LocationRouteHandler, HistoryRouteHandler } from "@paperbits/common/routing";
-import { ConsoleLogger } from "@paperbits/common/logging";
-import { KnockoutRegistrationLoaders } from "@paperbits/core/ko/knockout.loaders";
-import { ApiList, ApiListDropdown, ApiListTiles } from "./components/apis/list-of-apis/ko/runtime";
-import { ApiService } from "./services/apiService";
-import { TagService } from "./services/tagService";
-import { ApiDetails } from "./components/apis/details-of-api/ko/runtime/api-details";
-import { OperationDetails } from "./components/operations/operation-details/ko/runtime/operation-details";
-import { OperationConsole } from "./components/operations/operation-details/ko/runtime/operation-console";
-import { FileInput } from "./components/file-input/file-input";
-import { MapiClient } from "./services/mapiClient";
-import { DefaultAuthenticator } from "./components/defaultAuthenticator";
-import { Spinner } from "./components/spinner/spinner";
-import { OperationList } from "./components/operations/operation-list/ko/runtime/operation-list";
-import { BackendService } from "./services/backendService";
-import { UnhandledErrorHandler } from "./errors/unhandledErrorHandler";
-import { ValidationSummary } from "./components/users/validation-summary/ko/runtime/validation-summary";
-import { TypeDefinitionViewModel } from "./components/operations/operation-details/ko/runtime/type-definition";
-import { CodeSampleViewModel } from "./components/operations/operation-details/ko/runtime/code-sample";
-import { VisibilityGuard } from "@paperbits/common/user";
-import { StaticUserService } from "./services";
-import { BalloonBindingHandler, ResizableBindingHandler } from "@paperbits/core/ko/bindingHandlers";
-import { TagInput } from "./components/tag-input/tag-input";
+import { IInjector, IInjectorModule } from "@paperbits/common/injection";
+import { ConsoleLogger, Logger } from "@paperbits/common/logging";
+import { DefaultRouter, HistoryRouteHandler, LocationRouteHandler } from "@paperbits/common/routing";
 import { ViewStack } from "@paperbits/common/ui/viewStack";
-import { OAuthService } from "./services/oauthService";
+import { VisibilityGuard } from "@paperbits/common/user";
+import { BalloonBindingHandler, ResizableBindingHandler } from "@paperbits/core/ko/bindingHandlers";
+import { KnockoutRegistrationLoaders } from "@paperbits/core/ko/knockout.loaders";
 import { DefaultSessionManager } from "./authentication/defaultSessionManager";
+import { ApiDetails } from "./components/apis/details-of-api/ko/runtime/api-details";
+import { ApiList, ApiListDropdown, ApiListTiles } from "./components/apis/list-of-apis/ko/runtime";
+import { DefaultAuthenticator } from "./components/defaultAuthenticator";
+import { FileInput } from "./components/file-input/file-input";
+import { CodeSampleViewModel } from "./components/operations/operation-details/ko/runtime/code-sample";
+import { OperationConsole } from "./components/operations/operation-details/ko/runtime/operation-console";
+import { OperationDetails } from "./components/operations/operation-details/ko/runtime/operation-details";
+import { TypeDefinitionViewModel } from "./components/operations/operation-details/ko/runtime/type-definition";
+import { OperationList } from "./components/operations/operation-list/ko/runtime/operation-list";
+import { Spinner } from "./components/spinner/spinner";
+import { StaticSettingsProvider } from "./components/staticSettingsProvider";
+import { TagInput } from "./components/tag-input/tag-input";
+import { ValidationSummary } from "./components/users/validation-summary/ko/runtime/validation-summary";
+import { UnhandledErrorHandler } from "./errors/unhandledErrorHandler";
+import "./polyfills";
+import { RouteHelper } from "./routing/routeHelper";
+import { StaticUserService } from "./services";
+import { ApiService } from "./services/apiService";
+import { BackendService } from "./services/backendService";
+import { MapiClient } from "./services/mapiClient";
+import { OAuthService } from "./services/oauthService";
+import { TagService } from "./services/tagService";
+import "./themes/website/scripts";
 
 export class MainRuntimeModule implements IInjectorModule {
     public register(injector: IInjector): void {
@@ -85,9 +85,10 @@ export class MainRuntimeModule implements IInjectorModule {
             ? HistoryRouteHandler
             : LocationRouteHandler);
 
+        const logger = injector.resolve<Logger>("logger");
         const azureBlobStorage = new AzureBlobStorage(new StaticSettingsProvider({
             blobStorageUrl: "https://alzaslonstaticwebsite.blob.core.windows.net/specs"
-        }));
+        }), logger);
 
         injector.bindInstance("azureBlobStorage", azureBlobStorage);
     }

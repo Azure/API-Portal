@@ -207,7 +207,6 @@ $search-button-width: 30px;
     flex-wrap: wrap;
     align-items: flex-start;
     max-width: 500px;
-    margin-bottom: 20px;
 
     tag-input {
         display: block;
@@ -242,5 +241,12 @@ $search-button-width: 30px;
 
     .switch {
         margin: 0 10px;
+    }
+}
+
+.input-label {
+    margin-bottom: 5px;
+    .item-label {
+        padding-right: 5px;
     }
 }

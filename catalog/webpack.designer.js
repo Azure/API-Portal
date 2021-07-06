@@ -22,14 +22,20 @@ const designerConfig = {
                 test: /\.scss$/,
                 use: [
                     MiniCssExtractPlugin.loader,
-                    { loader: "css-loader", options: { url: false } },
+                    {
+                        loader: "css-loader",
+                        options: {
+                            url: (url) => /\/icon-.*\.svg$/.test(url)
+                        }
+                    },
                     { loader: "postcss-loader" },
                     { loader: "sass-loader" }
                 ]
             },
             {
                 test: /\.tsx?$/,
-                loader: "awesome-typescript-loader"
+                loader: "ts-loader",
+                options: { allowTsInNodeModules: true }
             },
             {
                 test: /\.html$/,
@@ -56,7 +62,6 @@ const designerConfig = {
         ]
     },
     plugins: [
-        // new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
             filename: "[name].css",
             chunkFilename: "[id].css"
