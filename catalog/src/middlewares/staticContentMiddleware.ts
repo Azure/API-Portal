@@ -112,6 +112,8 @@ export class StaticContentMiddleware implements ExpressMiddlewareInterface {
             await this.render(basePath, path, response, storage);
         }
         catch (error) {
+            console.log(error);
+            
             response
                 .status(500)
                 .header("Content-Type", "text/html")

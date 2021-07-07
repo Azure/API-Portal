@@ -23,7 +23,6 @@ export class Operation {
     }
 
     constructor(contract?: OperationContract) {
-        // this.id = Utils.getResourceName("apis", contract.id, "shortId");
         this.name = contract.name;
         this.displayName = contract.properties.displayName;
         this.description = contract.properties.description;

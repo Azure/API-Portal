@@ -6,7 +6,7 @@ export class DetailsOfApiHandlers implements IWidgetHandler {
         const widgetOrder: IWidgetOrder = {
             name: "apiDetails",
             category: "APIs",
-            displayName: "API: details",
+            displayName: "API: Details",
             iconClass: "widget-icon widget-icon-api-management",
             requires: ["html"],
             createModel: async () => new DetailsOfApiModel()

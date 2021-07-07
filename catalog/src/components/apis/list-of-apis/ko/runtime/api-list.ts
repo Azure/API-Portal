@@ -8,7 +8,6 @@ import { TagGroup } from "../../../../../models/tagGroup";
 import { SearchQuery } from "../../../../../contracts/searchQuery";
 import { RouteHelper } from "../../../../../routing/routeHelper";
 import { Tag } from "../../../../../models/tag";
-import { Utils } from "../../../../../utils";
 
 
 @RuntimeComponent({
@@ -36,6 +35,7 @@ export class ApiList {
     ) {
         this.detailsPageUrl = ko.observable();
         this.allowSelection = ko.observable(false);
+        this.showApiType = ko.observable(true);
         this.apis = ko.observableArray([]);
         this.working = ko.observable();
         this.pattern = ko.observable();
@@ -51,6 +51,9 @@ export class ApiList {
 
     @Param()
     public allowSelection: ko.Observable<boolean>;
+
+    @Param()
+    public showApiType: ko.Observable<boolean>;
 
     @Param()
     public defaultGroupByTagToEnabled: ko.Observable<boolean>;
