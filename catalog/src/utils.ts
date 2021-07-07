@@ -341,7 +341,7 @@ export class Utils {
      * @param time time string
      */
     public static formatDateTime(time: string): string {
-        const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
+        const options: any = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
         return new Date(time).toLocaleDateString("en-US", options);
     }
 
