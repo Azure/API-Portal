@@ -1,4 +1,3 @@
-@charset "UTF-8";
 *,
 ::after,
 ::before {
@@ -824,107 +823,107 @@ pre {
 }
 
 .icon-emb-simple-remove:before {
-  content: "";
+  content: "\e90f";
 }
 
 .icon-emb-duplicate:before {
-  content: "";
+  content: "\e90c";
 }
 
 .icon-emb-download:before {
-  content: "";
+  content: "\e90d";
 }
 
 .icon-emb-upload:before {
-  content: "";
+  content: "\e906";
 }
 
 .icon-emb-openapi:before {
-  content: "";
+  content: "\e907";
 }
 
 .icon-emb-grouped-list:before {
-  content: "";
+  content: "\e900";
 }
 
 .icon-emb-list:before {
-  content: "";
+  content: "\e901";
 }
 
 .icon-emb-filtrofier:before {
-  content: "";
+  content: "\e902";
 }
 
 .icon-emb-play:before {
-  content: "";
+  content: "\e908";
 }
 
 .icon-emb-api-management:before {
-  content: "";
+  content: "\e903";
 }
 
 .icon-emb-chevron-down:before {
-  content: "";
+  content: "\e90a";
 }
 
 .icon-emb-chevron-up:before {
-  content: "";
+  content: "\e90b";
 }
 
 .icon-emb-chevron-right:before {
-  content: "";
+  content: "\e904";
 }
 
 .icon-emb-chevron-left:before {
-  content: "";
+  content: "\e909";
 }
 
 .icon-emb-code:before {
-  content: "";
+  content: "\e905";
 }
 
 .icon-emb-drag-handle:before {
-  content: "";
+  content: "\e91e";
 }
 
 .icon-emb-eye:before {
-  content: "";
+  content: "\e91f";
 }
 
 .icon-emb-eye-fill:before {
-  content: "";
+  content: "\e920";
 }
 
 .icon-emb-magnifier:before {
-  content: "";
+  content: "\e91b";
 }
 
 .icon-emb-option-horizontal:before {
-  content: "";
+  content: "\e91d";
 }
 
 .icon-emb-plus:before {
-  content: "";
+  content: "\e91c";
 }
 
 .icon-emb-search-filter:before {
-  content: "";
+  content: "\e923";
 }
 
 .icon-emb-tag:before {
-  content: "";
+  content: "\e921";
 }
 
 .icon-emb-trash:before {
-  content: "";
+  content: "\e922";
 }
 
 .icon-emb-add-filter:before {
-  content: "";
+  content: "\e910";
 }
 
 .icon-emb-menu-8:before {
-  content: "";
+  content: "\e90e";
 }
 
 .icon-emb-wadl {
@@ -964,7 +963,7 @@ pre {
 }
 
 .icon-emb-brackets:before {
-  content: "";
+  content: "\e911";
 }
 
 @-webkit-keyframes bounce {
@@ -1132,107 +1131,107 @@ pre {
 }
 
 .icon-emb-simple-remove:before {
-  content: "";
+  content: "\e90f";
 }
 
 .icon-emb-duplicate:before {
-  content: "";
+  content: "\e90c";
 }
 
 .icon-emb-download:before {
-  content: "";
+  content: "\e90d";
 }
 
 .icon-emb-upload:before {
-  content: "";
+  content: "\e906";
 }
 
 .icon-emb-openapi:before {
-  content: "";
+  content: "\e907";
 }
 
 .icon-emb-grouped-list:before {
-  content: "";
+  content: "\e900";
 }
 
 .icon-emb-list:before {
-  content: "";
+  content: "\e901";
 }
 
 .icon-emb-filtrofier:before {
-  content: "";
+  content: "\e902";
 }
 
 .icon-emb-play:before {
-  content: "";
+  content: "\e908";
 }
 
 .icon-emb-api-management:before {
-  content: "";
+  content: "\e903";
 }
 
 .icon-emb-chevron-down:before {
-  content: "";
+  content: "\e90a";
 }
 
 .icon-emb-chevron-up:before {
-  content: "";
+  content: "\e90b";
 }
 
 .icon-emb-chevron-right:before {
-  content: "";
+  content: "\e904";
 }
 
 .icon-emb-chevron-left:before {
-  content: "";
+  content: "\e909";
 }
 
 .icon-emb-code:before {
-  content: "";
+  content: "\e905";
 }
 
 .icon-emb-drag-handle:before {
-  content: "";
+  content: "\e91e";
 }
 
 .icon-emb-eye:before {
-  content: "";
+  content: "\e91f";
 }
 
 .icon-emb-eye-fill:before {
-  content: "";
+  content: "\e920";
 }
 
 .icon-emb-magnifier:before {
-  content: "";
+  content: "\e91b";
 }
 
 .icon-emb-option-horizontal:before {
-  content: "";
+  content: "\e91d";
 }
 
 .icon-emb-plus:before {
-  content: "";
+  content: "\e91c";
 }
 
 .icon-emb-search-filter:before {
-  content: "";
+  content: "\e923";
 }
 
 .icon-emb-tag:before {
-  content: "";
+  content: "\e921";
 }
 
 .icon-emb-trash:before {
-  content: "";
+  content: "\e922";
 }
 
 .icon-emb-add-filter:before {
-  content: "";
+  content: "\e910";
 }
 
 .icon-emb-menu-8:before {
-  content: "";
+  content: "\e90e";
 }
 
 .icon-emb-wadl {
@@ -1272,7 +1271,7 @@ pre {
 }
 
 .icon-emb-brackets:before {
-  content: "";
+  content: "\e911";
 }
 
 .full-screen {
