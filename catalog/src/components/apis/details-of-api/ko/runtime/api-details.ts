@@ -80,7 +80,7 @@ export class ApiDetails {
         }
 
         this.working(true);
-        
+
         // if (api.apiVersionSet && api.apiVersionSet.id) {
         //     const apis = await this.apiService.getApisInVersionSet(api.apiVersionSet.id);
         //     apis.forEach(x => x.apiVersion = x.apiVersion || "Original");
@@ -88,7 +88,7 @@ export class ApiDetails {
         //     this.versionApis(apis || []);
         // }
         // else {
-            this.versionApis([]);
+        this.versionApis([]);
         // }
 
         this.currentApiVersion(api.name);
@@ -131,23 +131,17 @@ export class ApiDetails {
 
     private download(data: string, filename: string, type: string): void {
         const file = new Blob([data], { type: type });
+        const a = document.createElement("a"),
+            url = URL.createObjectURL(file);
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
 
-        if (window.navigator.msSaveOrOpenBlob) { // IE10+
-            window.navigator.msSaveOrOpenBlob(file, filename);
-        }
-        else { // Others
-            const a = document.createElement("a"),
-                url = URL.createObjectURL(file);
-            a.href = url;
-            a.download = filename;
-            document.body.appendChild(a);
-            a.click();
-
-            setTimeout(() => {
-                document.body.removeChild(a);
-                window.URL.revokeObjectURL(url);
-            }, 0);
-        }
+        setTimeout(() => {
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }, 0);
     }
 
     private onVersionChange(selectedApiName: string): void {
