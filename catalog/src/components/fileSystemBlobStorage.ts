@@ -21,22 +21,24 @@ export class FileSystemBlobStorage implements IBlobStorage {
         }
     }
 
-    public async downloadBlob(blobPath: string): Promise<Uint8Array> {
-        const fullpath = `${this.basePath}/${blobPath}`.replace("//", "/");
+    public downloadBlob(blobPath: string): Promise<Uint8Array> {
+        return new Promise<Uint8Array>((resolve, reject) => {
+            const fullpath = `${this.basePath}/${blobPath}`.replace("//", "/");
 
-        if (!fs.existsSync(fullpath)) {
-            return null;
-        }
+            fs.readFile(fullpath, (error, buffer: Buffer) => {
+                if (error) {
+                    reject(error);
+                    return;
+                }
 
-        const buffer = await fs.promises.readFile(fullpath);
-        const unit8Array = new Uint8Array(buffer);
-
-        return unit8Array;
+                const unit8Array = new Uint8Array(buffer.buffer);
+                resolve(unit8Array);
+            });
+        });
     }
 
     public async listBlobs(): Promise<string[]> {
         const files = this.listAllFilesInDirectory(this.basePath);
-
         if (files.length > 0) {
             return files.map(file => file.split(this.basePath).pop());
         }

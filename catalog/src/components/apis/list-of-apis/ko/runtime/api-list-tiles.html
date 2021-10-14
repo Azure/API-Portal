@@ -26,8 +26,7 @@
 
         <!-- ko foreach: { data: group.items, as: 'item' } -->
         <a href="#" data-bind="attr: { href: $component.getReferenceUrl(item) }">
-            <div class="card card-default">
-                <img data-bind="attr: { src: item.thumbnail }" class="card-image" />
+            <div class="card item-tile">
                 <h3>
                     <span data-bind="text: item.displayName"></span>
                     <!-- ko if: item.apiVersion -->
@@ -51,18 +50,15 @@
 
         <!-- ko foreach: { data: apis, as: 'item' } -->
         <a href="#" data-bind="attr: { href: $component.getReferenceUrl(item) }">
-            <div class="card card-default">
-                <img data-bind="attr: { src: item.thumbnail }" class="card-thumbnail" />
-                <div class="card-body">
-                    <h3>
-                        <span data-bind="text: item.displayName"></span>
-                        <!-- ko if: item.apiVersion -->
-                        - <span data-bind="text: item.apiVersion"></span>
-                        <!-- /ko -->
-                    </h3>
-                    <div class="tile line-clamp">
-                        <p class="tile-content" data-bind="markdown: { source: item.description, truncateAt: 250 }"></p>
-                    </div>
+            <div class="card item-tile">
+                <h3>
+                    <span data-bind="text: item.displayName"></span>
+                    <!-- ko if: item.apiVersion -->
+                    - <span data-bind="text: item.apiVersion"></span>
+                    <!-- /ko -->
+                </h3>
+                <div class="tile line-clamp">
+                    <p class="tile-content" data-bind="markdown: { source: item.description, truncateAt: 250 }"></p>
                 </div>
             </div>
         </a>

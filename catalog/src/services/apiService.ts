@@ -114,7 +114,7 @@ export class ApiService {
         const tagGroup = new TagGroup<Api>();
 
         const apis = await this.getApis(searchRequest);
-        tagGroup.items = apis.value;
+        // tagGroup.items = apis.value;
         tagGroup.tag = "Untagged";
 
         const page = new Page<TagGroup<Api>>();

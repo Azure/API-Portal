@@ -106,9 +106,6 @@ export class OperationDetails {
     public enableScrollTo: boolean;
 
     @Param()
-    public authorizationServers: AuthorizationServer[];
-
-    @Param()
     public defaultSchemaView: ko.Observable<string>;
 
     @OnMounted()
@@ -170,18 +167,6 @@ export class OperationDetails {
         this.api(api);
 
         this.closeConsole();
-
-        const associatedServerId = api.authenticationSettings?.oAuth2?.authorizationServerId ||
-            api.authenticationSettings?.openid?.openidProviderId;
-
-        let associatedAuthServer = null;
-
-        if (this.authorizationServers && associatedServerId) {
-            associatedAuthServer = this.authorizationServers
-                .find(x => x.name === associatedServerId);
-        }
-
-        this.associatedAuthServer(associatedAuthServer);
     }
 
     public async loadOperation(apiName: string, operationName: string): Promise<void> {
@@ -210,7 +195,7 @@ export class OperationDetails {
 
     public async loadDefinitions(operation: Operation): Promise<void> {
         const schemaIds = [];
-        const apiId = this.selectedApiName();
+        const apiId = `apis/${this.selectedApiName()}/schemas`;
 
         const representations = operation.responses
             .map(response => response.representations)
@@ -231,7 +216,7 @@ export class OperationDetails {
             .map(p => p.typeName)
             .filter((item, pos, self) => self.indexOf(item) === pos);
 
-        const schemasPromises = schemaIds.map(schemaId => this.apiService.getApiSchema(this.selectedApiName()));
+        const schemasPromises = schemaIds.map(schemaId => this.apiService.getApiSchema(`${apiId}/${schemaId}`));
         const schemas = await Promise.all(schemasPromises);
         const definitions = schemas.map(x => x.definitions).flat();
 
@@ -318,8 +303,8 @@ export class OperationDetails {
             definition.name = representation.typeName;
         }
 
-        if (representation.example) {
-            definition.example = representation.example;
+        if (representation.examples?.length > 0) {
+            definition.example = representation.examples[0].value;
             definition.exampleFormat = representation.exampleFormat;
         }
 

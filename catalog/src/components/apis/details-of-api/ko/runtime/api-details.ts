@@ -5,6 +5,7 @@ import { Router } from "@paperbits/common/routing";
 import { ApiService } from "../../../../../services/apiService";
 import { Api } from "../../../../../models/api";
 import { RouteHelper } from "../../../../../routing/routeHelper";
+import { KnownMimeTypes } from "../../../../../models/knownMimeTypes";
 
 
 @RuntimeComponent({
@@ -107,12 +108,12 @@ export class ApiDetails {
         if (this.api() && this.api().id) {
             let exportObject = await this.apiService.exportApi(this.api().id, definitionType);
             let fileName = this.api().name;
-            let fileType = "application/json";
+            let fileType: string = KnownMimeTypes.Json;
 
             switch (definitionType) {
                 case "wsdl":
                 case "wadl":
-                    fileType = "text/xml";
+                    fileType = KnownMimeTypes.Xml;
                     fileName = `${fileName}.${definitionType}.xml`;
                     break;
                 case "openapi": // yaml 3.0
@@ -131,6 +132,7 @@ export class ApiDetails {
 
     private download(data: string, filename: string, type: string): void {
         const file = new Blob([data], { type: type });
+
         const a = document.createElement("a"),
             url = URL.createObjectURL(file);
         a.href = url;
@@ -142,10 +144,12 @@ export class ApiDetails {
             document.body.removeChild(a);
             window.URL.revokeObjectURL(url);
         }, 0);
+
     }
 
     private onVersionChange(selectedApiName: string): void {
         const apiName = this.routeHelper.getApiName();
+
         if (apiName !== selectedApiName) {
             const apiUrl = this.routeHelper.getApiReferenceUrl(selectedApiName);
             this.router.navigateTo(apiUrl);

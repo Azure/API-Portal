@@ -5,6 +5,7 @@ import { HttpClient, HttpRequest, HttpResponse } from "@paperbits/common/http";
 import { Component, OnMounted, Param } from "@paperbits/common/ko/decorators";
 import { SessionManager } from "@paperbits/common/persistence/sessionManager";
 import { RequestBodyType, ServiceSkuName, TypeOfApi } from "../../../../../constants";
+import { SubscriptionState } from "../../../../../contracts/subscription";
 import { UnauthorizedError } from "../../../../../errors/unauthorizedError";
 import { Api } from "../../../../../models/api";
 import { AuthorizationServer } from "../../../../../models/authorizationServer";
@@ -14,10 +15,10 @@ import { ConsoleParameter } from "../../../../../models/console/consoleParameter
 import { KnownHttpHeaders } from "../../../../../models/knownHttpHeaders";
 import { KnownStatusCodes } from "../../../../../models/knownStatusCodes";
 import { Operation } from "../../../../../models/operation";
+import { Product } from "../../../../../models/product";
 import { Revision } from "../../../../../models/revision";
 import { RouteHelper } from "../../../../../routing/routeHelper";
 import { ApiService } from "../../../../../services/apiService";
-import { OAuthService } from "../../../../../services/oauthService";
 import { TemplatingService } from "../../../../../services/templatingService";
 import { Utils } from "../../../../../utils";
 import { GrantTypes } from "./../../../../../constants";
@@ -26,6 +27,7 @@ import template from "./operation-console.html";
 import { ResponsePackage } from "./responsePackage";
 import { templates } from "./templates/templates";
 import { LogItem, WebsocketClient } from "./websocketClient";
+import { KnownMimeTypes } from "../../../../../models/knownMimeTypes";
 
 const oauthSessionKey = "oauthSession";
 
@@ -42,9 +44,11 @@ export class OperationConsole {
     public readonly responseStatusText: ko.Observable<string>;
     public readonly responseBody: ko.Observable<string>;
     public readonly responseHeadersString: ko.Observable<string>;
+    public readonly products: ko.Observable<Product[]>;
     public readonly selectedSubscriptionKey: ko.Observable<string>;
     public readonly subscriptionKeyRequired: ko.Observable<boolean>;
     public readonly selectedLanguage: ko.Observable<string>;
+    public readonly selectedProduct: ko.Observable<Product>;
     public readonly requestError: ko.Observable<string>;
     public readonly codeSample: ko.Observable<string>;
     public readonly selectedHostname: ko.Observable<string>;
@@ -56,16 +60,15 @@ export class OperationConsole {
     public readonly password: ko.Observable<string>;
     public readonly authorizationError: ko.Observable<string>;
     public readonly authenticated: ko.Observable<boolean>;
-    public isConsumptionMode: boolean;
     public templates: Object;
-    public backendUrl: string;
-    
+    public requestLanguages: Object[];
+
     public readonly wsConnected: ko.Observable<boolean>;
     public readonly wsConnecting: ko.Observable<boolean>;
     public readonly wsStatus: ko.Observable<string>;
     public readonly wsSending: ko.Observable<boolean>;
     public readonly wsSendStatus: ko.Observable<string>;
-    public readonly wsPayload: ko.Observable<string|File>;
+    public readonly wsPayload: ko.Observable<string | File>;
     public readonly wsDataFormat: ko.Observable<string>;
     public readonly wsLogItems: ko.ObservableArray<LogItem>;
 
@@ -73,11 +76,11 @@ export class OperationConsole {
         private readonly apiService: ApiService,
         private readonly httpClient: HttpClient,
         private readonly routeHelper: RouteHelper,
-        private readonly oauthService: OAuthService,
         private readonly sessionManager: SessionManager,
         private readonly settingsProvider: ISettingsProvider
     ) {
         this.templates = templates;
+        this.products = ko.observable();
 
         this.requestError = ko.observable();
         this.responseStatusCode = ko.observable();
@@ -96,6 +99,7 @@ export class OperationConsole {
         this.working = ko.observable(true);
         this.sendingRequest = ko.observable(false);
         this.codeSample = ko.observable();
+        this.selectedProduct = ko.observable();
         this.onFileSelect = this.onFileSelect.bind(this);
         this.selectedHostname = ko.observable("");
         this.hostnameSelectionEnabled = ko.observable();
@@ -153,6 +157,8 @@ export class OperationConsole {
 
     @OnMounted()
     public async initialize(): Promise<void> {
+        this.requestLanguages = (this.api().type === TypeOfApi.webSocket) ? this.loadRequestLanguagesWs() : this.loadRequestLanguagesRest();
+
         await this.resetConsole();
 
         this.selectedHostname.subscribe(this.setHostname);
@@ -167,7 +173,7 @@ export class OperationConsole {
         this.api.subscribe(this.resetConsole);
         this.operation.subscribe(this.resetConsole);
         this.selectedLanguage.subscribe(this.updateRequestSummary);
-        this.selectedGrantType.subscribe(this.onGrantTypeChange);
+        // this.selectedGrantType.subscribe(this.onGrantTypeChange);
     }
 
     private async resetConsole(): Promise<void> {
@@ -188,6 +194,7 @@ export class OperationConsole {
         this.responseBody(null);
         this.selectedSubscriptionKey(null);
         this.subscriptionKeyRequired(!!selectedApi.subscriptionRequired);
+        this.selectedProduct(null);
 
         const operation = await this.apiService.getOperation(selectedApi.name, selectedOperation.name);
         const consoleOperation = new ConsoleOperation(selectedApi, operation);
@@ -210,7 +217,7 @@ export class OperationConsole {
             this.selectedLanguage("ws_wscat");
         }
 
-        if (!this.isConsumptionMode && this.api().type !== TypeOfApi.webSocket) {
+        if (this.api().type !== TypeOfApi.webSocket) {
             this.setNoCacheHeader();
         }
 
@@ -250,6 +257,28 @@ export class OperationConsole {
         }
 
         consoleOperation.urlTemplate = "";
+    }
+
+    private loadRequestLanguagesRest(): Object[] {
+        return [
+            {value: "http", text: "HTTP"},
+            {value: "csharp", text: "C#"},
+            {value: "curl", text: "Curl"},
+            {value: "java", text: "Java"},
+            {value: "javascript", text: "JavaScript"},
+            {value: "objc", text: "Objective C"}, 
+            {value: "php", text: "PHP"},
+            {value: "python", text: "Python"},
+            {value: "ruby", text: "Ruby"},
+        ];
+    }
+
+    private loadRequestLanguagesWs(): Object[] {
+        return [
+            {value: "ws_wscat", text: "wscat"},
+            {value: "ws_csharp", text: "C#"},
+            {value: "ws_javascript", text: "JavaScript"}
+        ];
     }
 
     private setHostname(hostname: string): void {
@@ -307,7 +336,7 @@ export class OperationConsole {
     }
 
     private getSubscriptionKeyHeaderName(): string {
-        let subscriptionKeyHeaderName = KnownHttpHeaders.OcpApimSubscriptionKey;
+        let subscriptionKeyHeaderName: string = KnownHttpHeaders.OcpApimSubscriptionKey;
 
         if (this.api().subscriptionKeyParameterNames && this.api().subscriptionKeyParameterNames.header) {
             subscriptionKeyHeaderName = this.api().subscriptionKeyParameterNames.header;
@@ -334,7 +363,7 @@ export class OperationConsole {
     }
 
     private setSubscriptionKeyParameter(subscriptionKey: string): void {
-        const subscriptionKeyParam = this.getSubscriptionKeyParam();        
+        const subscriptionKeyParam = this.getSubscriptionKeyParam();
         this.removeQueryParameter(subscriptionKeyParam);
 
         if (!subscriptionKey) {
@@ -451,10 +480,10 @@ export class OperationConsole {
         }
 
         const formData = new FormData();
-        const requestPackage = new Blob([JSON.stringify(request)], { type: "application/json" });
+        const requestPackage = new Blob([JSON.stringify(request)], { type: KnownMimeTypes.Json });
         formData.append("requestPackage", requestPackage);
 
-        const baseProxyUrl = this.backendUrl || "";
+        const baseProxyUrl = "";
         const apiName = this.api().name;
 
         const proxiedRequest: HttpRequest = {
@@ -649,7 +678,7 @@ export class OperationConsole {
         this.responseStatusCode(null);
 
         const consoleOperation = this.consoleOperation();
-        const url = consoleOperation.wsUrl(); 
+        const url = consoleOperation.wsUrl();
 
         this.initWebSocket();
         this.wsStatus("Connecting...");
@@ -714,78 +743,78 @@ export class OperationConsole {
         return storedCredentials;
     }
 
-    private async setStoredCredentials(serverName: string, scopeOverride: string, grantType: string, accessToken: string): Promise<void> {
-        const oauthSession = await this.sessionManager.getItem<OAuthSession>(oauthSessionKey) || {};
-        const recordKey = this.getSessionRecordKey(serverName, scopeOverride);
+    // private async setStoredCredentials(serverName: string, scopeOverride: string, grantType: string, accessToken: string): Promise<void> {
+    //     const oauthSession = await this.sessionManager.getItem<OAuthSession>(oauthSessionKey) || {};
+    //     const recordKey = this.getSessionRecordKey(serverName, scopeOverride);
 
-        oauthSession[recordKey] = {
-            grantType: grantType,
-            accessToken: accessToken
-        };
+    //     oauthSession[recordKey] = {
+    //         grantType: grantType,
+    //         accessToken: accessToken
+    //     };
 
-        await this.sessionManager.setItem<object>(oauthSessionKey, oauthSession);
-    }
+    //     await this.sessionManager.setItem<object>(oauthSessionKey, oauthSession);
+    // }
 
     private async clearStoredCredentials(): Promise<void> {
         await this.sessionManager.removeItem(oauthSessionKey);
         this.removeAuthorizationHeader();
     }
 
-    public async authenticateOAuthWithPassword(): Promise<void> {
-        try {
-            this.authorizationError(null);
+    // public async authenticateOAuthWithPassword(): Promise<void> {
+    //     try {
+    //         this.authorizationError(null);
 
-            const api = this.api();
-            const authorizationServer = this.authorizationServer();
-            const scopeOverride = api.authenticationSettings?.oAuth2?.scope;
-            const serverName = authorizationServer.name;
+    //         const api = this.api();
+    //         const authorizationServer = this.authorizationServer();
+    //         const scopeOverride = api.authenticationSettings?.oAuth2?.scope;
+    //         const serverName = authorizationServer.name;
 
-            if (scopeOverride) {
-                authorizationServer.scopes = [scopeOverride];
-            }
+    //         if (scopeOverride) {
+    //             authorizationServer.scopes = [scopeOverride];
+    //         }
 
-            const accessToken = await this.oauthService.authenticatePassword(this.username(), this.password(), authorizationServer);
-            await this.setStoredCredentials(serverName, scopeOverride, GrantTypes.password, accessToken);
+    //         const accessToken = await this.oauthService.authenticatePassword(this.username(), this.password(), authorizationServer);
+    //         await this.setStoredCredentials(serverName, scopeOverride, GrantTypes.password, accessToken);
 
-            this.setAuthorizationHeader(accessToken);
-        }
-        catch (error) {
-            if (error instanceof UnauthorizedError) {
-                this.authorizationError(error.message);
-                return;
-            }
+    //         this.setAuthorizationHeader(accessToken);
+    //     }
+    //     catch (error) {
+    //         if (error instanceof UnauthorizedError) {
+    //             this.authorizationError(error.message);
+    //             return;
+    //         }
 
-            this.authorizationError("Oops, something went wrong. Try again later.");
-        }
-    }
+    //         this.authorizationError("Oops, something went wrong. Try again later.");
+    //     }
+    // }
 
-    private async onGrantTypeChange(grantType: string): Promise<void> {
-        await this.clearStoredCredentials();
+    // private async onGrantTypeChange(grantType: string): Promise<void> {
+    //     await this.clearStoredCredentials();
 
-        if (!grantType || grantType === GrantTypes.password) {
-            return;
-        }
+    //     if (!grantType || grantType === GrantTypes.password) {
+    //         return;
+    //     }
 
-        await this.authenticateOAuth(grantType);
-    }
+    //     await this.authenticateOAuth(grantType);
+    // }
 
     /**
      * Initiates specified authentication flow.
      * @param grantType OAuth grant type, e.g. "implicit" or "authorization_code".
      */
-    public async authenticateOAuth(grantType: string): Promise<void> {
-        const api = this.api();
-        const authorizationServer = this.authorizationServer();
-        const scopeOverride = api.authenticationSettings?.oAuth2?.scope;
-        const serverName = authorizationServer.name;
+    // public async authenticateOAuth(grantType: string): Promise<void> {
+    //     const api = this.api();
+    //     const authorizationServer = this.authorizationServer();
+    //     const scopeOverride = api.authenticationSettings?.oAuth2?.scope;
+    //     const serverName = authorizationServer.name;
 
-        if (scopeOverride) {
-            authorizationServer.scopes = [scopeOverride];
-        }
+    //     if (scopeOverride) {
+    //         authorizationServer.scopes = [scopeOverride];
+    //     }
 
-        const accessToken = await this.oauthService.authenticate(grantType, authorizationServer);
-        await this.setStoredCredentials(serverName, scopeOverride, grantType, accessToken);
+    //     const accessToken = await this.oauthService.authenticate(grantType, authorizationServer);
+    //     await this.setStoredCredentials(serverName, scopeOverride, grantType, accessToken);
 
-        this.setAuthorizationHeader(accessToken);
-    }
+    //     this.setAuthorizationHeader(accessToken);
+    // }
 }

@@ -7,8 +7,9 @@ import { CorePublishModule } from "@paperbits/core/core.publish.module";
 import { StylePublishModule } from "@paperbits/styles/styles.publish.module";
 import { ProseMirrorModule } from "@paperbits/prosemirror/prosemirror.module";
 import { StaticSettingsProvider } from "./components/staticSettingsProvider";
-import { FileSystemBlobStorage } from "./components/fileSystemBlobStorage";
+import { FileSystemBlobStorage } from "./components/filesystemBlobStorage";
 import { MainPublishModule } from "./main.publish.module";
+import { PublishingCacheModule } from "./persistence/publishingCacheModule";
 
 /* Reading settings from configuration file */
 const configFile = path.resolve(__dirname, "./config.json");
@@ -27,6 +28,7 @@ injector.bindModule(new ProseMirrorModule());
 injector.bindModule(new MainPublishModule());
 injector.bindInstance("settingsProvider", settingsProvider);
 injector.bindInstance("outputBlobStorage", outputBlobStorage);
+injector.bindModule(new PublishingCacheModule());
 injector.resolve("autostart");
 
 /* Allowing self-signed certificates for HTTP requests */

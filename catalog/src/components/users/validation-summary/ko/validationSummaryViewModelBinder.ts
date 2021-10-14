@@ -11,8 +11,9 @@ export class ValidationSummaryViewModelBinder implements ViewModelBinder<Validat
 
             viewModel["widgetBinding"] = {
                 displayName: "Validation summary",
+                model: model,
                 flow: "block",
-                model: model
+                draggable: true
             };
         }
 
