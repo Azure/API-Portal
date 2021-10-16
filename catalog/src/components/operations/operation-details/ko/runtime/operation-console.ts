@@ -197,6 +197,9 @@ export class OperationConsole {
         this.selectedProduct(null);
 
         const operation = await this.apiService.getOperation(selectedApi.name, selectedOperation.name);
+        if (!operation) {
+            return;
+        }
         const consoleOperation = new ConsoleOperation(selectedApi, operation);
         this.consoleOperation(consoleOperation);
 

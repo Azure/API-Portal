@@ -144,22 +144,18 @@ export class OperationList {
 
         try {
             this.working(true);
-            const apiType = await this.getApiType();
-            if (apiType === "websocket") {
-                await this.loadPageOfOperations();
-                this.selectFirstOperation();
-            } else {
-                if (this.groupByTag()) {
-                    await this.loadOfOperationsByTag();
-                }
-                else {
-                    await this.loadPageOfOperations();
-                }
-
-                if (this.allowSelection() && !this.selectedOperationName()) {
-                    this.selectFirstOperation();
-                }
+            
+            if (this.groupByTag()) {
+                await this.loadOfOperationsByTag();
             }
+            else {
+                await this.loadPageOfOperations();
+            }
+
+            if (this.allowSelection() && !this.selectedOperationName()) {
+                this.selectFirstOperation();
+            }
+            
         }
         catch (error) {
             throw new Error(`Unable to load operations: Error: ${error.message}`);

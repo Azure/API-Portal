@@ -1,8 +1,6 @@
 import { UserService, BuiltInRoles } from "@paperbits/common/user";
-import { IAuthenticator } from "../authentication";
 
 export class StaticUserService implements UserService {
-    constructor(private readonly authenticator: IAuthenticator) { }
 
     public async getUserName(): Promise<string> {
         return "";
@@ -16,14 +14,7 @@ export class StaticUserService implements UserService {
      * Returns current user's role keys.
      */
     public async getUserRoles(): Promise<string[]> {
-        const authenticated = await this.authenticator.isAuthenticated();
-
-        if (authenticated) {
-            return [BuiltInRoles.authenticated.key];
-        }
-        else {
-            return [BuiltInRoles.anonymous.key];
-        }
+        return [BuiltInRoles.anonymous.key];
     }
 
     /**

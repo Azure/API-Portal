@@ -215,7 +215,7 @@ export class OpenApiConverter {
     }
 
     public getSchema(spec: OpenApiSpec30): Schema {
-        const schemasObject = spec.components?.schemas;
+        const schemasObject = spec?.components?.schemas;
 
         if (!schemasObject) {
             return null;

@@ -14,10 +14,7 @@ const startupError = `Unable to start the portal`;
 })
 export class App {
     constructor(
-        private readonly settingsProvider: ISettingsProvider,
-        private readonly authenticator: IAuthenticator,
-        private readonly viewManager: ViewManager,
-        private readonly siteService: ISiteService
+        private readonly viewManager: ViewManager
     ) { }
 
     @OnMounted()

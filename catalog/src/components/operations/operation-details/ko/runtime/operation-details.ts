@@ -72,7 +72,7 @@ export class OperationDetails {
             const operation = this.operation();
             const hostname = this.sampleHostname();
 
-            let operationPath = api.versionedPath;
+            let operationPath = api.versionedPath || "";
 
             if (api.type !== TypeOfApi.soap) {
                 operationPath += operation.displayUrlTemplate;
@@ -195,7 +195,7 @@ export class OperationDetails {
 
     public async loadDefinitions(operation: Operation): Promise<void> {
         const schemaIds = [];
-        const apiId = `apis/${this.selectedApiName()}/schemas`;
+        const apiId = this.selectedApiName();
 
         const representations = operation.responses
             .map(response => response.representations)
@@ -216,7 +216,7 @@ export class OperationDetails {
             .map(p => p.typeName)
             .filter((item, pos, self) => self.indexOf(item) === pos);
 
-        const schemasPromises = schemaIds.map(schemaId => this.apiService.getApiSchema(`${apiId}/${schemaId}`));
+        const schemasPromises = schemaIds.map(schemaId => this.apiService.getApiSchema(this.selectedApiName()));
         const schemas = await Promise.all(schemasPromises);
         const definitions = schemas.map(x => x.definitions).flat();
 
