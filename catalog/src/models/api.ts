@@ -103,8 +103,6 @@ export class Api {
      */
     public subscriptionRequired: boolean;
 
-    public thumbnail: string;
-
     constructor(contract?: ApiContract) {
         if (contract.id) {
             this.id = Utils.getResourceName("apis", contract.id, "shortId");
@@ -112,12 +110,11 @@ export class Api {
 
         this.name = contract.name;
         this.displayName = contract.properties.displayName;
-        this.thumbnail = contract.properties.thumbnail;
         this.versionedDisplayName = contract.properties.displayName;
         this.serviceUrl = contract.properties.serviceUrl;
         this.protocols = contract.properties.protocols;
         this.description = contract.properties.description;
-        this.path = contract.properties.path || "";
+        this.path = contract.properties.path;
         this.versionedPath = this.path;
         this.apiVersion = contract.properties.apiVersion;
         this.apiRevision = contract.properties.apiRevision;

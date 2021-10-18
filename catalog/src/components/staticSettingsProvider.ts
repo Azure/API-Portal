@@ -3,7 +3,7 @@ import { ISettingsProvider } from "@paperbits/common/configuration";
 export class StaticSettingsProvider implements ISettingsProvider {
     constructor(private readonly configuration: Object) { }
 
-    public async getSetting<T>(name: string): Promise<T> {
+    public getSetting<T>(name: string): Promise<T> {
         return this.configuration[name];
     }
 

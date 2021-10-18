@@ -1,3 +1,6 @@
+import { Bag } from "@paperbits/common/bag";
+import { OpenApiExample } from "./openApiExample";
+
 export interface OpenApiParameter {
     name: string;
     in: string;
@@ -7,4 +10,5 @@ export interface OpenApiParameter {
     schema?: any;
     default?: string;
     enum: string[];
+    examples: Bag<OpenApiExample>;
 }

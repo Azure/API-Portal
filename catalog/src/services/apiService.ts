@@ -114,7 +114,7 @@ export class ApiService {
         const tagGroup = new TagGroup<Api>();
 
         const apis = await this.getApis(searchRequest);
-        tagGroup.items = apis.value;
+        tagGroup.items.push(...apis.value);
         tagGroup.tag = "Untagged";
 
         const page = new Page<TagGroup<Api>>();
@@ -210,9 +210,8 @@ export class ApiService {
         const converter = new OpenApiConverter();
         const spec = specs.find(spec => spec.info.title === apiName);
         const operations = converter.getOperations(spec);
-        const operation = new Operation(operations.find(x => x.name === operationName));
-
-        return operation;
+        const contract = operations.find(x => x.name === operationName);
+        return contract ? new Operation(contract) : undefined;
     }
 
     public async getOperations(apiId: string, searchQuery?: SearchQuery): Promise<Page<Operation>> {

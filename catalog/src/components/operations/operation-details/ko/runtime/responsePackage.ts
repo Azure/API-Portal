@@ -1,4 +1,7 @@
-import { NameValuePair } from "../../../../../contracts/nameValuePair";
+export interface NameValuePair {
+    name: string;
+    value: string;
+}
 
 export interface ResponsePackage {
     statusCode: number;

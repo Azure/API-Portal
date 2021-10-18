@@ -5,7 +5,6 @@ import { Component, OnMounted } from "@paperbits/common/ko/decorators";
 import { ISettingsProvider } from "@paperbits/common/configuration";
 import { ISiteService } from "@paperbits/common/sites";
 import { IAuthenticator } from "../../authentication";
-import { Utils } from "../../utils";
 
 const startupError = `Unable to start the portal`;
 
@@ -15,10 +14,7 @@ const startupError = `Unable to start the portal`;
 })
 export class App {
     constructor(
-        private readonly settingsProvider: ISettingsProvider,
-        private readonly authenticator: IAuthenticator,
-        private readonly viewManager: ViewManager,
-        private readonly siteService: ISiteService
+        private readonly viewManager: ViewManager
     ) { }
 
     @OnMounted()

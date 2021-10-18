@@ -109,7 +109,7 @@ export class ConsoleOperation {
             requestUrl = this.addParam(requestUrl, this.api.apiVersionSet.versionQueryName, this.api.apiVersion);
         }
 
-        return `${this.api.path}${versionPath}${requestUrl}`;
+        return `${this.api.path || ""}${versionPath}${requestUrl}`;
     }
 
 }

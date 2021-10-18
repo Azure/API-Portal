@@ -11,10 +11,9 @@ import { DefaultSettingsProvider } from "@paperbits/common/configuration";
 import { DefaultEventManager } from "@paperbits/common/events";
 import { XmlHttpRequestClient } from "@paperbits/common/http";
 import { IInjector, IInjectorModule } from "@paperbits/common/injection";
-import { ConsoleLogger, Logger } from "@paperbits/common/logging";
-import { DefaultRouter, HistoryRouteHandler, LocationRouteHandler } from "@paperbits/common/routing";
+import { ConsoleLogger } from "@paperbits/common/logging";
+import { HistoryRouteHandler, LocationRouteHandler } from "@paperbits/common/routing";
 import { ViewStack } from "@paperbits/common/ui/viewStack";
-import { VisibilityGuard } from "@paperbits/common/user";
 import { BalloonBindingHandler, ResizableBindingHandler } from "@paperbits/core/ko/bindingHandlers";
 import { KnockoutRegistrationLoaders } from "@paperbits/core/ko/knockout.loaders";
 import { DefaultSessionManager } from "./authentication/defaultSessionManager";
@@ -34,9 +33,6 @@ import "./polyfills";
 import { RouteHelper } from "./routing/routeHelper";
 import { StaticUserService } from "./services";
 import { ApiService } from "./services/apiService";
-import { BackendService } from "./services/backendService";
-import { MapiClient } from "./services/mapiClient";
-import { OAuthService } from "./services/oauthService";
 import { TagService } from "./services/tagService";
 
 export class MainRuntimeModule implements IInjectorModule {
@@ -61,14 +57,11 @@ export class MainRuntimeModule implements IInjectorModule {
         injector.bind("validationSummary", ValidationSummary);
         injector.bind("operationList", OperationList);
         injector.bind("operationDetails", OperationDetails);
-        injector.bindSingleton("backendService", BackendService);
-        injector.bindSingleton("mapiClient", MapiClient);
         injector.bindSingleton("httpClient", XmlHttpRequestClient);
         injector.bindSingleton("settingsProvider", DefaultSettingsProvider);
         injector.bindSingleton("authenticator", DefaultAuthenticator);
         injector.bindSingleton("routeHelper", RouteHelper);
         injector.bindSingleton("userService", StaticUserService);
-        injector.bindSingleton("oauthService", OAuthService);
         injector.bindSingleton("viewStack", ViewStack);
         injector.bindSingleton("sessionManager", DefaultSessionManager);
         injector.bind("tagInput", TagInput);

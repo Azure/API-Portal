@@ -64,6 +64,7 @@ export class ApiList {
     @OnMounted()
     public async initialize(): Promise<void> {
         this.groupByTag(this.defaultGroupByTagToEnabled());
+        this.tags.subscribe(this.resetSearch);
 
         await this.resetSearch();
 
@@ -71,11 +72,7 @@ export class ApiList {
             .extend({ rateLimit: { timeout: Constants.defaultInputDelayMs, method: "notifyWhenChangesStop" } })
             .subscribe(this.resetSearch);
 
-        this.tags
-            .subscribe(this.resetSearch);
-
-        this.groupByTag
-            .subscribe(this.resetSearch);
+        this.groupByTag.subscribe(this.resetSearch);
     }
 
     /**

@@ -8,16 +8,13 @@ import { ListOfApisModule } from "./components/apis/list-of-apis/ko/listOfApis.m
 import { ListOfApisEditorModule } from "./components/apis/list-of-apis/ko/listOfApisEditor.module";
 import { DetailsOfApiModule } from "./components/apis/details-of-api/ko/detailsOfApi.module";
 import { DetailsOfApiEditorModule } from "./components/apis/details-of-api/ko/detailsOfApiEditor.module";
-import { MapiClient, IdentityService } from "./services";
 import { OperationListModule } from "./components/operations/operation-list/ko/operationList.module";
 import { OperationListEditorModule } from "./components/operations/operation-list/ko/operationListEditor.module";
 import { OperationDetailsDesignModule } from "./components/operations/operation-details/operationDetails.design.module";
 import { App } from "./components/app/app";
 import { ValidationSummaryModule } from "./components/users/validation-summary/validationSummary.module";
 import { ValidationSummaryDesignModule } from "./components/users/validation-summary/validationSummary.design.module";
-import { BackendService } from "./services/backendService";
 import { StaticRoleService } from "./services/roleService";
-import { OAuthService } from "./services/oauthService";
 import { HistoryRouteHandler } from "@paperbits/common/routing";
 import { OldContentRouteGuard } from "./routing/oldContentRouteGuard";
 import { RemoteObjectStorage } from "./persistence/remoteObjectStorage";
@@ -39,10 +36,7 @@ export class MainDesignModule implements IInjectorModule {
         injector.bindModule(new ValidationSummaryModule());
         injector.bindSingleton("app", App);
         injector.bindSingleton("logger", ConsoleLogger);
-        injector.bindSingleton("backendService", BackendService);
         injector.bindSingleton("roleService", StaticRoleService);
-        injector.bindSingleton("identityService", IdentityService);
-        injector.bindSingleton("mapiClient", MapiClient);
         injector.bindSingleton("authenticator", DefaultAuthenticator);
         injector.bindSingleton("dataProvider", HttpDataProvider);
         injector.bindSingleton("objectStorage", RemoteObjectStorage);
@@ -50,7 +44,6 @@ export class MainDesignModule implements IInjectorModule {
         injector.bindToCollection("routeGuards", OldContentRouteGuard);
         injector.bindToCollection("routeGuards", UnsavedChangesRouteGuard);
         injector.bindInstance("reservedPermalinks", Constants.reservedPermalinks);
-        injector.bindSingleton("oauthService", OAuthService);
         injector.bindSingleton("router", RelativePathRouter);
         injector.bindToCollection("autostart", HistoryRouteHandler);
         injector.bindModule(new PopupDesignModule());

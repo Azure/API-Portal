@@ -22,7 +22,9 @@ export class OpenApiConverter {
             description: openApiParameter.description,
             in: openApiParameter.in,
             type: openApiParameter.schema?.type,
+            defaultValue: openApiParameter.default,
             values: [],
+            examples: openApiParameter.examples,
             required: openApiParameter.required
         };
 
@@ -31,7 +33,7 @@ export class OpenApiConverter {
 
     public convertRequest(spec: OpenApiSpec30, openApiOperation: OpenApiOperation): RequestContract {
         const request: RequestContract = {
-            description: openApiOperation.description,
+            description: openApiOperation.description
         };
 
         if (openApiOperation.parameters) {
@@ -63,7 +65,8 @@ export class OpenApiConverter {
         const representation: RepresentationContract = {
             contentType: contentType,
             typeName: this.getTypeNameFromRef(mediaType.schema?.$ref),
-            schemaId: `${spec.info.title}`
+            schemaId: `${spec.info.title}`,
+            examples: mediaType.examples
         };
 
         return representation;
@@ -88,7 +91,11 @@ export class OpenApiConverter {
                 name: headerKey,
                 description: headerObject.description,
                 in: headerObject.in,
-                type: headerObject.schema?.type
+                type: headerObject.schema?.type,
+                defaultValue: headerObject.default,
+                values: [],
+                examples: headerObject.examples,
+                required: headerObject.required
             };
 
             parameters.push(header);
@@ -208,7 +215,7 @@ export class OpenApiConverter {
     }
 
     public getSchema(spec: OpenApiSpec30): Schema {
-        const schemasObject = spec.components?.schemas;
+        const schemasObject = spec?.components?.schemas;
 
         if (!schemasObject) {
             return null;

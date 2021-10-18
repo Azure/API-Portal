@@ -72,7 +72,7 @@ export class OperationDetails {
             const operation = this.operation();
             const hostname = this.sampleHostname();
 
-            let operationPath = api.versionedPath;
+            let operationPath = api.versionedPath || "";
 
             if (api.type !== TypeOfApi.soap) {
                 operationPath += operation.displayUrlTemplate;
@@ -104,9 +104,6 @@ export class OperationDetails {
 
     @Param()
     public enableScrollTo: boolean;
-
-    @Param()
-    public authorizationServers: AuthorizationServer[];
 
     @Param()
     public defaultSchemaView: ko.Observable<string>;
@@ -170,18 +167,6 @@ export class OperationDetails {
         this.api(api);
 
         this.closeConsole();
-
-        const associatedServerId = api.authenticationSettings?.oAuth2?.authorizationServerId ||
-            api.authenticationSettings?.openid?.openidProviderId;
-
-        let associatedAuthServer = null;
-
-        if (this.authorizationServers && associatedServerId) {
-            associatedAuthServer = this.authorizationServers
-                .find(x => x.name === associatedServerId);
-        }
-
-        this.associatedAuthServer(associatedAuthServer);
     }
 
     public async loadOperation(apiName: string, operationName: string): Promise<void> {
@@ -318,8 +303,8 @@ export class OperationDetails {
             definition.name = representation.typeName;
         }
 
-        if (representation.example) {
-            definition.example = representation.example;
+        if (representation.examples?.length > 0) {
+            definition.example = representation.examples[0].value;
             definition.exampleFormat = representation.exampleFormat;
         }
 

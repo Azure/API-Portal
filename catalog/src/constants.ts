@@ -49,6 +49,8 @@ export enum AadEndpoints {
     legacy = "login.windows.net"
 }
 
+export const defaultAadTenantName = "common";
+
 export const closeAccount = "close-account";
 export const hashSignOut = "signout";
 export const pageUrlSignIn = "/signin";
@@ -152,3 +154,7 @@ export const developerPortalType = "self-hosted-portal";
  * Header name to track developer portal type.
  */
 export const portalHeaderName = "x-ms-apim-client";
+
+export const releaseNameFormat = "YYYYMMDDHHmm";
+
+export const genericHttpRequestError = "Server error. Unable to send request. Please try again later.";
