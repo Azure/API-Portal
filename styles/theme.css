@@ -1749,7 +1749,7 @@ pre[class*=language-] {
 }
 
 .token.punctuation {
-  color: #999;
+  color: #707070;
 }
 
 .namespace {
@@ -1787,7 +1787,7 @@ pre[class*=language-] {
 .token.atrule,
 .token.attr-value,
 .token.keyword {
-  color: #07a;
+  color: #0076a9;
 }
 
 .token.function,
@@ -2081,6 +2081,9 @@ text.subunit-label {
   cursor: pointer;
 }
 
+.list {
+  overflow-y: auto;
+}
 .list .tag-item {
   cursor: pointer;
 }
@@ -2764,6 +2767,23 @@ p:empty:before {
 
 .popup-host {
   display: contents;
+}
+
+.tab-panel {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+.tab-panel .tab-navs {
+  display: flex;
+}
+.tab-panel .tab-content {
+  display: none;
+  flex-grow: 1;
+}
+.tab-panel .tab-content.tab-content-active {
+  display: flex;
 }
 
 /* Breakpoints */
