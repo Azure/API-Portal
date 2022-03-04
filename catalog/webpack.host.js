@@ -1,6 +1,5 @@
 const path = require("path");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 
 const apiConfig = {
@@ -29,8 +28,6 @@ const apiConfig = {
         ]
     },
     plugins: [
-        // new CleanWebpackPlugin(),
-        // new webpack.HotModuleReplacementPlugin(),
         new CopyWebpackPlugin({
             patterns: [
                 { from: `./data`, to: `./data` },
