@@ -94,3 +94,40 @@
     overflow-y: auto;
     scroll-behavior: smooth;
 }
+
+.mw-170 {
+    min-width: 170px;
+}
+
+.pt-12 {
+    padding-top: 12px !important;
+}
+
+.pt-0 {
+    padding-top: 0px !important;
+}
+
+.pl-0 {
+    padding-left: 0px !important;
+}
+
+.max-w-500 {
+    max-width: 500px;
+}
+
+.fit {
+    @include fit;
+    flex: 1 1 auto;
+}
+
+.scrollable {
+    overflow: auto;
+}
+
+.combination-type {
+    margin-top: 30px;
+}
+
+.mt-17 {
+    margin-top: 17px;
+}

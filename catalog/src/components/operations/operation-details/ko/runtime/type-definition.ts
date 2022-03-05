@@ -3,6 +3,7 @@ import template from "./type-definition.html";
 import typeDefinitionEnum from "./type-definition-enum.html";
 import typeDefinitionIndexer from "./type-definition-indexer.html";
 import typeDefinitionObject from "./type-definition-object.html";
+import typeDefinitionCombination from "./type-definition-combination.html";
 import { Component, Param, OnMounted } from "@paperbits/common/ko/decorators";
 import { TypeDefinition } from "../../../../../models/typeDefinition";
 import { RouteHelper } from "../../../../../routing/routeHelper";
@@ -13,15 +14,14 @@ import { RouteHelper } from "../../../../../routing/routeHelper";
     childTemplates: {
         typeDefinitionEnum: typeDefinitionEnum,
         typeDefinitionIndexer: typeDefinitionIndexer,
-        typeDefinitionObject: typeDefinitionObject
+        typeDefinitionObject: typeDefinitionObject,
+        typeDefinitionCombination: typeDefinitionCombination
     }
 })
 export class TypeDefinitionViewModel {
     public readonly name: ko.Observable<string>;
     public readonly description: ko.Observable<string>;
     public readonly kind: ko.Observable<string>;
-    public readonly example: ko.Observable<string>;
-    public readonly exampleFormat: ko.Observable<string>;
     public readonly rawSchema: ko.Observable<string>;
     public readonly rawSchemaFormat: ko.Observable<string>;
     public readonly schemaView: ko.Observable<string>;
@@ -30,8 +30,6 @@ export class TypeDefinitionViewModel {
         this.name = ko.observable();
         this.description = ko.observable();
         this.kind = ko.observable();
-        this.example = ko.observable();
-        this.exampleFormat = ko.observable();
         this.rawSchema = ko.observable();
         this.rawSchemaFormat = ko.observable();
         this.schemaView = ko.observable();
@@ -62,11 +60,6 @@ export class TypeDefinitionViewModel {
         this.name(this.definition.name);
         this.description(this.definition.description);
         this.kind(this.definition.kind);
-
-        if (this.definition.example) {
-            this.exampleFormat(this.definition.exampleFormat);
-            this.example(this.definition.example);
-        }
     }
 
     public getReferenceId(definition: TypeDefinition): string {

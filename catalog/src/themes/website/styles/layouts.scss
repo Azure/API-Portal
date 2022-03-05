@@ -387,11 +387,6 @@ html {
     z-index: 1020;
 }
 
-.fit {
-    @include fit;
-    flex: 1 1 auto;
-}
-
 layout,
 main {
     flex: 1;
@@ -417,6 +412,10 @@ main {
     & > * {
         max-width: 100%;
     }
+}
+
+.contents {
+    display: contents;
 }
 
 .legacy {

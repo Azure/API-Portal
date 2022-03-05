@@ -14,6 +14,9 @@
             <!-- ko if: api().type === 'websocket' -->
             <span class="badge badge-soap">WebSocket</span>
             <!-- /ko -->
+            <!-- ko if: api().type === 'graphql' -->
+            <span class="badge badge-soap">GraphQL</span>
+            <!-- /ko -->
         </h1>
 
         <div class="form-inline">
@@ -24,11 +27,52 @@
                     data-bind="options: versionApis, optionsValue: 'name', optionsText: 'apiVersion', value: currentApiVersion">
                 </select>
                 <!-- /ko -->
+                <!-- ko if: api().type !== 'websocket' && api().type !== 'graphql' -->
+                <select id="apiDefinitions" class="form-control" aria-label="API definitions"
+                    data-bind="value: downloadSelected">
+                    <option value="" disabled="disabled" selected="selected">API definition</option>
+                    <option value="openapi">Open API 3 (YAML)</option>
+                    <option value="openapi+json">Open API 3 (JSON)</option>
+                    <option value="swagger"> Open API 2 (JSON)</option>
+                    <option value="wadl">WADL</option>
+                    <!-- ko if: api().type === 'soap' -->
+                    <option value="wsdl">WSDL</option>
+                    <!-- /ko -->
+                </select>
+                <a href="#" class="nav-link text-truncate" data-bind="attr: { href: $component.getChangeLogUrl()} ">
+                    Changelog
+                </a>
+                <!-- /ko -->
             </div>
         </div>
 
         <!-- ko if: api().description  -->
         <p data-bind="markdown: api().description"></p>
+        <!-- /ko -->
+
+        <!-- ko if: api().contact -->
+        <h4>Contact</h4>
+            <!-- ko if: api().contact.name -->
+            <div data-bind="text: api().contact.name"></div>
+            <!-- /ko -->
+
+            <!-- ko if: api().contact.email -->
+            <div><a data-bind="attr: { href: 'mailto:' + api().contact.email }, text: api().contact.email"></a></div>
+            <!-- /ko -->
+
+            <!-- ko if: api().contact.url -->
+            <div><a data-bind="attr: { href: api().contact.url }, text: api().contact.url"></a></div>
+            <!-- /ko -->
+        <!-- /ko -->
+
+        <!-- ko if: api().license -->
+        <h4>License</h4>
+        <div><a data-bind="attr: { href: api().license.url }, text: api().license.name"></a></div>
+        <!-- /ko -->
+
+        <!-- ko if: api().termsOfServiceUrl -->
+        <h4>Additional resources</h4>
+        <div><a data-bind="attr: { href: api().termsOfServiceUrl }">Terms and conditions</a></div>
         <!-- /ko -->
 
         <!-- /ko -->

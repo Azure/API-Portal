@@ -1,9 +1,10 @@
 import { XsdSchemaConverter } from "./xsdSchemaConverter";
-import { SchemaContract, SchemaType, OpenApiSchemaContract, SwaggerSchemaContract, XsdSchemaContract } from "../contracts/schema";
+import { SchemaContract, SchemaType, OpenApiSchemaContract, SwaggerSchemaContract, XsdSchemaContract, GraphQLSchemaContract } from "../contracts/schema";
 import { TypeDefinition } from "./typeDefinition";
 
 export class Schema {
     public definitions: TypeDefinition[];
+    public graphQLSchema: string;
 
     constructor(contract?: SchemaContract) {
         this.definitions = [];
@@ -26,6 +27,11 @@ export class Schema {
                 definitions = openApiDoc?.components?.schemas || {};
                 break;
 
+            case SchemaType.graphQL:
+                const graphQLDoc = <GraphQLSchemaContract>contract.properties?.document;
+                this.graphQLSchema = graphQLDoc?.value;
+                break;
+
             case SchemaType.xsd:
                 const xsdDoc = <XsdSchemaContract>contract.properties?.document;
 
@@ -43,7 +49,7 @@ export class Schema {
 
         this.definitions = Object.keys(definitions)
             .map(definitionName => {
-                return new TypeDefinition(definitionName, definitions[definitionName]);
+                return new TypeDefinition(definitionName, definitions[definitionName], definitions);
             });
     }
 }

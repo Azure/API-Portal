@@ -59,6 +59,8 @@
         "webpack-merge": "^5.8.0"
     },
     "dependencies": {
+        "@braintree/sanitize-url": "^6.0.0",
+        "@monaco-editor/loader": "^1.2.0",
         "@paperbits/azure": "0.1.490",
         "@paperbits/common": "0.1.490",
         "@paperbits/core": "0.1.490",
@@ -74,6 +76,9 @@
         "cors": "^2.8.5",
         "express": "^4.17.3",
         "google-maps": "^4.3.3",
+        "graphql": "^15.5.0",
+        "graphql-config": "^4.0.1",
+        "graphql-language-service": "^3.1.4",
         "js-beautify": "^1.14.0",
         "kcors": "^2.2.2",
         "knockout": "^3.5.1",
@@ -85,6 +90,7 @@
         "mime": "^3.0.0",
         "moment": "^2.29.1",
         "monaco-editor": "^0.29.1",
+        "prettier": "^2.5.1",
         "prismjs": "^1.27.0",
         "reflect-metadata": "^0.1.13",
         "rehype-raw": "^6.1.1",

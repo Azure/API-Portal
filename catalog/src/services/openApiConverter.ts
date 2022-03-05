@@ -224,7 +224,7 @@ export class OpenApiConverter {
         const definitions = Object
             .keys(schemasObject)
             .map(definitionName => {
-                return new TypeDefinition(definitionName, schemasObject[definitionName]);
+                return new TypeDefinition(definitionName, schemasObject[definitionName], {});
             });
 
         const schema = new Schema();

@@ -81,15 +81,14 @@ export class ApiDetails {
         }
 
         this.working(true);
+        //if (api.apiVersionSet && api.apiVersionSet.id) {
+        //    const apis = await this.apiService.getApisInVersionSet(api.apiVersionSet.id);
+        //    apis.forEach(x => x.apiVersion = x.apiVersion || "Original");
 
-        // if (api.apiVersionSet && api.apiVersionSet.id) {
-        //     const apis = await this.apiService.getApisInVersionSet(api.apiVersionSet.id);
-        //     apis.forEach(x => x.apiVersion = x.apiVersion || "Original");
-
-        //     this.versionApis(apis || []);
-        // }
-        // else {
-        this.versionApis([]);
+        //    this.versionApis(apis || []);
+        //}
+        //else {
+            this.versionApis([]);
         // }
 
         this.currentApiVersion(api.name);
@@ -132,19 +131,18 @@ export class ApiDetails {
 
     private download(data: string, filename: string, type: string): void {
         const file = new Blob([data], { type: type });
+        const downloadLink = document.createElement("a");
+        const url = URL.createObjectURL(file);
 
-        const a = document.createElement("a"),
-            url = URL.createObjectURL(file);
-        a.href = url;
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
+        downloadLink.href = url;
+        downloadLink.download = filename;
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
 
         setTimeout(() => {
-            document.body.removeChild(a);
+            document.body.removeChild(downloadLink);
             window.URL.revokeObjectURL(url);
         }, 0);
-
     }
 
     private onVersionChange(selectedApiName: string): void {
