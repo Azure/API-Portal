@@ -8,7 +8,7 @@ export const openapiSpecsPathSettingName = "openapiSpecsPath";
 /**
  * APIM service SKU names.
  */
-export enum ServiceSkuName {
+ export enum ServiceSkuName {
     Developer = "Developer",
     Basic = "Basic",
     Standard = "Standard",
@@ -22,7 +22,8 @@ export enum ServiceSkuName {
 export enum TypeOfApi {
     webSocket = "websocket",
     soap = "soap",
-    http = "http"
+    http = "http",
+    graphQL = "graphql"
 }
 
 /**
@@ -47,6 +48,14 @@ export enum IdentityProviders {
 export enum AadEndpoints {
     primary = "login.microsoftonline.com",
     legacy = "login.windows.net"
+}
+
+/**
+ * Types of direction (e.g. for sorting of elements in a table)
+ */
+export enum Direction {
+    asc = "asc",
+    desc = "desc"
 }
 
 export const defaultAadTenantName = "common";
@@ -88,9 +97,19 @@ export const reservedPermalinks = [
 ];
 
 /**
- * Maximum number of items to show in a paginated view.
+ * Maximum number of items to request from Managament API.
  */
 export const defaultPageSize = 50;
+
+/**
+ * Default value of first page in a paginated view.
+ */
+ export const firstPage = 1;
+
+/**
+ * Maximum number of pages to show in a paginated view.
+ */
+export const showMaximumPages = 3;
 
 /**
  * Default input delay before changes take effect.
@@ -101,6 +120,100 @@ export const defaultInputDelayMs = 600;
  * Developer portal appType for email notifications.
  */
 export const AppType = "developerPortal";
+
+/**
+ * HTML Editor Settings - HTML injection widget editor
+ */
+ export const HtmlEditorSettings = {
+    id: "htmlEditor",
+    config: {
+        language: "html",
+        readOnly: false,
+
+        lineHeight: 17,
+        automaticLayout: true,
+        minimap: {
+            enabled: false
+        },
+    }
+ };
+
+/**
+ * Query Editor Settings - GraphQL Console
+ */
+export const QueryEditorSettings = {
+    id: "queryEditor",
+    config: {
+        language: "graphqlQuery",
+        readOnly: false,
+    }
+};
+
+/**
+ * Variables Editor Settings - GraphQL Console
+ */
+export const VariablesEditorSettings = {
+    id: "variablesEditor",
+    config: {
+        language: "json",
+        readOnly: false,
+    }
+};
+
+/**
+ * Response Settings - GraphQL Console
+ */
+export const ResponseSettings = {
+    id: "responseEditor",
+    config: {
+        language: "json",
+        readOnly: true,
+    }
+};
+
+ /**
+ * Graphql types
+ */
+  export enum GraphqlTypes {
+    query = "query",
+    mutation = "mutation",
+    subscription = "subscription",
+}
+
+ /**
+ * Graphql types for documentation
+ */
+export enum GraphqlTypesForDocumentation {
+    query = "Query",
+    mutation = "Mutation",
+    subscription = "Subscription",
+    objectType = "Object Type",
+    inputObjectType = "Input Object Type",
+    enumType = "Enum Type",
+    scalarType = "Scalar Type",
+    unionType = "Union Type",
+    interfaceType = "Interface Type"
+}
+
+export enum GraphqlCustomFieldNames {
+    selected = "isSelectedForDoc",
+    type = "collectionTypeForDoc",
+}
+
+export enum GraphqlDefaultScalarTypes {
+    int = "Int",
+    float = "Float",
+    string = "String",
+    boolean = "Boolean",
+    id = "ID"
+}
+
+export enum GraphqlFieldTypes {
+    args = "args",
+    fields = "_fields",
+    values = "_values",
+    types = "_types"
+}
 
 /**
  * Known setting names.
@@ -143,7 +256,7 @@ export enum GrantTypes {
     password = "password"
 }
 
-export const managementApiVersion = "2021-01-01-preview";
+export const managementApiVersion = "2021-04-01-preview";
 
 /**
  * Developer portal type (self-hosted or managed).
@@ -158,3 +271,6 @@ export const portalHeaderName = "x-ms-apim-client";
 export const releaseNameFormat = "YYYYMMDDHHmm";
 
 export const genericHttpRequestError = "Server error. Unable to send request. Please try again later.";
+
+export const oauthSessionKey = "oauthSession";
+export const reservedCharTuplesForOData: [string, string][] = [["'", "''"]];

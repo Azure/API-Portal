@@ -1,4 +1,6 @@
-﻿import { IWidgetOrder, IWidgetHandler } from "@paperbits/common/editing";
+﻿import { Bag } from "@paperbits/common";
+import { IWidgetOrder, IWidgetHandler } from "@paperbits/common/editing";
+import { StyleDefinition } from "@paperbits/common/styles";
 import { OperationDetailsModel } from "./operationDetailsModel";
 
 export class OperationDetailsHandlers implements IWidgetHandler {
@@ -13,5 +15,26 @@ export class OperationDetailsHandlers implements IWidgetHandler {
         };
 
         return widgetOrder;
+    }
+
+    public getStyleDefinitions(): Bag<StyleDefinition> {
+        return {
+            operationDetails: {
+                displayName: "operationDetails",
+                plugins: ["margin", "padding", "typography"],
+                components: {
+                    tryItButton: {
+                        displayName: "Try it button",
+                        plugins: ["typography"],
+                        defaults: {
+                            typography: {
+                                fontSize: 100
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        };
     }
 }
