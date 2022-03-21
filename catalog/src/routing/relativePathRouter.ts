@@ -62,6 +62,10 @@ export class RelativePathRouter implements Router {
             ? url.substring(location.origin.length)
             : url;
 
+        if (url.startsWith(this.basePath + "/")) {
+            url = url.substring(this.basePath.length);
+        }
+
         const parts = url.split("#");
 
         const route: Route = {
