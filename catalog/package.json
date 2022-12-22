@@ -84,7 +84,7 @@
         "knockout": "^3.5.1",
         "knockout-mapping": "^2.6.0",
         "knockout.validation": "^2.0.4",
-        "liquidjs": "^9.35.2",
+        "liquidjs": "^10.0.0",
         "lodash": "^4.17.21",
         "lunr": "^2.3.9",
         "mime": "^3.0.0",
