@@ -27,4 +27,4 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.CUSTOM_GH_TOKEN }}
-        publish_dir: ./catalog/dist/website
+        publish_dir: ./catalog/dist/host
