@@ -105,5 +105,9 @@
         "saxen": "^8.1.2",
         "truncate-html": "^1.0.4",
         "xhr2": "^0.2.1"
+    },
+    "optionalDependencies": {
+        "bufferutil": "^4.0.7",
+        "utf-8-validate": "^5.0.10"
     }
 }

@@ -70,7 +70,8 @@ const publisherConfig = {
             patterns: [
                 { from: `./src/config.publish.json`, to: `config.json` },
                 { from: `./src/config.runtime.json`, to: `assets/config.json` },
-                { from: `./templates/default.json`, to: "editors/templates/default.json" }
+                { from: `./templates/default.json`, to: "editors/templates/default.json" },
+                { from: `./dist/website/scripts/theme.js`, to: `API-Portal/scripts/theme.js`, force: true },
             ]
         }),
         new webpack.ProvidePlugin({ Buffer: ['buffer', 'Buffer'] })
