@@ -3,12 +3,11 @@ name: Publish and deploy to GitHub Pages
 defaults:
   run:
     working-directory: ./catalog
-
 on:
   push:
     branches:
     - main
-
+  workflow_dispatch:
 jobs:
   build_and_publish_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
@@ -21,10 +20,10 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm install
-    - run: npm run publish
-
+    - run: |
+           npm run publish
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.PAT_GH_TOKEN }}
         publish_dir: ./catalog/dist/website
