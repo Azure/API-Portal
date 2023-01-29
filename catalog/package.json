@@ -17,7 +17,8 @@
         "build-publisher": "webpack --config webpack.publisher.js",
         "build-runtime": "webpack --config webpack.runtime.js",
         "build-host": "webpack --config webpack.host.js",
-        "publish": "webpack --config webpack.publisher.js && node dist/publisher/index.js"
+        "publish": "webpack --config webpack.publisher.js && node dist/publisher/index.js",
+        "deploy": "gh-pages -d dist"
     },
     "devDependencies": {
         "@types/chai": "^4.3.0",
@@ -36,6 +37,7 @@
         "copy-webpack-plugin": "^10.2.4",
         "css-loader": "^6.7.0",
         "file-loader": "^6.2.0",
+        "gh-pages": "^5.0.0",
         "html-loader": "^3.1.0",
         "mini-css-extract-plugin": "^2.6.0",
         "mocha": "^9.2.1",
