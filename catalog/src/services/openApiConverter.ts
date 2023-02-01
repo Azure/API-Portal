@@ -13,7 +13,7 @@ import { OpenApiSpec30 } from "../contracts/openapi/openApi";
 import { OpenApiResponse } from "../contracts/openapi/openApiResponse";
 import { Bag } from "@paperbits/common";
 
-const defaultApiServerHost = "api.github.io";
+const defaultApiServerHost = "sitestudio.github.io";
 
 export class OpenApiConverter {
     public convertParameter(openApiParameter: OpenApiParameter): ParameterContract {
