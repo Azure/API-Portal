@@ -1,0 +1,1392 @@
+{
+   "openapi": "3.0.1",
+   "info": {
+      "title": "Parent-API",
+      "description": "Parent related APIs",
+      "version": "1.0"
+   },
+   "servers": [
+      {
+         "url": "https://api.zone2.qed.qld.gov.au/parent-api"
+      }
+   ],
+   "paths": {
+      "/parentpersonals;zoneId={zoneId}": {
+         "get": {
+            "summary": "Parent List",
+            "description": "Retrieves a summary of parent details for a school based on search criteria",
+            "operationId": "parentslist",
+            "parameters": [
+               {
+                  "name": "zoneId",
+                  "in": "path",
+                  "description": "4 character alphanumeric code of the school",
+                  "required": true,
+                  "schema": {
+                     "type": "string"
+                  }
+               },
+               {
+                  "name": "navigationPage",
+                  "in": "query",
+                  "description": "The page number of the result set to return (this is a 1-based index)",
+                  "schema": {
+                     "type": "integer",
+                     "default": 1
+                  }
+               },
+               {
+                  "name": "navigationPageSize",
+                  "in": "query",
+                  "description": "The maximum number of records to return per page of the result set",
+                  "schema": {
+                     "type": "integer",
+                     "default": 100
+                  }
+               },
+               {
+                  "name": "Authorization",
+                  "in": "header",
+                  "description": "The client authorisation credentials or token",
+                  "required": true,
+                  "schema": {
+                     "type": "string"
+                  }
+               },
+               {
+                  "name": "timestamp",
+                  "in": "header",
+                  "description": "ISO 8601 formatted datetime specifying the date/time of the request",
+                  "required": true,
+                  "schema": {
+                     "type": "string"
+                  }
+               },
+               {
+                  "name": "Accept",
+                  "in": "header",
+                  "description": "Specify the format of the response: application/xml or application/json",
+                  "schema": {
+                     "type": "string",
+                     "default": "application/xml"
+                  }
+               },
+               {
+                  "name": "messageId",
+                  "in": "header",
+                  "description": "Unique identifier of the message",
+                  "schema": {
+                     "type": "string"
+                  }
+               },
+               {
+                  "name": "navigationPage",
+                  "in": "header",
+                  "description": "The page number of the result set to return (this is a 1-based index)",
+                  "schema": {
+                     "type": "integer"
+                  }
+               },
+               {
+                  "name": "navigationPageSize",
+                  "in": "header",
+                  "description": "The maximum number of records to return per page of the result set",
+                  "schema": {
+                     "type": "integer"
+                  }
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "Success",
+                  "headers": {
+                     "navigationCount": {
+                        "description": "The total number of records matching the search criteria",
+                        "schema": {
+                           "type": "integer"
+                        }
+                     },
+                     "navigationPage": {
+                        "description": "The current page number (this is a 1-based index)",
+                        "schema": {
+                           "type": "integer"
+                        }
+                     },
+                     "navigationPageSize": {
+                        "description": "The number of records returned in this response",
+                        "schema": {
+                           "type": "integer"
+                        }
+                     },
+                     "Content-Type": {
+                        "description": "Describes the format of the response: application/xml or application/json",
+                        "required": true,
+                        "schema": {
+                           "type": "string"
+                        }
+                     },
+                     "messageId": {
+                        "description": "Unique identifier of the message. If provided in the request, then it is the same value as supplied in the request header.",
+                        "required": true,
+                        "schema": {
+                           "type": "string"
+                        }
+                     },
+                     "messageType": {
+                        "description": "The message type. Will be RESPONSE for a successful response.",
+                        "required": true,
+                        "schema": {
+                           "enum": [
+                              "RESPONSE"
+                           ],
+                           "type": "string"
+                        }
+                     },
+                     "responseAction": {
+                        "description": "The response action. Will be QUERY for this action.",
+                        "required": true,
+                        "schema": {
+                           "enum": [
+                              "QUERY"
+                           ],
+                           "type": "string"
+                        }
+                     }
+                  },
+                  "content": {
+                     "application/json": {
+                        "schema": {
+                           "$ref": "#/components/schemas/ParentPersonalsResponse"
+                        },
+                        "example": {
+                           "ParentPersonal": [
+                              {
+                                 "StudentContactPersonal": {
+                                    "LocalId": "172918",
+                                    "PersonInfo": {
+                                       "Name": {
+                                          "Type": "LGL",
+                                          "Title": "Mr",
+                                          "FamilyName": "Drew",
+                                          "GivenName": "William",
+                                          "FullName": "William Drew"
+                                       },
+                                       "PhoneNumberList": [
+                                          {
+                                             "Number": "0411787878",
+                                             "Type": "0888"
+                                          }
+                                       ],
+                                       "EmailList": [
+                                          {
+                                             "Type": "01",
+                                             "Value": "myparent@oneschool.com.au"
+                                          }
+                                       ]
+                                    },
+                                    "SIF_ExtendedElements": [
+                                       {
+                                          "Name": "SMSIndicator",
+                                          "Text": [
+                                             "Y"
+                                          ]
+                                       },
+                                       {
+                                          "Name": "PreferredContactMethod.Description",
+                                          "Text": [
+                                             "Mobile (Personal)"
+                                          ]
+                                       },
+                                       {
+                                          "Name": "PreferredContactMethod.Code",
+                                          "Text": [
+                                             "0777"
+                                          ]
+                                       }
+                                    ]
+                                 },
+                                 "StudentContactRelationship": {
+                                    "Relationship": {
+                                       "Code": "01",
+                                       "OtherCodeList": [
+                                          {
+                                             "Codeset": "Text",
+                                             "Value": "Father"
+                                          }
+                                       ]
+                                    },
+                                    "ContactFlags": {
+                                       "LivesWith": "Y",
+                                       "FamilyMail": "Y"
+                                    },
+                                    "StudentPersonalRef": {
+                                       "LocalId": "0004849221H",
+                                       "Description": "Jai Drew (Year 12)"
+                                    }
+                                 }
+                              },
+                              {
+                                 "StudentContactPersonal": {
+                                    "LocalId": "172917",
+                                    "PersonInfo": {
+                                       "Name": {
+                                          "Type": "LGL",
+                                          "Title": "Mrs",
+                                          "FamilyName": "Drew",
+                                          "GivenName": "Jane",
+                                          "FullName": "Jane Drew"
+                                       },
+                                       "PhoneNumberList": [
+                                          {
+                                             "Number": "0411787878",
+                                             "Type": "0888"
+                                          }
+                                       ],
+                                       "EmailList": [
+                                          {
+                                             "Type": "01",
+                                             "Value": "myparent@oneschool.com.au"
+                                          }
+                                       ]
+                                    },
+                                    "SIF_ExtendedElements": [
+                                       {
+                                          "Name": "SMSIndicator",
+                                          "Text": [
+                                             "Y"
+                                          ]
+                                       },
+                                       {
+                                          "Name": "PreferredContactMethod.Description",
+                                          "Text": [
+                                             "Mobile (Personal)"
+                                          ]
+                                       },
+                                       {
+                                          "Name": "PreferredContactMethod.Code",
+                                          "Text": [
+                                             "0777"
+                                          ]
+                                       }
+                                    ]
+                                 },
+                                 "StudentContactRelationship": {
+                                    "Relationship": {
+                                       "Code": "01",
+                                       "OtherCodeList": [
+                                          {
+                                             "Codeset": "Text",
+                                             "Value": "Mother"
+                                          }
+                                       ]
+                                    },
+                                    "ContactFlags": {
+                                       "LivesWith": "Y",
+                                       "FamilyMail": "Y"
+                                    },
+                                    "StudentPersonalRef": {
+                                       "LocalId": "0004849221H",
+                                       "Description": "Jai Drew (Year 12)"
+                                    }
+                                 }
+                              }
+                           ]
+                        }
+                     }
+                  }
+               },
+               "204": {
+                  "description": "No records returned",
+                  "headers": {
+                     "navigationCount": {
+                        "description": "The total number of records matching the search criteria",
+                        "schema": {
+                           "type": "integer"
+                        }
+                     },
+                     "navigationPage": {
+                        "description": "The current page number (this is a 1-based index)",
+                        "schema": {
+                           "type": "integer"
+                        }
+                     },
+                     "navigationPageSize": {
+                        "description": "The number of records returned in this response",
+                        "schema": {
+                           "type": "integer"
+                        }
+                     },
+                     "messageId": {
+                        "description": "Unique identifier of the message. If provided in the request, then it is the same value as supplied in the request header.",
+                        "required": true,
+                        "schema": {
+                           "type": "string"
+                        }
+                     },
+                     "messageType": {
+                        "description": "The message type. Will be RESPONSE for a successful response.",
+                        "required": true,
+                        "schema": {
+                           "enum": [
+                              "RESPONSE"
+                           ],
+                           "type": "string"
+                        }
+                     },
+                     "responseAction": {
+                        "description": "The response action. Will be QUERY for this action.",
+                        "required": true,
+                        "schema": {
+                           "enum": [
+                              "QUERY"
+                           ],
+                           "type": "string"
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      },
+      "/healthcheck": {
+         "get": {
+            "summary": "Health check",
+            "description": "Retrieves the health check status from the OneSchool API endpoint",
+            "operationId": "healthcheck",
+            "responses": {
+               "200": {
+                  "description": "",
+                  "content": {
+                     "application/json": {
+                        "example": {
+                           "result": "Online"
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      },
+      "/parentportalpersonals;zoneId={zoneId}": {
+         "get": {
+            "summary": "Parent Portal List for Student",
+            "description": "Retrieves summary of parent details (Parent Portal) for students for a school based on search criteria",
+            "operationId": "parentportallistforstudents",
+            "parameters": [
+               {
+                  "name": "zoneId",
+                  "in": "path",
+                  "description": "4 character alphanumeric code of the school",
+                  "required": true,
+                  "schema": {
+                     "type": "string"
+                  }
+               },
+               {
+                  "name": "eqIds",
+                  "in": "query",
+                  "description": "Comma separated listed of Student EqIds",
+                  "schema": {
+                     "type": "string"
+                  }
+               },
+               {
+                  "name": "Authorization",
+                  "in": "header",
+                  "description": "The client authorisation credentials or token",
+                  "required": true,
+                  "schema": {
+                     "type": "string"
+                  }
+               },
+               {
+                  "name": "timestamp",
+                  "in": "header",
+                  "description": "ISO 8601 formatted datetime specifying the date/time of the request",
+                  "required": true,
+                  "schema": {
+                     "type": "string"
+                  }
+               },
+               {
+                  "name": "Accept",
+                  "in": "header",
+                  "description": "Specify the format of the response: application/xml or application/json",
+                  "schema": {
+                     "type": "string",
+                     "default": "application/xml"
+                  }
+               },
+               {
+                  "name": "messageId",
+                  "in": "header",
+                  "description": "Unique identifier of the message",
+                  "schema": {
+                     "type": "string"
+                  }
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "Success",
+                  "headers": {
+                     "navigationCount": {
+                        "description": "The total number of records matching the search criteria",
+                        "schema": {
+                           "type": "integer"
+                        }
+                     },
+                     "navigationPage": {
+                        "description": "The current page number (this is a 1-based index)",
+                        "schema": {
+                           "type": "integer"
+                        }
+                     },
+                     "navigationPageSize": {
+                        "description": "The number of records returned in this response",
+                        "schema": {
+                           "type": "integer"
+                        }
+                     },
+                     "Content-Type": {
+                        "description": "Describes the format of the response: application/xml or application/json",
+                        "required": true,
+                        "schema": {
+                           "type": "string"
+                        }
+                     },
+                     "messageId": {
+                        "description": "Unique identifier of the message. If provided in the request, then it is the same value as supplied in the request header.",
+                        "required": true,
+                        "schema": {
+                           "type": "string"
+                        }
+                     },
+                     "messageType": {
+                        "description": "The message type. Will be RESPONSE for a successful response.",
+                        "required": true,
+                        "schema": {
+                           "enum": [
+                              "RESPONSE"
+                           ],
+                           "type": "string"
+                        }
+                     },
+                     "responseAction": {
+                        "description": "The response action. Will be QUERY for this action.",
+                        "required": true,
+                        "schema": {
+                           "enum": [
+                              "QUERY"
+                           ],
+                           "type": "string"
+                        }
+                     }
+                  },
+                  "content": {
+                     "application/json": {
+                        "schema": {
+                           "$ref": "#/components/schemas/ParentPortalPersonalsResponse"
+                        },
+                        "example": {
+                           "ParentPersonal": [
+                              {
+                                 "StudentContactPersonal": {
+                                    "LocalId": "142114",
+                                    "OtherIdList": [
+                                       {
+                                          "Type": "ParentPortalAccountId",
+                                          "Value": "43905"
+                                       },
+                                       {
+                                          "Type": "PPAOReference",
+                                          "Value": "D9F0FC6"
+                                       }
+                                    ],
+                                    "PersonInfo": {
+                                       "Name": {
+                                          "Type": "LGL",
+                                          "Title": "Ms",
+                                          "FamilyName": "Prasai",
+                                          "GivenName": "Jane"
+                                       },
+                                       "Demographics": {
+                                          "Sex": "2"
+                                       },
+                                       "PhoneNumberList": [
+                                          {
+                                             "Number": "0411787878",
+                                             "Type": "0888"
+                                          }
+                                       ],
+                                       "EmailList": [
+                                          {
+                                             "Type": "01",
+                                             "Value": "PeterPerfect@oneschool.com.au"
+                                          }
+                                       ]
+                                    },
+                                    "SIF_ExtendedElements": [
+                                       {
+                                          "Name": "SMSIndicator",
+                                          "Text": [
+                                             "Y"
+                                          ]
+                                       }
+                                    ]
+                                 },
+                                 "StudentContactRelationship": {
+                                    "Relationship": {
+                                       "Code": "01",
+                                       "OtherCodeList": [
+                                          {
+                                             "Codeset": "Text",
+                                             "Value": "Mother"
+                                          }
+                                       ]
+                                    },
+                                    "ContactFlags": {
+                                       "LivesWith": "Y",
+                                       "FamilyMail": "Y"
+                                    },
+                                    "StudentPersonalRef": {
+                                       "LocalId": "0075841788C"
+                                    }
+                                 }
+                              }
+                           ]
+                        }
+                     }
+                  }
+               },
+               "204": {
+                  "description": "No records returned",
+                  "headers": {
+                     "navigationCount": {
+                        "description": "The total number of records matching the search criteria",
+                        "schema": {
+                           "type": "integer"
+                        }
+                     },
+                     "navigationPage": {
+                        "description": "The current page number (this is a 1-based index)",
+                        "schema": {
+                           "type": "integer"
+                        }
+                     },
+                     "navigationPageSize": {
+                        "description": "The number of records returned in this response",
+                        "schema": {
+                           "type": "integer"
+                        }
+                     },
+                     "messageId": {
+                        "description": "Unique identifier of the message. If provided in the request, then it is the same value as supplied in the request header.",
+                        "required": true,
+                        "schema": {
+                           "type": "string"
+                        }
+                     },
+                     "messageType": {
+                        "description": "The message type. Will be RESPONSE for a successful response.",
+                        "required": true,
+                        "schema": {
+                           "enum": [
+                              "RESPONSE"
+                           ],
+                           "type": "string"
+                        }
+                     },
+                     "responseAction": {
+                        "description": "The response action. Will be QUERY for this action.",
+                        "required": true,
+                        "schema": {
+                           "enum": [
+                              "QUERY"
+                           ],
+                           "type": "string"
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      }
+   },
+   "components": {
+      "schemas": {
+         "ParentPersonalsResponse": {
+            "type": "object",
+            "properties": {
+               "ParentPersonal": {
+                  "type": "array",
+                  "items": {
+                     "required": [
+                        "StudentContactRelationship"
+                     ],
+                     "type": "object",
+                     "properties": {
+                        "StudentContactPersonal": {
+                           "type": "object",
+                           "properties": {
+                              "LocalId": {
+                                 "type": "string"
+                              },
+                              "PersonInfo": {
+                                 "type": "object",
+                                 "properties": {
+                                    "Name": {
+                                       "type": "object",
+                                       "properties": {
+                                          "Type": {
+                                             "type": "string"
+                                          },
+                                          "Title": {
+                                             "type": "string"
+                                          },
+                                          "FamilyName": {
+                                             "type": "string"
+                                          },
+                                          "GivenName": {
+                                             "type": "string"
+                                          },
+                                          "FullName": {
+                                             "type": "string"
+                                          }
+                                       }
+                                    },
+                                    "PhoneNumberList": {
+                                       "type": "array",
+                                       "items": {
+                                          "required": [
+                                             "Number",
+                                             "Type"
+                                          ],
+                                          "type": "object",
+                                          "properties": {
+                                             "Number": {
+                                                "type": "string"
+                                             },
+                                             "Type": {
+                                                "type": "string"
+                                             }
+                                          }
+                                       }
+                                    },
+                                    "EmailList": {
+                                       "type": "array",
+                                       "items": {
+                                          "required": [
+                                             "Type",
+                                             "Value"
+                                          ],
+                                          "type": "object",
+                                          "properties": {
+                                             "Type": {
+                                                "type": "string"
+                                             },
+                                             "Value": {
+                                                "type": "string"
+                                             }
+                                          }
+                                       }
+                                    }
+                                 }
+                              },
+                              "SIF_ExtendedElements": {
+                                 "type": "array",
+                                 "items": {
+                                    "required": [
+                                       "Name",
+                                       "Text"
+                                    ],
+                                    "type": "object",
+                                    "properties": {
+                                       "Name": {
+                                          "type": "string"
+                                       },
+                                       "Text": {
+                                          "type": "array",
+                                          "items": {
+                                             "type": "string"
+                                          }
+                                       }
+                                    }
+                                 }
+                              }
+                           }
+                        },
+                        "StudentContactRelationship": {
+                           "type": "object",
+                           "properties": {
+                              "Relationship": {
+                                 "type": "object",
+                                 "properties": {
+                                    "Code": {
+                                       "type": "string"
+                                    },
+                                    "OtherCodeList": {
+                                       "type": "array",
+                                       "items": {
+                                          "required": [
+                                             "Codeset",
+                                             "Value"
+                                          ],
+                                          "type": "object",
+                                          "properties": {
+                                             "Codeset": {
+                                                "type": "string"
+                                             },
+                                             "Value": {
+                                                "type": "string"
+                                             }
+                                          }
+                                       }
+                                    }
+                                 }
+                              },
+                              "ContactFlags": {
+                                 "type": "object",
+                                 "properties": {
+                                    "LivesWith": {
+                                       "type": "string"
+                                    },
+                                    "FamilyMail": {
+                                       "type": "string"
+                                    }
+                                 }
+                              },
+                              "StudentPersonalRef": {
+                                 "type": "object",
+                                 "properties": {
+                                    "LocalId": {
+                                       "type": "string"
+                                    },
+                                    "Description": {
+                                       "type": "string"
+                                    }
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         },
+         "ParentPersonalsForStudentResponse": {
+            "type": "object",
+            "properties": {
+               "ParentPersonal": {
+                  "type": "array",
+                  "items": {
+                     "required": [
+                        "StudentContactPersonal",
+                        "StudentContactRelationship"
+                     ],
+                     "type": "object",
+                     "properties": {
+                        "StudentContactPersonal": {
+                           "type": "object",
+                           "properties": {
+                              "LocalId": {
+                                 "type": "string"
+                              },
+                              "PersonInfo": {
+                                 "type": "object",
+                                 "properties": {
+                                    "Name": {
+                                       "type": "object",
+                                       "properties": {
+                                          "Type": {
+                                             "type": "string"
+                                          },
+                                          "Title": {
+                                             "type": "string"
+                                          },
+                                          "FamilyName": {
+                                             "type": "string"
+                                          },
+                                          "GivenName": {
+                                             "type": "string"
+                                          },
+                                          "FullName": {
+                                             "type": "string"
+                                          }
+                                       }
+                                    },
+                                    "AddressList": {
+                                       "type": "array",
+                                       "items": {
+                                          "required": [
+                                             "EffectiveFromDate",
+                                             "Street",
+                                             "City",
+                                             "StateProvince",
+                                             "Country",
+                                             "PostalCode",
+                                             "Type"
+                                          ],
+                                          "type": "object",
+                                          "properties": {
+                                             "EffectiveFromDate": {
+                                                "type": "string"
+                                             },
+                                             "Street": {
+                                                "type": "object",
+                                                "properties": {
+                                                   "Line1": {
+                                                      "type": "string"
+                                                   },
+                                                   "Line2": {
+                                                      "type": "string"
+                                                   }
+                                                }
+                                             },
+                                             "City": {
+                                                "type": "string"
+                                             },
+                                             "StateProvince": {
+                                                "type": "string"
+                                             },
+                                             "Country": {
+                                                "type": "string"
+                                             },
+                                             "PostalCode": {
+                                                "type": "string"
+                                             },
+                                             "Type": {
+                                                "type": "string"
+                                             }
+                                          }
+                                       }
+                                    },
+                                    "PhoneNumberList": {
+                                       "type": "array",
+                                       "items": {
+                                          "required": [
+                                             "Number",
+                                             "Type",
+                                             "Preference",
+                                             "LocalId"
+                                          ],
+                                          "type": "object",
+                                          "properties": {
+                                             "Number": {
+                                                "type": "string"
+                                             },
+                                             "Type": {
+                                                "type": "string"
+                                             },
+                                             "Preference": {
+                                                "type": "string"
+                                             },
+                                             "LocalId": {
+                                                "type": "string"
+                                             }
+                                          }
+                                       }
+                                    },
+                                    "EmailList": {
+                                       "type": "array",
+                                       "items": {
+                                          "required": [
+                                             "Type",
+                                             "Value",
+                                             "Preference",
+                                             "LocalId"
+                                          ],
+                                          "type": "object",
+                                          "properties": {
+                                             "Type": {
+                                                "type": "string"
+                                             },
+                                             "Value": {
+                                                "type": "string"
+                                             },
+                                             "Preference": {
+                                                "type": "string"
+                                             },
+                                             "LocalId": {
+                                                "type": "string"
+                                             }
+                                          }
+                                       }
+                                    }
+                                 }
+                              },
+                              "SIF_ExtendedElements": {
+                                 "type": "array",
+                                 "items": {
+                                    "required": [
+                                       "Name",
+                                       "Text"
+                                    ],
+                                    "type": "object",
+                                    "properties": {
+                                       "Name": {
+                                          "type": "string"
+                                       },
+                                       "Text": {
+                                          "type": "array",
+                                          "items": {
+                                             "type": "string"
+                                          }
+                                       }
+                                    }
+                                 }
+                              }
+                           }
+                        },
+                        "StudentContactRelationship": {
+                           "type": "object",
+                           "properties": {
+                              "Relationship": {
+                                 "type": "object",
+                                 "properties": {
+                                    "Code": {
+                                       "type": "string"
+                                    },
+                                    "OtherCodeList": {
+                                       "type": "array",
+                                       "items": {
+                                          "required": [
+                                             "Codeset",
+                                             "Value"
+                                          ],
+                                          "type": "object",
+                                          "properties": {
+                                             "Codeset": {
+                                                "type": "string"
+                                             },
+                                             "Value": {
+                                                "type": "string"
+                                             }
+                                          }
+                                       }
+                                    }
+                                 }
+                              },
+                              "ContactFlags": {
+                                 "type": "object",
+                                 "properties": {
+                                    "LivesWith": {
+                                       "type": "string"
+                                    },
+                                    "FamilyMail": {
+                                       "type": "string"
+                                    }
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         },
+         "UpdateParentContactsRequest": {
+            "type": "object",
+            "properties": {
+               "LocalId": {
+                  "type": "string"
+               },
+               "PersonInfo": {
+                  "type": "object",
+                  "properties": {
+                     "PhoneNumberList": {
+                        "type": "array",
+                        "items": {
+                           "required": [
+                              "Number",
+                              "Preference",
+                              "Type",
+                              "LocalId"
+                           ],
+                           "type": "object",
+                           "properties": {
+                              "Number": {
+                                 "type": "string"
+                              },
+                              "Preference": {
+                                 "type": "integer"
+                              },
+                              "Type": {
+                                 "type": "string"
+                              },
+                              "LocalId": {
+                                 "type": "string"
+                              }
+                           }
+                        }
+                     },
+                     "EmailList": {
+                        "type": "array",
+                        "items": {
+                           "required": [
+                              "Type",
+                              "Value",
+                              "LocalId",
+                              "Preference"
+                           ],
+                           "type": "object",
+                           "properties": {
+                              "Type": {
+                                 "type": "string"
+                              },
+                              "Value": {
+                                 "type": "string"
+                              },
+                              "LocalId": {
+                                 "type": "string"
+                              },
+                              "Preference": {
+                                 "type": "integer"
+                              }
+                           }
+                        }
+                     }
+                  }
+               },
+               "SIF_Metadata": {
+                  "type": "object",
+                  "properties": {
+                     "LifeCycle": {
+                        "type": "object",
+                        "properties": {
+                           "ETag": {
+                              "type": "string"
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         },
+         "UpdateParentAddressesRequest": {
+            "type": "object",
+            "properties": {
+               "LocalId": {
+                  "type": "string"
+               },
+               "PersonInfo": {
+                  "type": "object",
+                  "properties": {
+                     "AddressList": {
+                        "type": "array",
+                        "items": {
+                           "required": [
+                              "Street",
+                              "City",
+                              "StateProvince",
+                              "Country",
+                              "PostalCode",
+                              "Type"
+                           ],
+                           "type": "object",
+                           "properties": {
+                              "Street": {
+                                 "type": "object",
+                                 "properties": {
+                                    "Line1": {
+                                       "type": "string"
+                                    },
+                                    "Line2": {}
+                                 }
+                              },
+                              "City": {
+                                 "type": "string"
+                              },
+                              "StateProvince": {
+                                 "type": "string"
+                              },
+                              "Country": {
+                                 "type": "string"
+                              },
+                              "PostalCode": {
+                                 "type": "string"
+                              },
+                              "Type": {
+                                 "type": "string"
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         },
+         "UpdateParentDetailRequest": {
+            "type": "object",
+            "properties": {
+               "StudentContactPersonal": {
+                  "type": "object",
+                  "properties": {
+                     "LocalId": {
+                        "type": "string"
+                     },
+                     "PersonInfo": {
+                        "type": "object",
+                        "properties": {
+                           "Name": {
+                              "type": "object",
+                              "properties": {
+                                 "Type": {
+                                    "type": "string"
+                                 },
+                                 "Title": {
+                                    "type": "string"
+                                 },
+                                 "FamilyName": {
+                                    "type": "string"
+                                 },
+                                 "GivenName": {
+                                    "type": "string"
+                                 }
+                              }
+                           },
+                           "Demographics": {
+                              "type": "object",
+                              "properties": {
+                                 "Sex": {
+                                    "type": "string"
+                                 }
+                              }
+                           }
+                        }
+                     },
+                     "SIF_Metadata": {
+                        "type": "object",
+                        "properties": {
+                           "LifeCycle": {
+                              "type": "object",
+                              "properties": {
+                                 "ETag": {
+                                    "type": "string"
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         },
+         "ErrorResponse": {
+            "type": "object",
+            "properties": {
+               "code": {
+                  "type": "integer"
+               },
+               "scope": {
+                  "type": "string"
+               },
+               "message": {
+                  "type": "string"
+               },
+               "description": {}
+            }
+         },
+         "ParentPortalPersonalsResponse": {
+            "type": "object",
+            "properties": {
+               "ParentPersonal": {
+                  "type": "array",
+                  "items": {
+                     "required": [
+                        "StudentContactPersonal",
+                        "StudentContactRelationship"
+                     ],
+                     "type": "object",
+                     "properties": {
+                        "StudentContactPersonal": {
+                           "type": "object",
+                           "properties": {
+                              "LocalId": {
+                                 "type": "string"
+                              },
+                              "OtherIdList": {
+                                 "type": "array",
+                                 "items": {
+                                    "required": [
+                                       "Type",
+                                       "Value"
+                                    ],
+                                    "type": "object",
+                                    "properties": {
+                                       "Type": {
+                                          "type": "string"
+                                       },
+                                       "Value": {
+                                          "type": "string"
+                                       }
+                                    }
+                                 }
+                              },
+                              "PersonInfo": {
+                                 "type": "object",
+                                 "properties": {
+                                    "Name": {
+                                       "type": "object",
+                                       "properties": {
+                                          "Type": {
+                                             "type": "string"
+                                          },
+                                          "Title": {
+                                             "type": "string"
+                                          },
+                                          "FamilyName": {
+                                             "type": "string"
+                                          },
+                                          "GivenName": {
+                                             "type": "string"
+                                          }
+                                       }
+                                    },
+                                    "Demographics": {
+                                       "type": "object",
+                                       "properties": {
+                                          "Sex": {
+                                             "type": "string"
+                                          }
+                                       }
+                                    },
+                                    "PhoneNumberList": {
+                                       "type": "array",
+                                       "items": {
+                                          "required": [
+                                             "Number",
+                                             "Type"
+                                          ],
+                                          "type": "object",
+                                          "properties": {
+                                             "Number": {
+                                                "type": "string"
+                                             },
+                                             "Type": {
+                                                "type": "string"
+                                             }
+                                          }
+                                       }
+                                    },
+                                    "EmailList": {
+                                       "type": "array",
+                                       "items": {
+                                          "required": [
+                                             "Type",
+                                             "Value"
+                                          ],
+                                          "type": "object",
+                                          "properties": {
+                                             "Type": {
+                                                "type": "string"
+                                             },
+                                             "Value": {
+                                                "type": "string"
+                                             }
+                                          }
+                                       }
+                                    }
+                                 }
+                              },
+                              "SIF_ExtendedElements": {
+                                 "type": "array",
+                                 "items": {
+                                    "required": [
+                                       "Name",
+                                       "Text"
+                                    ],
+                                    "type": "object",
+                                    "properties": {
+                                       "Name": {
+                                          "type": "string"
+                                       },
+                                       "Text": {
+                                          "type": "array",
+                                          "items": {
+                                             "type": "string"
+                                          }
+                                       }
+                                    }
+                                 }
+                              }
+                           }
+                        },
+                        "StudentContactRelationship": {
+                           "type": "object",
+                           "properties": {
+                              "Relationship": {
+                                 "type": "object",
+                                 "properties": {
+                                    "Code": {
+                                       "type": "string"
+                                    },
+                                    "OtherCodeList": {
+                                       "type": "array",
+                                       "items": {
+                                          "required": [
+                                             "Codeset",
+                                             "Value"
+                                          ],
+                                          "type": "object",
+                                          "properties": {
+                                             "Codeset": {
+                                                "type": "string"
+                                             },
+                                             "Value": {
+                                                "type": "string"
+                                             }
+                                          }
+                                       }
+                                    }
+                                 }
+                              },
+                              "ContactFlags": {
+                                 "type": "object",
+                                 "properties": {
+                                    "LivesWith": {
+                                       "type": "string"
+                                    },
+                                    "FamilyMail": {
+                                       "type": "string"
+                                    }
+                                 }
+                              },
+                              "StudentPersonalRef": {
+                                 "type": "object",
+                                 "properties": {
+                                    "LocalId": {
+                                       "type": "string"
+                                    }
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      },
+      "securitySchemes": {
+         "apiKeyHeader": {
+            "type": "apiKey",
+            "name": "applicationKey",
+            "in": "header"
+         },
+         "apiKeyQuery": {
+            "type": "apiKey",
+            "name": "applicationKey",
+            "in": "query"
+         }
+      }
+   },
+   "security": [
+      {
+         "apiKeyHeader": []
+      },
+      {
+         "apiKeyQuery": []
+      }
+   ]
+}
