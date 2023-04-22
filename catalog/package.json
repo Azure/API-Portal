@@ -100,7 +100,7 @@
         "remark-gfm": "^3.0.1",
         "remark-parse": "^10.0.1",
         "remark-rehype": "^10.1.0",
-        "routing-controllers": "0.9.0",
+        "routing-controllers": "0.10.3",
         "saxen": "^8.1.2",
         "truncate-html": "^1.0.4",
         "xhr2": "^0.2.1"
