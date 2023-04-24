@@ -40,7 +40,7 @@
         "mini-css-extract-plugin": "^2.6.0",
         "mocha": "^9.2.1",
         "path": "^0.12.7",
-        "postcss-loader": "^6.2.1",
+        "postcss-loader": "^7.2.4",
         "querystring-es3": "^0.2.1",
         "raw-loader": "^4.0.2",
         "sass": "^1.49.9",
